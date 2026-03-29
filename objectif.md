@@ -1,0 +1,3 @@
+Tu es un expert en développement applicatif et de site web ainsi qu'en architecture applicatif cloud. tu vas m'aider à construire une application via google antigravity.
+Objectif : construire un questionnaire de forme QCM (Q&R) basé sur un fichier ms word. Ce fichier ms word (ci-joint) contient 188 questions, pour chaque question il y a une ou plusieurs réponses possible. je veux donc 1 page par question avec les réponses disponibles (préfixé par des lettres). Des coches pour les réponses et un bouton qui au clic rével les bonnes réponses et juge le résultat.
+Outcomes : dans un 1er temps je veux que tu me propose la meilleur architecture possible

@@ -1,0 +1,3064 @@
+[
+    {
+        "question_id": 1,
+        "question": "Which of the following data elements are key to an effective Software Asset Management practice within ServiceNow? (Choose four.)",
+        "options": {
+            "A": "Software allocations",
+            "B": "Software models",
+            "C": "Foundation data",
+            "D": "Software contracts",
+            "E": "Software entitlements"
+        },
+        "correct_answers": [
+            "A",
+            "B",
+            "C",
+            "E"
+        ]
+    },
+    {
+        "id": 2,
+        "type": "matching",
+        "question": "Match the data import method with the appropriate data volume.",
+        "pairs": {
+            "Discovery": "Large amount of data",
+            "Import data": "Medium amount of data",
+            "Manual": "Small amount of data"
+        },
+        "explanation": "Discovery is best for large environments, Import data for medium batches, and Manual for small, ad-hoc entries."
+    },
+    {
+        "question_id": 3,
+        "question": "Within Software Asset Management there are many key terms to understand, what is the best definition for Normalization?",
+        "options": {
+            "A": "One or more use rights assigned to a specific device or user",
+            "B": "Classification of the acquired software",
+            "C": "The process of standardizing discovered software installation to defined norms",
+            "D": "The process of producing a compliance position by comparing the number of software rights acquired against the normalized software inventory",
+            "E": "Software license details that define use rights"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 4,
+        "question": "Which discovery sources are recommended by ServiceNow to populate ServiceNow software installation table? (Choose two.)",
+        "options": {
+            "A": "ServiceNow Service Mapping",
+            "B": "HP UCMDB",
+            "C": "Microsoft SCCM",
+            "D": "ServiceNow Discovery",
+            "E": "ServiceNow Orchestration"
+        },
+        "correct_answers": [
+            "C",
+            "D"
+        ]
+    },
+    {
+        "question_id": 5,
+        "question": "Creation of a template can help facilitate future data imports and be reused to import and transform data.",
+        "options": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 6,
+        "question": "Client access is the right to use for a specific amount of time.",
+        "options": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 7,
+        "question": "Coalesce can only use a single field to uniquely identify a record.",
+        "options": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 8,
+        "question": "When receiving an order, which data point is mandatory?",
+        "options": {
+            "A": "Assigned To",
+            "B": "Cost",
+            "C": "Asset Tag",
+            "D": "Serial Number"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 9,
+        "question": "How are the Software Asset Management Professional Plugins activated?",
+        "options": {
+            "A": "They are requested from and activated by an admin user",
+            "B": "They are activated by the sam_developer user",
+            "C": "They are activated by the sam_admin user",
+            "D": "They are requested from and activated by ServiceNow support",
+            "E": "They are activated by default in the base ServiceNow system"
+        },
+        "correct_answers": [
+            "D"
+        ]
+    },
+    {
+        "question_id": 10,
+        "question": "Which of the following are true of plugins? (Choose two.)",
+        "options": {
+            "A": "Plugins can be disabled or deactivated when no longer in use.",
+            "B": "Plugins can be activated by default in the base ServiceNow system.",
+            "C": "When a plugin is active you cannot hide its functionality.",
+            "D": "Plugins are stand-alone and do not depend on other plugins being activated.",
+            "E": "Plugins are software components that provide specific features and functionalities."
+        },
+        "correct_answers": [
+            "B",
+            "E"
+        ]
+    },
+    {
+        "question_id": 11,
+        "question": "When receiving software related to a purchase order in ServiceNow, which data point is mandatory?",
+        "options": {
+            "A": "Serial Number",
+            "B": "Assigned To",
+            "C": "Cost",
+            "D": "License key",
+            "E": "Asset Tag"
+        },
+        "correct_answers": [
+            "E"
+        ]
+    },
+    {
+        "question_id": 12,
+        "question": "Which of the following are NOT features of the Publisher workbench navigation tree? (Choose two.)",
+        "options": {
+            "A": "Expand and collapse tree links",
+            "B": "List of all publishers",
+            "C": "Software model compliance icons",
+            "D": "Filter products",
+            "E": "Compliance toggle switch",
+            "F": "List of all publishers out of compliance"
+        },
+        "correct_answers": [
+            "B",
+            "F"
+        ]
+    },
+    {
+        "question_id": 14,
+        "question": "In which stage of the ServiceNow Implementation Methodology (SIM) is the purpose to define processes and requirements for engagement and finalize delivery plan and user stories?",
+        "options": {
+            "A": "Transition",
+            "B": "Close",
+            "C": "Create",
+            "D": "Prepare",
+            "E": "Initiate",
+            "F": "All of the above"
+        },
+        "correct_answers": [
+            "D"
+        ]
+    },
+    {
+        "question_id": 15,
+        "question": "What is used to determine if installations are a part of a suite only when the suite parent is not discovered on a device?",
+        "options": {
+            "A": "inference percent",
+            "B": "product results",
+            "C": "software model",
+            "D": "model bundles"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 16,
+        "question": "Which statements are true in regards to ServiceNow’s Client Software Distribution (CSD) functionality? (Choose two.)",
+        "options": {
+            "A": "Removes software daily utilizing a scheduled job.",
+            "B": "ServiceNow does not have Client Software Distribution.",
+            "C": "The first stage in the CSD process flow is configuration.",
+            "D": "CSD can automatically distribute and reclaim software without a license for Orchestration."
+        },
+        "correct_answers": [
+            "A",
+            "C"
+        ]
+    },
+    {
+        "question_id": 17,
+        "question": "Which of the following SAM roles has permission to grant a user the script writing capability?",
+        "options": {
+            "A": "discover_admin",
+            "B": "sam_admin",
+            "C": "sam_developer",
+            "D": "asset"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 18,
+        "question": "Within the Capability Blueprint there are 4 tiers identified. Which tier is identified as Tier 1?",
+        "options": {
+            "A": "Strategic Conformance",
+            "B": "Operational Integration",
+            "C": "Trustworthy Data",
+            "D": "Practical Management"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 19,
+        "question": "Which of the following are available publisher packs? (Choose four.)",
+        "options": {
+            "A": "SAP",
+            "B": "OpenVMS",
+            "C": "Citrix",
+            "D": "NetSuite",
+            "E": "Oracle",
+            "F": "IBM"
+        },
+        "correct_answers": [
+            "A",
+            "C",
+            "E",
+            "F"
+        ]
+    },
+    {
+        "question_id": 20,
+        "question": "Which of the following features aggregates usage over a period of time and specifies a minimum number of hours the software must be used, or date last used?",
+        "options": {
+            "A": "Software usage metering",
+            "B": "Software reconciliation rule",
+            "C": "Software reclamation type",
+            "D": "Software consumption rule",
+            "E": "Software reclamation rule"
+        },
+        "correct_answers": [
+            "E"
+        ]
+    },
+    {
+        "question_id": 21,
+        "question": "By default, which user role must verify the successful activation of plugins by ServiceNow support?",
+        "options": {
+            "A": "sam_user",
+            "B": "asset_admin",
+            "C": "sam_admin",
+            "D": "sys_admin"
+        },
+        "correct_answers": [
+            "D"
+        ]
+    },
+    {
+        "question_id": 22,
+        "question": "When populating software usage records automatically via Microsoft System Center Configuration Manager (SCCM), which plugins are required? (Choose two.)",
+        "options": {
+            "A": "Microsoft Publisher Pack plugin",
+            "B": "Microsoft SCCM Software Usage plugin",
+            "C": "Microsoft SCCM Integration plugin",
+            "D": "Performance Analytics Premium for Software Asset Management plugin",
+            "E": "Orchestration-Client Software Distribution plugin"
+        },
+        "correct_answers": [
+            "B",
+            "C"
+        ]
+    },
+    {
+        "question_id": 23,
+        "question": "An allocation is automatically created in which of the following scenarios? (Choose two.)",
+        "options": {
+            "A": "After receiving the rights for software from a purchase order",
+            "B": "After a Create allocation remediation option has been taken",
+            "C": "After reconciliation runs and identifies that rights are ‘Not allocated in use’",
+            "D": "When a software installation is discovered",
+            "E": "After successfully sourcing a request via an existing entitlement"
+        },
+        "correct_answers": [
+            "B",
+            "E"
+        ]
+    },
+    {
+        "question_id": 24,
+        "question": "In the ServiceNow base platform, which roles have the ability to refresh processor definitions?",
+        "options": {
+            "A": "sam_user / sam_admin / sys_admin",
+            "B": "sam_user / sys_admin",
+            "C": "sam_admin / sys_admin",
+            "D": "sys_admin / asset_admin"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 25,
+        "question": "Which of the following are required to import usage data using the System Center Configuration Manager (SCCM) data? (Choose three.)",
+        "options": {
+            "A": "Reclamation Candidate",
+            "B": "Software Product",
+            "C": "SCCM Application",
+            "D": "Software Models",
+            "E": "Product Process",
+            "F": "Reclamation Rule"
+        },
+        "correct_answers": [
+            "B",
+            "E",
+            "F"
+        ]
+    },
+    {
+        "question_id": 26,
+        "question": "Software usage data can be imported utilizing:",
+        "options": {
+            "A": "Transform Map",
+            "B": "Other Third Party Sources",
+            "C": "System Center Configuration Manager (SCCM)",
+            "D": "Manually"
+        },
+        "correct_answers": [
+            "A",
+            "B",
+            "C",
+            "D"
+        ]
+    },
+    {
+        "question_id": 27,
+        "question": "Which of the following statements is incorrect with regards to on-premise import and export of Content Service data?",
+        "options": {
+            "A": "Clicking on the “Manage Software Library” module takes the user to an interceptor page where they can select to import or export data.",
+            "B": "On-premise instances do not receive automatic Software Library updates.",
+            "C": "Normalization content is eligible for the export feature.",
+            "D": "By default, you are opted in to the Manage On-Premise Library (com.sn_samp_on_prem) plugin.",
+            "E": "You must opt-in to the SAM Content Service through the Content Service setup page."
+        },
+        "correct_answers": [
+            "D"
+        ]
+    },
+    {
+        "question_id": 28,
+        "question": "If a value from an import does not exist in ServiceNow and the import should not create a new record, which option should be selected?",
+        "options": {
+            "A": "Reject",
+            "B": "Create",
+            "C": "Delete",
+            "D": "Ignore"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 29,
+        "question": "When loading a medium amount of data, which is the best method to use?",
+        "options": {
+            "A": "Use Discovery to find software on the network",
+            "B": "Modify a workflow",
+            "C": "Manually add through ServiceNow forms",
+            "D": "Import data",
+            "E": "Create a business rule"
+        },
+        "correct_answers": [
+            "D"
+        ]
+    },
+    {
+        "question_id": 30,
+        "question": "What is a first key step prior to uploading your entitlement import data via the ServiceNow-provided template?",
+        "options": {
+            "A": "Ensure you have filled out every field in the template file",
+            "B": "Ensure the entitlement data is listed on the first tab of the template file",
+            "C": "Ensure you have downloaded and used the latest version of the template file",
+            "D": "Ensure you have the sam_user role assigned to you"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 31,
+        "question": "What are three ways to get software asset data into ServiceNow?",
+        "options": {
+            "A": "Clone, Background Script, Discovery",
+            "B": "Import Data, Plugin, Clone",
+            "C": "Discovery, Import Data, Manual",
+            "D": "Plugin, Background Script, Manual"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 32,
+        "question": "The Software Asset Management Content Service is automatically enabled and cannot be opted out.",
+        "options": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 33,
+        "question": "What table is populated with the content library data that is pulled from the content service?",
+        "options": {
+            "A": "samp_sw_package",
+            "B": "cmdb_sw_product_model",
+            "C": "sam_content_library",
+            "D": "cmdb_ci_spkg"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 34,
+        "question": "When specified during an entitlement import, which of the following is matched to data in the Content Service Library and used to create a software model automatically?",
+        "options": {
+            "A": "Purchage Order (PO)",
+            "B": "Software Model",
+            "C": "Publisher Part Number (PPN)",
+            "D": "Asset Tag"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 35,
+        "question": "As part of the software normalization process, software discovery models are normalized via which mechanisms? (Choose two.)",
+        "options": {
+            "A": "Fix script",
+            "B": "Scheduled job",
+            "C": "Business rule",
+            "D": "Integration",
+            "E": "Workflow"
+        },
+        "correct_answers": [
+            "B",
+            "C"
+        ]
+    },
+    {
+        "question_id": 36,
+        "question": "What is the definition of Partially Normalized?",
+        "options": {
+            "A": "A discovery model normalized based on publisher field alone.",
+            "B": "The software discovery model has not yet completed its run through the normalization process.",
+            "C": "A discovery model was normalized based on publisher and product fields only.",
+            "D": "A discovery model was normalized based on publisher, product, version fields."
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 37,
+        "question": "What is the name of the Scheduled job that runs daily for normalization?",
+        "options": {
+            "A": "Create a Software Normalization",
+            "B": "Software Installation Normalization",
+            "C": "Software Model Cleanup",
+            "D": "Discovery Model Normalization"
+        },
+        "correct_answers": [
+            "D"
+        ]
+    },
+    {
+        "question_id": 38,
+        "question": "Within Software Asset Management there are many key terms to understand, what is the best definition for Software Allocation?",
+        "options": {
+            "A": "One or more use rights assigned to a specific device or user.",
+            "B": "Something acquired with use rights.",
+            "C": "The process of normalizing a discovered software installation to standardized values.",
+            "D": "Finding and recognizing software or a software feature on a device."
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 39,
+        "question": "How often is the scheduled job for the normalization process run?",
+        "options": {
+            "A": "Nightly",
+            "B": "Weekly",
+            "C": "Every time Discovery is run",
+            "D": "Nightly for new discovery models and weekly for all discovery models that do not have a status of normalized or manually normalized",
+            "E": "Immediately for new discovery models and nightly for all discovery models that do not have a status of normalized or manually normalized"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 40,
+        "question": "Discovery models may not be fully normalized until updated content is downloaded from the ServiceNow Software Content Library. How do you determine if the content has been downloaded?",
+        "options": {
+            "A": "Review the Last updated date of the Central Data Service Download Status jobs on the Normalization and Content Service dashboard.",
+            "B": "Determine if the business rule “Create a Software Normalization Download” has been triggered yet or not.",
+            "C": "Query the scheduled job reports to determine if the “Software Content Library Download” (samp_cds_download) job has completed yet.",
+            "D": "Review the number of records in the samp_product_map table. If there are ~7,700 records in the table, the download has completed at least once."
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 41,
+        "question": "When populating the Downgrade Rights table, if there is no software model corresponding to a discovery map, which of the following is automatically created?",
+        "options": {
+            "A": "Software Discovery Model",
+            "B": "Software Model",
+            "C": "Software Downgrade Model",
+            "D": "Software Install Model"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 42,
+        "question": "For software asset management, when software is discovered, the records from the discovered pattern are copied into which table?",
+        "options": {
+            "A": "cmbd_sam_sw_reconcile",
+            "B": "cmbd_sam_sw_discover",
+            "C": "cmbd_sam_sw_allocate",
+            "D": "cmdb_sam_sw_discovery_model",
+            "E": "cmbd_sam_sw_install"
+        },
+        "correct_answers": [
+            "E"
+        ]
+    },
+    {
+        "question_id": 43,
+        "question": "Within ServiceNow Discovery, the Exploration phase determines what?",
+        "options": {
+            "A": "Are you there? How will I classify you?",
+            "B": "What else can you tell me about yourself?",
+            "C": "Have I seen you before?",
+            "D": "How should I classify you specifically?"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 44,
+        "question": "If your organization is currently running Discovery, but has not yet installed the SAM Professional application, what must you do after installing SAM in order to make your discovered software installation information available to SAM?",
+        "options": {
+            "A": "Convert the records from the [cmdb_ci_spkg] table into the [cmdb_sam_sw_install] table",
+            "B": "Run the “Migrate software installations” script to copy records from the [cmdb_ci_spkg] table to the [cmdb_sam_sw_install] table",
+            "C": "Run the “Discover software installations” script to copy records from the [cmdb_ci_spkg] table to the [cmdb_sam_sw_install] table",
+            "D": "Export the records from the [cmdb_ci_spkg] table into an xml spreadsheet and import them into the [cmdb_sam_sw_install] table"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 45,
+        "question": "ServiceNow Discovery identifies the software running on an IP-enabled device during which of its phases?",
+        "options": {
+            "A": "Classification",
+            "B": "Identification",
+            "C": "Port Scan",
+            "D": "Exploration",
+            "E": "Communication"
+        },
+        "correct_answers": [
+            "D"
+        ]
+    },
+    {
+        "question_id": 46,
+        "question": "When a Software Installation record is created, ServiceNow attempts to match the installation to a:",
+        "options": {
+            "A": "Software Entitlement",
+            "B": "Software Model",
+            "C": "Software Discovery Model",
+            "D": "Application Model"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 47,
+        "question": "ServiceNow Discovery has 4 phases: Scanning; Classification; Identification; and Exploration. In which phase is the software running on a device identified?",
+        "options": {
+            "A": "Classification",
+            "B": "Scanning",
+            "C": "Exploration",
+            "D": "Identification"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 48,
+        "question": "Any product that accurately discovers software installations on computers in an environment can be used as the source for a Software Installation data.",
+        "options": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 49,
+        "question": "When are discovery models created?",
+        "options": {
+            "A": "They are manually created",
+            "B": "They are automatically created during discovery",
+            "C": "When SAM Plugin is enabled",
+            "D": "They are automatically created during reconciliation",
+            "E": "They are automatically created during normalization."
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 50,
+        "question": "By default, which persona is responsible for controlling the day-to-day activities of the SAM process and ensuring the overall quality of software asset data?",
+        "options": {
+            "A": "ServiceNow administrator",
+            "B": "SAM manager",
+            "C": "SAM user",
+            "D": "SAM process owner",
+            "E": "SAM developer"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 51,
+        "question": "When creating custom products: (Choose the best answer.)",
+        "options": {
+            "A": "Custom products should not be tracked in ServiceNow.",
+            "B": "Custom products should not be created for anything included in the content library.",
+            "C": "Custom products are automatically created in the content library.",
+            "D": "Custom products should be created for anything included in the content library."
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 52,
+        "question": "If a customer does not like the way reconciliation runs or calculates compliance, it is okay to modify the scripts includes, business rules and other logic to accommodate the business requirement.",
+        "options": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 53,
+        "question": "By default, which ServiceNow role can view reconciliation results?",
+        "options": {
+            "A": "sam_reconcile_user",
+            "B": "sam_user",
+            "C": "sam_viewer",
+            "D": "sam_cmdb_user"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 54,
+        "question": "The process of determining compliance by comparing software rights owned with normalized software installations discovered is __________________ .",
+        "options": {
+            "A": "Discovery",
+            "B": "Allocation",
+            "C": "Normalization",
+            "D": "Reconciliation"
+        },
+        "correct_answers": [
+            "D"
+        ]
+    },
+    {
+        "question_id": 55,
+        "question": "The definition for _________________ in the Reconciliation Product result is: “Estimated cost of remediating non-compliance based on the least number of rights needed.”",
+        "options": {
+            "A": "Reconciliation cost",
+            "B": "True-up cost",
+            "C": "True-down cost",
+            "D": "Over-licensed cost"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 56,
+        "question": "When reconciliation is run, a list of product results displays the compliance status of software versions and editions with respect to discovery and entitlements.",
+        "options": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 57,
+        "question": "In order to write to the reconciliation results, a user would need the following role in ServiceNow: sam_reconcile_user",
+        "options": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 58,
+        "question": "Select the field attribute that indicates whether this product result is from the most recent reconciliation run.",
+        "options": {
+            "A": "Current",
+            "B": "Last",
+            "C": "Active",
+            "D": "Latest"
+        },
+        "correct_answers": [
+            "D"
+        ]
+    },
+    {
+        "question_id": 59,
+        "question": "In defining a Custom License Metric, in the Reconciliation Order field, the ___________ metric rank priority’ number takes precedence.",
+        "options": {
+            "A": "Lower",
+            "B": "Impact",
+            "C": "Higher",
+            "D": "WBS"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 60,
+        "question": "The license metric attributes related list contains metric values set in software entitlements, and is used for reconciliation (metric group, license metric, and software model combination).",
+        "options": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 61,
+        "question": "By default, when is a product result generated for a licensable product after reconciliation?",
+        "options": {
+            "A": "Always, even if there are no software models defined for the product",
+            "B": "Never",
+            "C": "Only when there are software entitlements defined for the product",
+            "D": "Whenever there is at least one software model defined for the product",
+            "E": "Only when related entitlements have a cost identified"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 62,
+        "question": "Which feature provides detailed, actionable information for software reconciliation?",
+        "options": {
+            "A": "License Workbench",
+            "B": "License Position Report",
+            "C": "Normalization and Content Service dashboard",
+            "D": "Normalization Suggestions",
+            "E": "Historical Results"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 63,
+        "question": "What are the four tiers of software reconciliation results? (Choose four.)",
+        "options": {
+            "A": "Software License Metric",
+            "B": "Software Product",
+            "C": "Software Allocation",
+            "D": "Software Entitlement",
+            "E": "Software Publisher",
+            "F": "Software Model"
+        },
+        "correct_answers": [
+            "A",
+            "B",
+            "E",
+            "F"
+        ]
+    },
+    {
+        "question_id": 64,
+        "question": "When reconciliation is run, what information does the license metric results display?",
+        "options": {
+            "A": "Results for all models and installations associated to the product",
+            "B": "Results for all products and installations associated to the publisher",
+            "C": "Results for each license metric associated to the software model",
+            "D": "Results for all license metrics related to the software model"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 65,
+        "question": "To run an on-demand reconciliation, which module would you navigate to?",
+        "options": {
+            "A": "Software Asset > Discovery > Run Reconciliation",
+            "B": "Software Asset > Reconciliation > Run Reconciliation",
+            "C": "Software Asset > Discovery > License Workbench",
+            "D": "Software Asset > Reconciliation > License Workbench",
+            "E": "Software Asset > Reconciliation > Run License Position Report",
+            "F": "Software Asset > Discovery > Run License Position Report"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 66,
+        "question": "Which of the following features are available from the main publisher results screen of the License Workbench? (Choose three.)",
+        "options": {
+            "A": "All Publishers",
+            "B": "Publisher Compliance",
+            "C": "Pinned Publishers",
+            "D": "Publisher License Metrics",
+            "E": "Publishers Out of Compliance",
+            "F": "Publisher Software Models"
+        },
+        "correct_answers": [
+            "A",
+            "C",
+            "E"
+        ]
+    },
+    {
+        "question_id": 67,
+        "question": "Which related list is NOT available from the software model on the License Workbench?",
+        "options": {
+            "A": "Unlicensed Subscriptions",
+            "B": "Unlicensed Software Products",
+            "C": "Removal Candidates",
+            "D": "Remediation Options",
+            "E": "License Metric Results"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 68,
+        "question": "License metrics can be defined for which of the following? (Choose four.)",
+        "options": {
+            "A": "Publishers",
+            "B": "Users",
+            "C": "Cores",
+            "D": "Devices",
+            "E": "Metric Types",
+            "F": "Operating Systems",
+            "G": "Processors"
+        },
+        "correct_answers": [
+            "B",
+            "C",
+            "D",
+            "G"
+        ]
+    },
+    {
+        "question_id": 69,
+        "question": "Which license metric would be used for software that is only allowed to be installed on one computer per license right?",
+        "options": {
+            "A": "Per Processor",
+            "B": "Per Named Device",
+            "C": "Per Named User",
+            "D": "Per Core"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 70,
+        "question": "Which of the following license metrics require allocations in order to maintain compliance? (Choose two.)",
+        "options": {
+            "A": "Per Core",
+            "B": "Per User",
+            "C": "Per Named Device",
+            "D": "Per Named User",
+            "E": "Per Core (with CAL)",
+            "F": "Per Application Instance",
+            "G": "Named User Plus"
+        },
+        "correct_answers": [
+            "C",
+            "D"
+        ]
+    },
+    {
+        "question_id": 71,
+        "question": "Which of the following are NOT tabs available on the License Workbench? (Choose three.)",
+        "options": {
+            "A": "Publisher License Metrics",
+            "B": "All Publishers",
+            "C": "Publishers Out of Compliance",
+            "D": "Publisher Software Models",
+            "E": "Publisher Compliance",
+            "F": "Pinned Publishers"
+        },
+        "correct_answers": [
+            "A",
+            "D",
+            "E"
+        ]
+    },
+    {
+        "question_id": 72,
+        "question": "You can view IBM, Microsoft, Oracle and VMware license metrics as part of ServiceNow standard baseline configuration features.",
+        "options": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 73,
+        "question": "When creating a reportable bar graph view of License Metrics, you can use which of the following options to refine how you view license metric data?",
+        "options": {
+            "A": "‘Group by’ or ‘Stacked by’",
+            "B": "‘Group by’ and ‘Stacked by’",
+            "C": "‘Stacked by’",
+            "D": "‘Group by’"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 74,
+        "question": "A Software Product can only have a single license metric type associated to it.",
+        "options": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 75,
+        "question": "By default, the license metric field is displayed on which record form within ServiceNow?",
+        "options": {
+            "A": "Software Model",
+            "B": "Software Allocations",
+            "C": "Software Entitlement",
+            "D": "Software Product",
+            "E": "Software publisher"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 76,
+        "question": "What product must you procure a separate license for in order to utilize Workflow and Client Software Distribution (CSD) to automatically install software on devices.",
+        "options": {
+            "A": "ITSM",
+            "B": "Asset Management",
+            "C": "Orchestration",
+            "D": "Discovery",
+            "E": "Deployment management"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 77,
+        "question": "Software license management (SLM) is a key component of the software asset lifecycle. What is its primary objective?",
+        "options": {
+            "A": "To convert regular per user licenses into subscription licenses",
+            "B": "To track, control, and reduce software costs, including costs associated with non-compliance findings during a software audit",
+            "C": "To reserve a block of licenses for a specific group of users and/or user role(s)",
+            "D": "To accurately calculate annual true-up cost and total spend on a product",
+            "E": "To automatically install and remove software on devices using Workflow and Client Software Distribution (CSD)"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 78,
+        "question": "The Per Named Device license metric licenses which of the following?",
+        "options": {
+            "A": "A user for a number of installations of software",
+            "B": "A device for a number of installations of software",
+            "C": "A specific user for a number of installations of software",
+            "D": "Cores on a physical server or virtual machine",
+            "E": "A specific device for a number of installations of software"
+        },
+        "correct_answers": [
+            "E"
+        ]
+    },
+    {
+        "question_id": 79,
+        "question": "What is the purpose of the Metric Group on the Software Entitlement record?",
+        "options": {
+            "A": "To select the group of license metrics to be used on the entitlement",
+            "B": "To select a group to see specific license metrics for a software category",
+            "C": "To select a category of specific license entitlement attributes",
+            "D": "To select a group to see specific license key attributes"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 80,
+        "question": "ServiceNow Performance Analytics identifies a trend that use of a certain software package has reduced over time. This is a potential indicator of what?",
+        "options": {
+            "A": "Your company is under-licensed for the product.",
+            "B": "Your company needs to renegotiate your contract to get better pricing.",
+            "C": "Your company is over-licensed for the product.",
+            "D": "Your company needs to retire the unused entitlements."
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 81,
+        "question": "A(n) ______________ is required for a user or device to consume software rights.",
+        "options": {
+            "A": "License",
+            "B": "Allocation",
+            "C": "Entitlement",
+            "D": "Workflow"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 82,
+        "question": "Which of the following is required to identify users and devices that have the right to use software?",
+        "options": {
+            "A": "Software License",
+            "B": "Software Allocation",
+            "C": "Software Model",
+            "D": "Software Entitlement",
+            "E": "Software Installation"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 83,
+        "question": "Which of the following allocation types are available on an entitlement record in the ServiceNow baseline configuration? (Choose two.)",
+        "options": {
+            "A": "Device allocations",
+            "B": "Country allocations",
+            "C": "Company allocations",
+            "D": "Department allocations",
+            "E": "User allocations"
+        },
+        "correct_answers": [
+            "A",
+            "E"
+        ]
+    },
+    {
+        "question_id": 84,
+        "question": "When importing entitlements, a record generates the error, “Publisher Part Number not found”. However, the record is for an expired entitlement that is no longer needed. Which is the best UI action to select?",
+        "options": {
+            "A": "Create Entitlement",
+            "B": "Delete",
+            "C": "Create Part Number",
+            "D": "Reject"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 85,
+        "question": "Which of the following describes Practical Management within the capability blueprint?",
+        "options": {
+            "A": "Improve management controls and drive immediate benefits.",
+            "B": "Know what you have so you can manage it.",
+            "C": "Improve efficiency and effectiveness through integration with other areas, such as request, procurement, and IT Service Management.",
+            "D": "Achieve best in-class."
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "id": 86,
+        "type": "matching",
+        "question": "Match the reconciliation result description with the correct ServiceNow SAM result type.",
+        "pairs": {
+            "Only created when an entitlement exists for the product.": "Software Model Result",
+            "Utilized to determine compliance options because the information includes rights owned and rights used.": "License Metric Result",
+            "Generated for licensable products after reconciliation.": "Product Result"
+        },
+        "explanation": "In ServiceNow SAM, a Product Result is the highest level, generated for any licensable product found. A Software Model Result is only created if an entitlement or specific software model is defined. The License Metric Result is the most granular, directly comparing rights owned versus rights used to determine compliance and remediation options."
+    },
+    {
+        "question_id": 87,
+        "question": "Blacklisted candidates are ______________ .",
+        "options": {
+            "A": "Software installations that are not normalized",
+            "B": "Unlicensed and unallocated installations",
+            "C": "Software installations not allowed in the network environment",
+            "D": "Software installations with low usage"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 88,
+        "question": "Which of the following is not a core Software Asset Management function?",
+        "options": {
+            "A": "Financial Management",
+            "B": "Reclamation",
+            "C": "Rights Allocation",
+            "D": "Inventory Management"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 89,
+        "question": "In addition to creating a new purchase order for software licenses, additional remediation options are available in Software Model results to: (Choose two.)",
+        "options": {
+            "A": "Remove Unallocated Installs",
+            "B": "Remove Duplicate Allocations",
+            "C": "Remove Unlicensed Installs",
+            "D": "Remove Blacklisted Installs"
+        },
+        "correct_answers": [
+            "A",
+            "C"
+        ]
+    },
+    {
+        "question_id": 90,
+        "question": "What list can include manual creation, remediation options, and reclamation rules?",
+        "options": {
+            "A": "Software Models Results",
+            "B": "Blacklisted Installations",
+            "C": "Removal Candidates",
+            "D": "Software Usage"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 91,
+        "question": "Which of the following remediation options can be performed on an individual user or device basis? (Choose three.)",
+        "options": {
+            "A": "Remove Unallocated Installs",
+            "B": "Remove Unlicensed Installs",
+            "C": "Create Allocations",
+            "D": "Remove Allocations",
+            "E": "Purchase Rights"
+        },
+        "correct_answers": [
+            "A",
+            "B",
+            "D"
+        ]
+    },
+    {
+        "question_id": 92,
+        "question": "Which of the following reasons could apply when a remediation option has an ‘In Progress’ status? (Choose two.)",
+        "options": {
+            "A": "Workflow(s) or process(es) have been initiated to allocate software rights",
+            "B": "Rights are now available and can be consumed during reconciliation",
+            "C": "Workflow(s) or process(es) have been initiated to purchase software rights",
+            "D": "Workflow(s) or process(es) have been initiated to harvest software rights",
+            "E": "Customer instance is pending updates to CDS Server"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 93,
+        "question": "Which stage of the software asset lifecycle includes all of the following steps? Discovering software in the environment, Normalizing installed software to standards, Reconciling entitlements to discovered software, Remediating detected variances",
+        "options": {
+            "A": "Sunset",
+            "B": "Manage",
+            "C": "Support",
+            "D": "Source",
+            "E": "Plan"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 94,
+        "question": "Which catalog provides a listing of goods offered or available by a third party?",
+        "options": {
+            "A": "Service Catalog",
+            "B": "Model Catalog",
+            "C": "Item Catalog",
+            "D": "Vendor Catalog",
+            "E": "Product Catalog"
+        },
+        "correct_answers": [
+            "D"
+        ]
+    },
+    {
+        "question_id": 95,
+        "question": "A software model can have up to how many catalog items?",
+        "options": {
+            "A": "1",
+            "B": "2",
+            "C": "6",
+            "D": "10",
+            "E": "Unlimited"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "id": 96,
+        "type": "matching",
+        "question": "Match each catalog type with its correct definition.",
+        "pairs": {
+            "Product Catalog": "Collection of models in the environment.",
+            "Service Catalog": "Listing of goods an organization provides.",
+            "Vendor Catalog": "Listing of goods offered or available by a third party."
+        },
+        "explanation": "Product Catalog: models in the environment. Service Catalog: goods the organization provides internally. Vendor Catalog: goods available from a third party."
+    },
+    {
+        "question_id": 97,
+        "question": "If a user requests three items from the software catalog at the same time, how many individual requests are created?",
+        "options": {
+            "A": "None; task records are created",
+            "B": "1",
+            "C": "3",
+            "D": "1 for each publisher",
+            "E": "1 for each product type"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 98,
+        "question": "Which of the following elements are included in Operational Integration of a SAM practice? (Choose three.)",
+        "options": {
+            "A": "Software Retirement",
+            "B": "Software License Contracts",
+            "C": "Software Sourcing",
+            "D": "License Change Projection",
+            "E": "Software Entitlements",
+            "F": "Software Allocations",
+            "G": "Software Model Lifecycle"
+        },
+        "correct_answers": [
+            "B",
+            "C",
+            "D"
+        ]
+    },
+    {
+        "question_id": 99,
+        "question": "You have a contract that is getting ready to expire. What options do you have for handling this contract and remaining compliant? (Choose three.)",
+        "options": {
+            "A": "Reject",
+            "B": "Extend",
+            "C": "Cancel",
+            "D": "Activate",
+            "E": "Delete",
+            "F": "Renew"
+        },
+        "correct_answers": [
+            "B",
+            "C",
+            "F"
+        ]
+    },
+    {
+        "question_id": 100,
+        "question": "The baseline sam_admin role contains the additional roles of: sam_user, asset, and procurement_user, and which of the following? (Choose two.)",
+        "options": {
+            "A": "itil",
+            "B": "sam_developer",
+            "C": "contract_manager",
+            "D": "model_manager",
+            "E": "entitlement_manager"
+        },
+        "correct_answers": [
+            "C",
+            "D"
+        ]
+    },
+    {
+        "question_id": 101,
+        "question": "What is the purpose of an external audit?",
+        "options": {
+            "A": "To ensure your users are not running any blacklisted software",
+            "B": "To determine compliance with internally-defined vendor processes",
+            "C": "To determine compliance with signed vendor agreements/contracts",
+            "D": "To ensure your entitlements do not exceed your allocations",
+            "E": "To determine compliance with licensing agreements regarding who, how, and when freeware software is being used"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "id": 102,
+        "type": "matching",
+        "question": "Match each software licensing term with its correct definition.",
+        "pairs": {
+            "Downgrade/Upgrade": "Software entitlement rights to utilize previous or future versions.",
+            "Software Subscription": "Ability to utilize the software for a limited amount of time.",
+            "Client Access": "Specific number of users or devices that can access a product.",
+            "Publisher Pack": "Compliance dashboards."
+        },
+        "explanation": "Downgrade/Upgrade: contractual right to switch to a previous or future version. Software Subscription: time-limited license that must be renewed periodically. Client Access: defines the number of authorized users or devices (CAL). Publisher Pack: SAM bundle providing compliance dashboards and reporting tools from the publisher."
+    },
+    {
+        "question_id": 103,
+        "question": "Software Asset Lifecycle has __________ components.",
+        "options": {
+            "A": "8",
+            "B": "6",
+            "C": "7",
+            "D": "5"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 104,
+        "question": "Additional Software Model Lifecycles phases can be added as __________ .",
+        "options": {
+            "A": "Options",
+            "B": "Items",
+            "C": "Choices",
+            "D": "Selections"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 105,
+        "question": "Software Model Lifecycles can only be created for an external, publisher defined date.",
+        "options": {
+            "A": "True",
+            "B": "False"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 106,
+        "question": "Once a weekly software content update adds lifecycle data to your instance, can it be deleted from the software model?",
+        "options": {
+            "A": "It can be deleted or deactivated",
+            "B": "Yes, it can once accepted",
+            "C": "It cannot unless the lifecycle stage is EOL",
+            "D": "No, it cannot"
+        },
+        "correct_answers": [
+            "D"
+        ]
+    },
+    {
+        "question_id": 107,
+        "question": "During contract negotiations, what report could you run to gain visibility to products nearing end-of support?",
+        "options": {
+            "A": "Software Contract Lifecycle Report",
+            "B": "Software Model Lifecycle Report",
+            "C": "Software Licenses Report",
+            "D": "Software Support Report"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 108,
+        "question": "Once you are ready to retire software in ServiceNow, what is the critical first step in the retirement process?",
+        "options": {
+            "A": "Manually set Allocations available on the entitlement to Zero (0)",
+            "B": "Expire identified active software entitlements",
+            "C": "Run the Software Model Lifecycle Report",
+            "D": "Revoke all current allocations",
+            "E": "Recover the identified software entitlements"
+        },
+        "correct_answers": [
+            "D"
+        ]
+    },
+    {
+        "question_id": 109,
+        "question": "Publisher information such as general availability and end-of-life dates will be provided as part of what feature within ServiceNow?",
+        "options": {
+            "A": "License change projection",
+            "B": "Software model lifecycle",
+            "C": "Publisher packs",
+            "D": "Normalization suggestions",
+            "E": "Reconciliation dimensions"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 110,
+        "question": "A user is notified their software install has been flagged for reclamation. The user declines approval. What is the next step in the workflow?",
+        "options": {
+            "A": "Nothing happens.",
+            "B": "The user’s manager must approve or decline the reclamation.",
+            "C": "The reclamation candidate is removed from the candidate list.",
+            "D": "The software is reclaimed since it was not in use."
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 111,
+        "question": "Which of the following features enables organizations to easily upgrade a standard version of their software to an enterprise version?",
+        "options": {
+            "A": "Software Entitlement",
+            "B": "Software Edition",
+            "C": "Software Assurance",
+            "D": "Software Allocation"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 112,
+        "question": "What role must be granted in order to create new reports that could be viewed by other people?",
+        "options": {
+            "A": "Report Creator [Report_Creator]",
+            "B": "Report Publisher [report_publisher]",
+            "C": "ITIL [itil]",
+            "D": "Global Report User [report_global]"
+        },
+        "correct_answers": [
+            "D"
+        ]
+    },
+    {
+        "question_id": 113,
+        "question": "Performance Analytics allows users to: (Choose three.)",
+        "options": {
+            "A": "Track usage of a particular software.",
+            "B": "Assess publisher compliance over a period of time.",
+            "C": "Configure software reclamation.",
+            "D": "View trends of software license allocations."
+        },
+        "correct_answers": [
+            "A",
+            "B",
+            "D"
+        ]
+    },
+    {
+        "question_id": 114,
+        "question": "Software Asset Management (SAM) Professional reports can be delivered in which formats? (Choose three.)",
+        "options": {
+            "A": "PowerPoint",
+            "B": "PDF",
+            "C": "CSV",
+            "D": "XLS"
+        },
+        "correct_answers": [
+            "B",
+            "C",
+            "D"
+        ]
+    },
+    {
+        "question_id": 115,
+        "question": "The goals of Software Asset Management include which of the following? (Choose three.)",
+        "options": {
+            "A": "Optimize spend",
+            "B": "Rationalize business applications",
+            "C": "Maintain compliance",
+            "D": "Identify unauthorized usage",
+            "E": "Support software audits"
+        },
+        "correct_answers": [
+            "A",
+            "C",
+            "E"
+        ]
+    },
+    {
+        "question_id": 116,
+        "question": "Which ServiceNow plugin is used by Software Asset Management (SAM) Professional and configured during SAM Professional setup?",
+        "options": {
+            "A": "Vendor Procurement",
+            "B": "Asset Cost Management",
+            "C": "Normalization Data Services",
+            "D": "Asset Management",
+            "E": "ITSM Software Asset Management"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 117,
+        "question": "Which SAM role must be a trained ServiceNow administrator?",
+        "options": {
+            "A": "sam_admin",
+            "B": "sam_developer",
+            "C": "discover_admin",
+            "D": "entitlement_manager",
+            "E": "model_manager"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 118,
+        "question": "Within Software Asset Management there are many key terms to understand, what is the best definition for Reconciliation?",
+        "options": {
+            "A": "Software license details that define use rights",
+            "B": "One or more use rights assigned to a specific device or user",
+            "C": "Classification of the acquired software",
+            "D": "The process of standardizing discovered software installation data to defined norms",
+            "E": "The process of producing a compliance position by comparing the number of software rights acquired against the normalized software inventory"
+        },
+        "correct_answers": [
+            "E"
+        ]
+    },
+    {
+        "question_id": 119,
+        "question": "By default, which persona is responsible for loading asset management data from integrations and discovery tools into SAM Pro?",
+        "options": {
+            "A": "ServiceNow process owner",
+            "B": "SAM manager",
+            "C": "SAM administrator",
+            "D": "ServiceNow administrator",
+            "E": "SAM user"
+        },
+        "correct_answers": [
+            "D"
+        ]
+    },
+    {
+        "question_id": 120,
+        "question": "As part of the discovery process, when records are written to the software installation table a check is performed to determine if the information already exists in the discovery model table, if a record exists, what does the system do?",
+        "options": {
+            "A": "The record is deleted and recreated to ensure the most recent discovery model is recorded.",
+            "B": "Nothing, the record exists so it is ignored.",
+            "C": "A new record is created for the installation in the discovery model table.",
+            "D": "A reference to the discovery model record is identified and associated to the software installation record."
+        },
+        "correct_answers": [
+            "D"
+        ]
+    },
+    {
+        "question_id": 121,
+        "question": "Which of the following are valid on import errors (vs. after import) when using the automated entitlement import feature? (Choose three.)",
+        "options": {
+            "A": "Purchased rights should be greater than 0",
+            "B": "The end date must be greater than the start date",
+            "C": "Publisher Part Number and Software Model not found",
+            "D": "Duplicate entry",
+            "E": "Publisher Part Number already exists"
+        },
+        "correct_answers": [
+            "A",
+            "C",
+            "D"
+        ]
+    },
+    {
+        "question_id": 122,
+        "question": "What are the available actions associated with the Normalization Suggestions feature? (Choose two.)",
+        "options": {
+            "A": "Accept – updates the discovery model with suggested values",
+            "B": "Reject – ignores the suggestion. The next time the scheduled job is executed, it will not pick the same package or rule that was rejected previously",
+            "C": "Save – allows you to save the suggestion to review again later",
+            "D": "Ignore – ignores the suggestion. All fields are updated to read only until the next time the job is executed with the same package or rule that was ignored previously.",
+            "E": "Create – creates a discovery model with suggested values"
+        },
+        "correct_answers": [
+            "A",
+            "B"
+        ]
+    },
+    {
+        "question_id": 123,
+        "question": "What is used to identify and normalize software installed in an environment?",
+        "options": {
+            "A": "Software Discovery Mode",
+            "B": "Software Installation Model",
+            "C": "Software Model",
+            "D": "Software Normalization Model",
+            "E": "Software Reconciliation Model"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 124,
+        "question": "When a software title is transferred between vendors, the content library download and update feature will automatically propagate those changes to which of the following? (Choose three.)",
+        "options": {
+            "A": "Software entitlements",
+            "B": "Software reconciliations",
+            "C": "Software models",
+            "D": "Transform maps",
+            "E": "Discovery models"
+        },
+        "correct_answers": [
+            "A",
+            "C",
+            "E"
+        ]
+    },
+    {
+        "question_id": 125,
+        "question": "When creating a transform map to map software installation data into the appropriate SAM table, why would you set the coalesce values for the u_display_name. u_publisher, u_version, u_installed_on, and u_assigned_to fields to be true? (Choose two.)",
+        "options": {
+            "A": "To ensure that you import all these fields into the table",
+            "B": "To avoid duplication of data",
+            "C": "To ensure completeness of data",
+            "D": "To ensure that if all fields match an existing record on import, that a new record is created",
+            "E": "To ensure that if all fields do not match an existing record on import, that a new record is created"
+        },
+        "correct_answers": [
+            "B",
+            "E"
+        ]
+    },
+    {
+        "question_id": 126,
+        "question": "What information is required when importing device allocations? (Choose three.)",
+        "options": {
+            "A": "Software model associated with the allocation",
+            "B": "Purchase order of the device",
+            "C": "User assigned to the device",
+            "D": "Entitlement associated with the allocation",
+            "E": "Quantity of rights allocated to the device"
+        },
+        "correct_answers": [
+            "A",
+            "D",
+            "E"
+        ]
+    },
+    {
+        "question_id": 127,
+        "question": "Within ServiceNow Discovery, the Scanning phase determines what?",
+        "options": {
+            "A": "What else can you tell me about yourself?",
+            "B": "How should I classify you specifically?",
+            "C": "Have I seen you before?",
+            "D": "Are you there? How will I classify you?"
+        },
+        "correct_answers": [
+            "D"
+        ]
+    },
+    {
+        "question_id": 128,
+        "question": "Software models are used to connect purchased software rights with discovered software installations via which mechanism?",
+        "options": {
+            "A": "Transform Map",
+            "B": "Software Discovery Model",
+            "C": "Software Discovery Map",
+            "D": "Reconciliation Map",
+            "E": "Software Install Model"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 129,
+        "question": "What are three ways to get software asset data into ServiceNow?",
+        "options": {
+            "A": "Clone, Background Script, Discovery",
+            "B": "Import Data, Plugin, Clone",
+            "C": "Discovery, Import Data, Manual",
+            "D": "Plugin, Background Script, Manual",
+            "E": "Business rule, Workflow, Import"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 130,
+        "question": "ServiceNow Discovery finds IP-enabled devices and the software that runs on them. It uses a combination of the following methods to explore the devices. (Choose three.)",
+        "options": {
+            "A": "Agents",
+            "B": "Signature files",
+            "C": "Patterns",
+            "D": "Probes",
+            "E": "Sensors"
+        },
+        "correct_answers": [
+            "C",
+            "D",
+            "E"
+        ]
+    },
+    {
+        "question_id": 131,
+        "question": "What does the acronym “CAL” stand for?",
+        "options": {
+            "A": "Client Access Limit",
+            "B": "Computer Access License",
+            "C": "Client Access License",
+            "D": "Concurrent Access License"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 132,
+        "question": "Within the ‘Run Reconciliation’ process, how can the reconciliation be grouped?",
+        "options": {
+            "A": "Country, Department, Corporation, Location, Account",
+            "B": "Country, Department, Company, Region, Cost Center",
+            "C": "Country, Business Unit, Corporation, Location, Account",
+            "D": "Country, Business Unit, Company, Region, Cost Center"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 133,
+        "question": "By default, which ServiceNow role can read, but not create, a custom license script?",
+        "options": {
+            "A": "sam_developer",
+            "B": "sam_user",
+            "C": "sam_reconcile_user",
+            "D": "sam_admin"
+        },
+        "correct_answers": [
+            "D"
+        ]
+    },
+    {
+        "question_id": 134,
+        "question": "Which of the following is set in a software entitlement and used during reconciliation to determine your compliance position?",
+        "options": {
+            "A": "Reconciliation rule",
+            "B": "Compliancy rule",
+            "C": "Baseline KPI",
+            "D": "License metric",
+            "E": "License allocation"
+        },
+        "correct_answers": [
+            "D"
+        ]
+    },
+    {
+        "question_id": 135,
+        "question": "Once downgrade rights have been populated in the Downgrade Rights table, can they be deleted?",
+        "options": {
+            "A": "Yes, they can once accepted",
+            "B": "They can be deleted or deactivated",
+            "C": "They cannot until all associated allocations have been removed",
+            "D": "No, they cannot"
+        },
+        "correct_answers": [
+            "D"
+        ]
+    },
+    {
+        "question_id": 136,
+        "question": "By default, which ServiceNow role can run on-demand reconciliation?",
+        "options": {
+            "A": "sam_user",
+            "B": "sam_reconcile_user",
+            "C": "sam_cmdb_user",
+            "D": "sam_admin",
+            "E": "sam_manager"
+        },
+        "correct_answers": [
+            "D"
+        ]
+    },
+    {
+        "question_id": 137,
+        "question": "On the License Workbench, which of the following is defined as the “Estimated cost of remediating non-compliance”?",
+        "options": {
+            "A": "Software spend",
+            "B": "Reconciliation cost",
+            "C": "True-down cost",
+            "D": "Over-licensed cost",
+            "E": "True-up cost"
+        },
+        "correct_answers": [
+            "E"
+        ]
+    },
+    {
+        "question_id": 138,
+        "question": "Automated license reconciliation keeps license positions accurate and up-to-date without manual calculations. Disregarding on-demand runs for a specific publisher or all publishers, how often does reconciliation run?",
+        "options": {
+            "A": "Bi-weekly",
+            "B": "Daily",
+            "C": "Every other day",
+            "D": "Monthly",
+            "E": "Weekly"
+        },
+        "correct_answers": [
+            "E"
+        ]
+    },
+    {
+        "question_id": 139,
+        "question": "When reconciliation is run, what information does the software product results display?",
+        "options": {
+            "A": "Results for all products and installations associated to the publisher",
+            "B": "Results for each license metric associated to the software model",
+            "C": "Results for all models and installations associated to the product",
+            "D": "Results for all license metrics related to the software model"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 140,
+        "question": "When reconciliation is run, what information does the software publisher results display?",
+        "options": {
+            "A": "Results for all products and installations associated to the publisher",
+            "B": "Results for each license metric associated to the software model",
+            "C": "Results for all models and installations associated to the product",
+            "D": "Results for all license metrics related to the software model"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 141,
+        "question": "What type of record is only created when a software model or entitlement exists for the product?",
+        "options": {
+            "A": "SAM Analytics Results",
+            "B": "Software Asset Results",
+            "C": "Software Product Results",
+            "D": "Software Model Results"
+        },
+        "correct_answers": [
+            "D"
+        ]
+    },
+    {
+        "question_id": 142,
+        "question": "For which of the following reasons could an installation be unlicensed at the Product Result level?",
+        "options": {
+            "A": "The software installation was not completed correctly due to an incorrect workflow set-up.",
+            "B": "Software installation records are not associated with a software discovery model.",
+            "C": "The software normalization process has not yet run.",
+            "D": "The software discovery model is not mapped to the appropriate software model.",
+            "E": "The software installation has not been fully reconciled."
+        },
+        "correct_answers": [
+            "D"
+        ]
+    },
+    {
+        "question_id": 143,
+        "question": "By default, which ServiceNow role can only view reconciliation results?",
+        "options": {
+            "A": "sam_reconcile_user",
+            "B": "sam_user",
+            "C": "sam_viewer",
+            "D": "sam_cmdb_user",
+            "E": "sam_manager"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 144,
+        "question": "For products monitored by System Center Configuration Manager (SCCM), what usage data point(s) are imported for reclamation analysis?",
+        "options": {
+            "A": "Number of Times Used",
+            "B": "Average Use Time",
+            "C": "Last Used and Total Usage Time",
+            "D": "Last Used Only"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 145,
+        "question": "Which catalog provides a collection of models in the environment?",
+        "options": {
+            "A": "Service Catalog",
+            "B": "Item Catalog",
+            "C": "Product Catalog",
+            "D": "Vendor Catalog",
+            "E": "Model Catalog"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 146,
+        "question": "Software reclamation is integrated with which of the following to automate the process of uninstalling software from devices and reclaiming those software rights?",
+        "options": {
+            "A": "Integrated Risk Management",
+            "B": "HR Management",
+            "C": "Client Software Distribution",
+            "D": "Incident Management"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 147,
+        "question": "Reclamation rules can be applied to what types of software? (Choose two.)",
+        "options": {
+            "A": "Subscription software",
+            "B": "End-of-life software",
+            "C": "Blacklisted software",
+            "D": "Installed software",
+            "E": "Free-ware software"
+        },
+        "correct_answers": [
+            "A",
+            "D"
+        ]
+    },
+    {
+        "question_id": 148,
+        "question": "Which of the following are valid Remediation Options on the License Workbench after reconciliation has been run? (Choose five.)",
+        "options": {
+            "A": "Create Entitlements",
+            "B": "Remove Metric Attributes",
+            "C": "Purchase Rights",
+            "D": "Remove Unallocated Installs",
+            "E": "Remove Unlicensed Installs",
+            "F": "Create Allocations",
+            "G": "Remove Allocation"
+        },
+        "correct_answers": [
+            "C",
+            "D",
+            "E",
+            "F",
+            "G"
+        ]
+    },
+    {
+        "question_id": 149,
+        "question": "Which of the following are valid States of Remediation Options on the License Workbench after a reconciliation has been run? (Choose four.)",
+        "options": {
+            "A": "New",
+            "B": "Cancelled",
+            "C": "Void",
+            "D": "Complete",
+            "E": "Done",
+            "F": "In Progress"
+        },
+        "correct_answers": [
+            "A",
+            "C",
+            "D",
+            "F"
+        ]
+    },
+    {
+        "question_id": 150,
+        "question": "What role(s) are required to import financial data for use in software spend detection? (Choose two.)",
+        "options": {
+            "A": "sam_spend_import",
+            "B": "sam_spend_manager",
+            "C": "sam_user",
+            "D": "sam_admin",
+            "E": "procurement_user"
+        },
+        "correct_answers": [
+            "A",
+            "D"
+        ]
+    },
+    {
+        "question_id": 151,
+        "question": "What type of publisher lifecycle information does the Software Lifecycle report prioritize?",
+        "options": {
+            "A": "Information provided in the demo data",
+            "B": "Information entered by the user",
+            "C": "Information entered by the publisher",
+            "D": "Information provided by the software library",
+            "E": "Information provided by the publisher pack"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 152,
+        "question": "Maintenance entitlements can be associated with what types of entitlements (for non-Microsoft publishers)? (Choose three.)",
+        "options": {
+            "A": "Upgrade",
+            "B": "Perpetual",
+            "C": "Perpetual + Subscription",
+            "D": "Perpetual + Maintenance",
+            "E": "Subscription"
+        },
+        "correct_answers": [
+            "A",
+            "B",
+            "D"
+        ]
+    },
+    {
+        "question_id": 153,
+        "question": "How are Microsoft Office 365 reserved licenses handled after true-up?",
+        "options": {
+            "A": "They are automatically converted into regular licenses",
+            "B": "They are automatically disabled until additional licenses are purchased",
+            "C": "They are automatically deleted and must be re-reserved",
+            "D": "They are automatically removed from true-up calculations and billed separately"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 154,
+        "question": "Using end-of-life/end-of-support software exposes your organization to security threats. What report can you run to gain visibility to these products?",
+        "options": {
+            "A": "Software Models with deactivated discovery maps",
+            "B": "License Position Report",
+            "C": "Software Model Lifecycle Report",
+            "D": "Software Product Lifecycle Report",
+            "E": "License Workbench Report"
+        },
+        "correct_answers": [
+            "D"
+        ]
+    },
+    {
+        "question_id": 155,
+        "question": "Performance Analytics allows users to do which of the following? (Choose three.)",
+        "options": {
+            "A": "Assess publisher compliance over a period of time",
+            "B": "View trends of software license allocations",
+            "C": "Configure software reclamation",
+            "D": "Remediate non-compliance",
+            "E": "Track usage of a particular software"
+        },
+        "correct_answers": [
+            "A",
+            "B",
+            "E"
+        ]
+    },
+    {
+        "question_id": 156,
+        "question": "A user is notified their software install has been flagged for reclamation. The user declines approval. What is the next step in the workflow?",
+        "options": {
+            "A": "Nothing; the workflow stops.",
+            "B": "The user’s manager must approve or decline the reclamation.",
+            "C": "The reclamation candidate is removed from the candidate list.",
+            "D": "The software is reclaimed since it was not in use the notification was only informational.",
+            "E": "A justification is requested and submitted to Change Management for approval."
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 157,
+        "question": "What does a usage record track?",
+        "options": {
+            "A": "The sum of usage for a selected data",
+            "B": "The high watermark of software usage",
+            "C": "The sum of usage on a weekly basis",
+            "D": "The sum of usage since installation date",
+            "E": "The sum of usage on a monthly basis"
+        },
+        "correct_answers": [
+            "E"
+        ]
+    },
+    {
+        "question_id": 158,
+        "question": "Within ServiceNow Discovery, the Classification phase determines what?",
+        "options": {
+            "A": "Are you there? How will I classify you?",
+            "B": "Have I seen you before?",
+            "C": "How should I classify you specifically?",
+            "D": "What else can you tell me about yourself?"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 159,
+        "question": "When loading a large amount of software installation data, which is the best method to use?",
+        "options": {
+            "A": "Use Discovery",
+            "B": "Modify a workflow",
+            "C": "Manually add through ServiceNow forms",
+            "D": "Import data",
+            "E": "Create a business rule"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 160,
+        "question": "The Per Named User license metric licenses which of the following?",
+        "options": {
+            "A": "A user for a number of installations of software",
+            "B": "A device for a number of installations of software",
+            "C": "A specific user for a number of installations of software",
+            "D": "Cores on a physical server or virtual machine",
+            "E": "A specific device for a number of installations of software"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 161,
+        "question": "What is the most significant risk your organization is exposed to when you continue to use end-of-life / end-of support software?",
+        "options": {
+            "A": "No access to redacted software features",
+            "B": "Overspending on outdated software",
+            "C": "Potential security threats",
+            "D": "Potential performance issues"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 163,
+        "question": "Which of the following are tiers of software reconciliation results? (Choose two.)",
+        "options": {
+            "A": "Software Allocation",
+            "B": "Software Vendor",
+            "C": "Software Entitlement",
+            "D": "Software License Metric",
+            "E": "Software Product"
+        },
+        "correct_answers": [
+            "D",
+            "E"
+        ]
+    },
+    {
+        "question_id": 164,
+        "question": "Baseline license metrics are defined for which of the following? (Choose three.)",
+        "options": {
+            "A": "Cores",
+            "B": "Metric Types",
+            "C": "Publishers",
+            "D": "Devices",
+            "E": "Operating Systems",
+            "F": "Processors"
+        },
+        "correct_answers": [
+            "A",
+            "D",
+            "F"
+        ]
+    },
+    {
+        "question_id": 165,
+        "question": "Which of the following are valid Remediation Options on the License Workbench after reconciliation has been run? (Choose three.)",
+        "options": {
+            "A": "Create Entitlements",
+            "B": "Remove Allocations",
+            "C": "Remove Unallocated Installs",
+            "D": "Remove Unlicensed Installs",
+            "E": "Remove Metric Attributes"
+        },
+        "correct_answers": [
+            "B",
+            "C",
+            "D"
+        ]
+    },
+    {
+        "question_id": 166,
+        "question": "Which of the following are valid States of Remediation Options on the License Workbench after reconciliation has been run? (Choose three.)",
+        "options": {
+            "A": "Complete",
+            "B": "New",
+            "C": "Done",
+            "D": "Cancelled",
+            "E": "In Progress"
+        },
+        "correct_answers": [
+            "A",
+            "B",
+            "E"
+        ]
+    },
+    {
+        "question_id": 167,
+        "question": "What are Restricted software installations?",
+        "options": {
+            "A": "Software installations that are unlicensed and unallocated",
+            "B": "Software installations with low usage",
+            "C": "Software installations with no usage",
+            "D": "Software installations that are not normalized",
+            "E": "Software installations that are unauthorized for use"
+        },
+        "correct_answers": [
+            "E"
+        ]
+    },
+    {
+        "question_id": 168,
+        "question": "Once you are ready to retire software in ServiceNow, what is the critical first step in the retirement process?",
+        "options": {
+            "A": "Notify users of the software retirement",
+            "B": "Expire any active software entitlements",
+            "C": "Uninstall all instances of the software",
+            "D": "Recover the software entitlements"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 169,
+        "question": "After importing your entitlements via the template where would you navigate to address any entitlement import errors?",
+        "options": {
+            "A": "System Import Sets > Load Data > Entitlement Import Errors",
+            "B": "Software Asset > Licensing > Import Entitlements",
+            "C": "Software Asset > Administration > Job Results",
+            "D": "Software Asset > Licensing > Entitlement import Errors"
+        },
+        "correct_answers": [
+            "D"
+        ]
+    },
+    {
+        "question_id": 170,
+        "question": "Which are valid States of Remediation Options on the Software Asset Workspace License usage view after reconciliation has been run? (Choose three.)",
+        "options": {
+            "A": "In Progress",
+            "B": "Done",
+            "C": "Cancelled",
+            "D": "Complete",
+            "E": "New"
+        },
+        "correct_answers": [
+            "A",
+            "D",
+            "E"
+        ]
+    },
+    {
+        "question_id": 171,
+        "question": "Which feature provides step-by step guidance for setting up entitlements?",
+        "options": {
+            "A": "Guided Walkthrough Playbook",
+            "B": "Software Shipment Notice",
+            "C": "Guided Entitlement Workflow",
+            "D": "Entitlement Import"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 172,
+        "question": "Which tab of the License usage view is used to reclaim software licenses that are not being used?",
+        "options": {
+            "A": "Reconciliation",
+            "B": "Entitlements",
+            "C": "Removal Candidates",
+            "D": "Reports",
+            "E": "Publishers",
+            "F": "Software Model Results"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 173,
+        "question": "What are three ways to get software asset data into ServiceNow?",
+        "options": {
+            "A": "Clone, Manual, Discovery",
+            "B": "Import Data, Plugin, Clone",
+            "C": "Discovery, Import Data, Manual",
+            "D": "Plugin, Background Script, Manual"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 174,
+        "question": "Which feature provides detailed, actionable information for software reconciliation?",
+        "options": {
+            "A": "Software Asset Workspace Success portal view",
+            "B": "Software Asset Workspace Software asset analytics view",
+            "C": "Software Asset Workspace License usage view",
+            "D": "Software Asset Workspace License operations view",
+            "E": "Software Asset Workspace Normalization suggestions view"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 175,
+        "question": "By default, which persona is responsible for ensuring that the SAM program is rolled out and executed correctly and consistently across the organization?",
+        "options": {
+            "A": "SAM process owner",
+            "B": "ServiceNow administrator",
+            "C": "SAM user",
+            "D": "SAM manager",
+            "E": "SAM administrator"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 176,
+        "question": "Which role is required to create custom license metrics?",
+        "options": {
+            "A": "sam_admin",
+            "B": "sam_user",
+            "C": "sam_developer",
+            "D": "sam_architect"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 177,
+        "question": "Which steps are required to load software data into ServiceNow using system import sets? (Choose three.)",
+        "options": {
+            "A": "Create transform map",
+            "B": "Design template",
+            "C": "Reconcile data",
+            "D": "Load data",
+            "E": "Run transform"
+        },
+        "correct_answers": [
+            "A",
+            "D",
+            "E"
+        ]
+    },
+    {
+        "question_id": 178,
+        "question": "What Microsoft maintenance program enables you to step up a standard version of your software to an enterprise edition?",
+        "options": {
+            "A": "Microsoft Software Maintenance",
+            "B": "Microsoft Software Assurance",
+            "C": "Microsoft Software Enterprise",
+            "D": "Microsoft Software Upgrade"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 179,
+        "question": "During the Source Request task, the SAM manager or administrator has what options? (Choose two.)",
+        "options": {
+            "A": "Add purchase order",
+            "B": "Transfer allocation",
+            "C": "Reclaim license",
+            "D": "Reassign task",
+            "E": "Add allocation"
+        },
+        "correct_answers": [
+            "A",
+            "E"
+        ]
+    },
+    {
+        "question_id": 180,
+        "question": "When importing and/or manually entering software entitlement data into SAM you find that you do not have the Publisher Part Number (PPN) for several of your entitlements. What essential information is required in order for you to successfully add these entitlement records?",
+        "options": {
+            "A": "Agreement type, Purchased rights, Product, Asset tag, and Vendor",
+            "B": "Publisher, Product, Version, Edition, Platform, and Language",
+            "C": "Publisher, Product, License type, Purchased rights, Metric group, and License metric",
+            "D": "Version, Edition, Platform, Purchased rights, Vendor, and Contract number"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 181,
+        "question": "Which application or feature can be used in baseline Software Asset Management (SAM) Professional to import software usage data?",
+        "options": {
+            "A": "Other third-party sources",
+            "B": "АРМ",
+            "C": "Discovery",
+            "D": "SCCM"
+        },
+        "correct_answers": [
+            "D"
+        ]
+    },
+    {
+        "question_id": 182,
+        "question": "What methods can you use to store contract terms with your contracts? (Choose two.)",
+        "options": {
+            "A": "Attach a PDF of the contract to the contract record",
+            "B": "Add the details in the Terms and Conditions section of the contract record",
+            "C": "Add a link in the software entitlement record to the contract details stored in another location",
+            "D": "Add the details in the Contract section of the software entitlement record",
+            "E": "Add a link to the contract details the Assets covered record"
+        },
+        "correct_answers": [
+            "A",
+            "B"
+        ]
+    },
+    {
+        "question_id": 183,
+        "question": "When using the ServiceNow Client Software Distribution (CSD) product in conjunction with Microsoft System Center Configuration Manager (SCCM) to automatically remove software and reclaim license rights in your environment which of the following is required?",
+        "options": {
+            "A": "The software to be removed must have been installed by SCCM",
+            "B": "You must purchase Orchestration separately in order to revoke software and reclaim license rights using SAM Pro",
+            "C": "The software to be removed must have been discovered by SCCM",
+            "D": "An SCCM configuration record must be created to identify the application and the associated software discovery mode"
+        },
+        "correct_answers": [
+            "D"
+        ]
+    },
+    {
+        "question_id": 184,
+        "question": "What SAM feature automatically adds the next version and downgrade rights to a software model?",
+        "options": {
+            "A": "Content Service",
+            "B": "Software edition",
+            "C": "Software entitlements",
+            "D": "Discovery model"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 185,
+        "question": "What statuses can a product have under the Software Asset Workspace License usage view on the Details tab? (Choose two.)",
+        "options": {
+            "A": "Compliant",
+            "B": "Partially Compliant",
+            "C": "Publisher Compliant",
+            "D": "Fully Compliant",
+            "E": "Not Compliant"
+        },
+        "correct_answers": [
+            "A",
+            "E"
+        ]
+    },
+    {
+        "question_id": 186,
+        "question": "License Change Projection works for which of the following change types? (Choose two.)",
+        "options": {
+            "A": "Normal",
+            "B": "Standard",
+            "C": "Critical",
+            "D": "Urgent",
+            "E": "Emergency"
+        },
+        "correct_answers": [
+            "A",
+            "E"
+        ]
+    },
+    {
+        "question_id": 187,
+        "question": "What is the definition of Partially Normalized?",
+        "options": {
+            "A": "A discovery model was normalized based on publisher product version fields",
+            "B": "A discovery model was normalized based on publisher field alone",
+            "C": "A discovery model was normalized based on publisher and product fields only",
+            "D": "The software discovery model has not yet competed its run through the normalization process",
+            "E": "A discovery model normalized based on product field alone"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 188,
+        "question": "Which of the following license metrics require allocations in order to maintain compliance? (Choose two.)",
+        "options": {
+            "A": "Per Core",
+            "B": "Per Device",
+            "C": "Per Named User",
+            "D": "Per Named Device",
+            "E": "Per user"
+        },
+        "correct_answers": [
+            "C",
+            "D"
+        ]
+    },
+    {
+        "question_id": 189,
+        "question": "When Discovery identifies installed software in your environment, what table does it automatically store this data in?",
+        "options": {
+            "A": "Discovered Software installation [cmdb_disco_sw_install]",
+            "B": "Software installation [cmdb_sam_sw_install]",
+            "C": "Discovered Software Model [cmdb_disco_software_product_model]",
+            "D": "Product Result [samp_product_result]"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 190,
+        "question": "What navigational functions does the Software Asset Workspace License usage view provide on the product Details tab? (Choose three.)",
+        "options": {
+            "A": "Remediation options",
+            "B": "Unlicensed installs",
+            "C": "Filter products",
+            "D": "Expand and collapse tree links",
+            "E": "Expand All"
+        },
+        "correct_answers": [
+            "C",
+            "D",
+            "E"
+        ]
+    },
+    {
+        "question_id": 191,
+        "question": "Where can the Software Model Results, Removal Candidates, Entitlements, and Remediation Options related lists be accessed on the Software Asset Workspace after a reconciliation is run?",
+        "options": {
+            "A": "License usage view",
+            "B": "Software Model Results view",
+            "C": "Software Edition Results view",
+            "D": "Software Management Results"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 192,
+        "question": "Software discovery models are stored in which table?",
+        "options": {
+            "A": "cmbd_sam_sw_reconcile",
+            "B": "cmbd_sam_sw_install",
+            "C": "cmbd_samp_sw_discover",
+            "D": "cmbd_sam_sw_dsicovery_model",
+            "E": "cmbd_sam_sw_discovery"
+        },
+        "correct_answers": [
+            "D"
+        ]
+    },
+    {
+        "question_id": 193,
+        "question": "What are Microsoft Office 365 reserved licenses used for?",
+        "options": {
+            "A": "To reserve a block of licenses for a specific group of users and/or user role(s)",
+            "B": "To convert subscription licenses to regular per device licenses",
+            "C": "To accurately calculate annual true-up cost and total spend on a product",
+            "D": "To convert regular per user licenses into subscription licenses"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 194,
+        "question": "Which SAM role grants a user the ability to set reclamation rules?",
+        "options": {
+            "A": "sam_admin",
+            "B": "sam_integrator",
+            "C": "sam_user",
+            "D": "sam_analyst"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 195,
+        "question": "To accurately report your true up costs during reconciliation, what must you update in your software models? (Choose two.)",
+        "options": {
+            "A": "License cost",
+            "B": "Reserved license estimated cost",
+            "C": "License cost plus reserve license cost",
+            "D": "Maintenance cost",
+            "E": "License cost plus maintenance cost plus reserved license cost"
+        },
+        "correct_answers": [
+            "A",
+            "D"
+        ]
+    },
+    {
+        "question_id": 196,
+        "question": "When creating entitlements on the Software Entitlement Form and selecting a product Publisher Part Number (PPN), what information is defaulted from the PPN? (Choose two.)",
+        "options": {
+            "A": "License metric",
+            "B": "Vendor name",
+            "C": "License type",
+            "D": "Agreement type",
+            "E": "Contract number"
+        },
+        "correct_answers": [
+            "A",
+            "C"
+        ]
+    },
+    {
+        "question_id": 197,
+        "question": "When creating a purchase order, which feature allows sourcing a software model from multiple providers?",
+        "options": {
+            "A": "Catalog item",
+            "B": "Vendor Catalog item",
+            "C": "Company",
+            "D": "Product Model"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 198,
+        "question": "When no base system integration exists what SAM feature can a software asset manager use to create a custom integration to SaaS Software?",
+        "options": {
+            "A": "Ad-hoc Connectors",
+            "B": "Store Connectors",
+            "C": "SaaS License Connections",
+            "D": "PaaS connectors"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 199,
+        "question": "Using content library data to track a software model’s lifecycle phase assists which ServiceNow product to perform application rationalization?",
+        "options": {
+            "A": "Integrated Risk Management",
+            "B": "Technology Portfolio Management",
+            "C": "Incident Management",
+            "D": "HR Management"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 200,
+        "question": "Which consolidated dashboard in the new SAM Professional workspace enables you to organize, evaluate and view key metrics for Microsoft Office 365 and Adobe Cloud?",
+        "options": {
+            "A": "Engineering license overview dashboard",
+            "B": "Optimization and savings dashboard",
+            "C": "Normalization and content dashboard",
+            "D": "License usage dashboard",
+            "E": "SaaS overview dashboard"
+        },
+        "correct_answers": [
+            "E"
+        ]
+    },
+    {
+        "question_id": 201,
+        "question": "The process of determining compliance by comparing software rights owned with normalized software installations discovered is called what?",
+        "options": {
+            "A": "Remediation",
+            "B": "Allocation",
+            "C": "Discovery",
+            "D": "Normalization",
+            "E": "Reconciliation"
+        },
+        "correct_answers": [
+            "E"
+        ]
+    },
+    {
+        "question_id": 202,
+        "question": "During the normalization process a discovery model can be fully normalized based on which of these fields? (Choose three.)",
+        "options": {
+            "A": "Product",
+            "B": "Asset tag",
+            "C": "Version",
+            "D": "License metric",
+            "E": "Vendor",
+            "F": "Publisher"
+        },
+        "correct_answers": [
+            "A",
+            "C",
+            "F"
+        ]
+    },
+    {
+        "question_id": 203,
+        "question": "To automatically install software on devices using Workflow and Client Software Distribution (CSD) you must procure a separate license for what?",
+        "options": {
+            "A": "Asset Management",
+            "B": "Deployment Management",
+            "C": "Orchestration",
+            "D": "Discovery",
+            "E": "ITSM"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 204,
+        "question": "Within ServiceNow Discovery, the Identification phase determines what?",
+        "options": {
+            "A": "Have I seen you before?",
+            "B": "How should I classify you specifically?",
+            "C": "What else can you tell me about yourself?",
+            "D": "Are you there? How will I classify you?"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 205,
+        "question": "What is unmanaged spend when viewing the Software Spend Detection Overview dashboard?",
+        "options": {
+            "A": "The total spend for transactions where the publisher and product are identified but there's no software model identified for the product",
+            "B": "The total spend for transactions where the publisher, product, and software model are identified but there's no software installations identified for the product",
+            "C": "The total spend for transactions that are not identified as an accounts payable spend or an expense spend",
+            "D": "The total spend for transactions that are identified for an unmanaged publisher"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 206,
+        "question": "When loading a small amount of data (i.e., a few records), which is the best method to use?",
+        "options": {
+            "A": "Manually add through ServiceNow forms",
+            "B": "Import data",
+            "C": "Create a business rule",
+            "D": "Modify a workflow",
+            "E": "Use Discovery to find software on the network"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 207,
+        "question": "Does Performance Analytics (PA) come with Software Asset Management Professional?",
+        "options": {
+            "A": "Yes as an add-on subscription",
+            "B": "Yes, you get full PA",
+            "C": "Only if Orchestration has also been licensed",
+            "D": "Yes, but if you want to use it for other than SAM it requires additional licensing",
+            "E": "No, you must license it separately"
+        },
+        "correct_answers": [
+            "D"
+        ]
+    },
+    {
+        "question_id": 208,
+        "question": "When is it appropriate to create custom software products in Software Asset Management? (Choose two.)",
+        "options": {
+            "A": "Custom products are automatically created for anything in the Content Library",
+            "B": "Custom products need to be created for subscriptions",
+            "C": "When the product is not included in the Content Library",
+            "D": "When you want to exclude product details from being provided to ServiceNow",
+            "E": "When the product is developed in-house"
+        },
+        "correct_answers": [
+            "C",
+            "E"
+        ]
+    },
+    {
+        "question_id": 209,
+        "question": "What is required to manage utilization of the Software Asset Management Content Service?",
+        "options": {
+            "A": "The service must be opted in to and can be opted out of in the future if required",
+            "B": "The service is automatically enabled through the baseline installation but can be opted out of if required",
+            "C": "A script must be defined to identify what information should be shared with the Content Service",
+            "D": "Nothing. The service is automatically enabled and cannot be opted out of",
+            "E": "The service must be opted in to but, once enabled, it cannot be opted out of"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 210,
+        "question": "Which is defined as the \"Estimated cost of remediating non-compliance\" on the Software Asset Workspace License usage view?",
+        "options": {
+            "A": "Software spend",
+            "B": "Reconciliation cost",
+            "C": "True-down cost",
+            "D": "Over-licensed cost",
+            "E": "True-up cost"
+        },
+        "correct_answers": [
+            "E"
+        ]
+    },
+    {
+        "question_id": 211,
+        "question": "Which of the following is NOT an available publisher pack?",
+        "options": {
+            "A": "IBM",
+            "B": "VMware",
+            "C": "Oracle",
+            "D": "SAP",
+            "E": "Citrix",
+            "F": "NetSuite"
+        },
+        "correct_answers": [
+            "F"
+        ]
+    },
+    {
+        "question_id": 212,
+        "question": "Which features are available from the Publishers tab of the License usage view in the Software Asset Workspace? (Choose three.)",
+        "options": {
+            "A": "Publisher Discovery Models",
+            "B": "Publishers Out of Compliance",
+            "C": "All Publishers",
+            "D": "Publisher Software Models",
+            "E": "Pinned Publishers"
+        },
+        "correct_answers": [
+            "B",
+            "C",
+            "E"
+        ]
+    },
+    {
+        "question_id": 213,
+        "question": "Which report is run during contract negotiations to gain visibility of products nearing end-of-support?",
+        "options": {
+            "A": "Software Support Report",
+            "B": "Software Licenses Report",
+            "C": "Software Lifecycle Report",
+            "D": "Software Contract Lifecycle Report"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 214,
+        "question": "Which is an invalid removal justification when reviewing potential Removal candidates on the License usage view?",
+        "options": {
+            "A": "Low Usage",
+            "B": "Restricted Software",
+            "C": "Unallocated",
+            "D": "Duplicate License",
+            "E": "Unlicensed"
+        },
+        "correct_answers": [
+            "E"
+        ]
+    },
+    {
+        "question_id": 215,
+        "question": "What role is needed to view/manage all the reports in the License Usage view of the Software Asset Management workspace?",
+        "options": {
+            "A": "Software Asset Management Administrator [sam_admin]",
+            "B": "Software Asset Management User [sam_user]",
+            "C": "Software Asset Management Report Owner [report_owner]",
+            "D": "Software Asset Management Report Publisher [report_publisher]"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 216,
+        "question": "Which feature is utilized to populate software usage records automatically via Microsoft System Center Configuration Manager (SCCM) in releases after Tokyo?",
+        "options": {
+            "A": "Microsoft Publisher Pack plugin",
+            "B": "Service Graph Connector for Microsoft SCCM",
+            "C": "Microsoft SCCM Software Usage plugin"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 217,
+        "question": "From which module can an on-demand reconciliation be run?",
+        "options": {
+            "A": "Software Asset Workspace > License usage",
+            "B": "Software Asset Workspace > Discovery > License Workbench",
+            "C": "Software Asset Workspace > Reconciliation > License Workbench",
+            "D": "Software Asset > Discovery > Run License Position Report",
+            "E": "Software Asset Workspace > Reconciliation > Run License Position Report",
+            "F": "Software Asset Workspace > Discovery > Run Reconciliation"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 218,
+        "question": "Which feature allows the Software Asset Manager to track performance of the application in their environment?",
+        "options": {
+            "A": "Asset Management Executive dashboard",
+            "B": "Success portal",
+            "C": "Contract renewal workflow",
+            "D": "Software performance tracker"
+        },
+        "correct_answers": [
+            "D"
+        ]
+    },
+    {
+        "question_id": 219,
+        "question": "Within Software Asset Management there are many key terms to understand, what is the best definition for Software Allocation?",
+        "options": {
+            "A": "Software license details that define use rights",
+            "B": "One or more use rights assigned to a specific device or user",
+            "C": "Classification of the acquired software",
+            "D": "The process of standardizing discovered software installation data to defined norms",
+            "E": "The process of producing a compliance position by comparing the number of software rights acquired against the normalized software inventory"
+        },
+        "correct_answers": [
+            "B"
+        ]
+    },
+    {
+        "question_id": 220,
+        "question": "After importing entitlements via the template, where should a user navigate to address any entitlement import errors?",
+        "options": {
+            "A": "Software Asset Workspace > Licensing > Licensing operations > Entitlement Import Errors",
+            "B": "Software Asset Workspace > Administration > Job Results",
+            "C": "Software Asset Workspace > Licensing > Import Entitlements",
+            "D": "System Import Sets > Load Data > Entitlement Import Errors"
+        },
+        "correct_answers": [
+            "A"
+        ]
+    },
+    {
+        "question_id": 221,
+        "question": "An organization cannot be externally audited based on its use of what types of software?",
+        "options": {
+            "A": "Browsers",
+            "B": "WinZip",
+            "C": "Freeware",
+            "D": "Drivers",
+            "E": "SnagIt"
+        },
+        "correct_answers": [
+            "C"
+        ]
+    },
+    {
+        "question_id": 222,
+        "question": "Which of the following license metrics are available within the ServiceNow baseline configuration? (Choose three.)",
+        "options": {
+            "A": "Per Named Device",
+            "B": "Concurrent User",
+            "C": "Processor Value Unit (PVU)",
+            "D": "Per User",
+            "E": "Per Core"
+        },
+        "correct_answers": [
+            "A",
+            "D",
+            "E"
+        ]
+    }
+]

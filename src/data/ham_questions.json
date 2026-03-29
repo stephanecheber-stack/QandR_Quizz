@@ -1,0 +1,2908 @@
+[
+  {
+    "id": 1,
+    "question": "What are the three tiers of Lifecycle Management? (Choose three.)",
+    "options": {
+      "A": "Know what you don't have",
+      "B": "Increase onboarding controls",
+      "C": "Know what you have",
+      "D": "Improve management controls",
+      "E": "Improve efficiency"
+    },
+    "correct_answers": [
+      "C",
+      "D",
+      "E"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 2,
+    "question": "Which ServiceNow role enables the user to perform actions related to incident, problem, change, and configuration management?",
+    "options": {
+      "A": "procurement_user",
+      "B": "inventory_admin",
+      "C": "itil",
+      "D": "discovery_admin",
+      "E": "asset"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 3,
+    "question": "Which plugins for asset management functionality are inactive by default? (Choose three.)",
+    "options": {
+      "A": "Expense Line",
+      "B": "Hardware Asset Management",
+      "C": "Procurement",
+      "D": "Depreciation",
+      "E": "Cost Management",
+      "F": "My Assets"
+    },
+    "correct_answers": [
+      "B",
+      "C",
+      "E"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 4,
+    "question": "What is the third tier of the capability blueprint?",
+    "options": {
+      "A": "Practical management",
+      "B": "Strategic conformance",
+      "C": "Trustworthy data",
+      "D": "Operational integration",
+      "E": "Financial management"
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 5,
+    "question": "Which is NOT a component of a hardware asset's lifecycle?",
+    "options": {
+      "A": "Dispose",
+      "B": "Request",
+      "C": "Consume",
+      "D": "Procure",
+      "E": "Receive"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 6,
+    "question": "The Hardware Asset Management (HAM) application expands baseline ITSM Asset Management with which features? (Choose three.)",
+    "options": {
+      "A": "Mobile Asset Receiving",
+      "B": "Mobile My Assets",
+      "C": "Hardware Model Normalization",
+      "D": "Hardware Asset Dashboard",
+      "E": "Stockrooms",
+      "F": "Asset & Model Records",
+      "G": "Asset Inventory Audit"
+    },
+    "correct_answers": [
+      "C",
+      "D",
+      "G"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 7,
+    "question": "Expected outcomes of IT asset management (ITAM) include which of the following? (Choose three.)",
+    "options": {
+      "A": "Integrates with business services via the Service Catalog from request through to disposal",
+      "B": "Leverages IT Service Management (ITSM) to manage the lifecycle of assets as they pass through their useful life as configuration items (CIs)",
+      "C": "Provides input into, aligns with, and follows corporate governance",
+      "D": "Improves application privacy and security adherence",
+      "E": "Leverages Service Mapping to predict service impact"
+    },
+    "correct_answers": [
+      "A",
+      "B",
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 8,
+    "question": "What is the difference between ITAM personas and ITAM Roles? (Choose four.)",
+    "options": {
+      "A": "A user may have multiple roles, but a single persona",
+      "B": "Roles control access to features in the product",
+      "C": "Personas represent types of users of the product",
+      "D": "Personas control access to features in the product",
+      "E": "Roles represent types of users of the product",
+      "F": "A user may have multiple roles and personas"
+    },
+    "correct_answers": [
+      "A",
+      "B",
+      "C",
+      "F"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 9,
+    "question": "Hamm is a member of the Asset Managers group which has the ham_admin role assigned to it. Based on this role alone, which of the following operations can Hamm perform? (Choose four.)",
+    "options": {
+      "A": "Revert normalization results",
+      "B": "Create and delete asset records",
+      "C": "Create purchase orders",
+      "D": "Create flows",
+      "E": "Import assets",
+      "F": "Add Service Catalog entries"
+    },
+    "correct_answers": [
+      "A",
+      "B",
+      "C",
+      "F"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 10,
+    "question": "What information would you track for a configuration item (CI) versus an asset? (Choose two.)",
+    "options": {
+      "A": "Financial",
+      "B": "Lifecycle",
+      "C": "Contractual",
+      "D": "Operational",
+      "E": "Relationship"
+    },
+    "correct_answers": [
+      "D",
+      "E"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 11,
+    "question": "A component is considered an IT asset vs. a configuration item (CI) when you want to do which of the following? (Choose three.)",
+    "options": {
+      "A": "Manage its procurement, maintenance, or retirement",
+      "B": "Track its operational information",
+      "C": "Track its monetary value or costs",
+      "D": "Manage its associated license, warranty, or lease contracts",
+      "E": "Know its relationships to other assets in the CMDB"
+    },
+    "correct_answers": [
+      "A",
+      "C",
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 12,
+    "question": "Which of the following are considered assets? (Choose three.)",
+    "options": {
+      "A": "Facilities",
+      "B": "Contracts",
+      "C": "Hardware",
+      "D": "Software entitlements",
+      "E": "Software distributions"
+    },
+    "correct_answers": [
+      "A",
+      "C",
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 13,
+    "question": "What is the default display name for an asset?",
+    "options": {
+      "A": "An automatically generated combination of serial number and model category",
+      "B": "An automatically generated combination of asset tag and model",
+      "C": "An automatically generated combination of serial number and model",
+      "D": "An automatically generated combination of asset tag and model category"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 14,
+    "question": "What is the default state of a newly created asset?",
+    "options": {
+      "A": "In use",
+      "B": "Consumed",
+      "C": "On order",
+      "D": "In stock"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 15,
+    "question": "What is the impact of a customer opting out of the ServiceNow Content Service for specific models?",
+    "options": {
+      "A": "Unrecognized data doesn't get sent to the ServiceNow Content Service and the customer doesn't receive Content Library updates",
+      "B": "Unrecognized data doesn't get sent to the ServiceNow Content Service",
+      "C": "Unrecognized data is sent to the ServiceNow Content Service, but is now encrypted",
+      "D": "Customer doesn't receive Content Library updates"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 16,
+    "question": "What fields does the ServiceNow Content Service normalize or enrich? (Choose four.)",
+    "options": {
+      "A": "Lifecycle",
+      "B": "Device type",
+      "C": "Manufacturer",
+      "D": "Memory",
+      "E": "Asset tag",
+      "F": "Hardware model"
+    },
+    "correct_answers": [
+      "A",
+      "B",
+      "C",
+      "F"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 17,
+    "question": "What is the process of restructuring data to maintain consistency?",
+    "options": {
+      "A": "Integration",
+      "B": "Normalization",
+      "C": "Discovery",
+      "D": "Service Mapping"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 18,
+    "question": "What are ways to measure trustworthy data? (Choose four.)",
+    "options": {
+      "A": "Sustainability",
+      "B": "Plausibility",
+      "C": "Credibility",
+      "D": "Dependability",
+      "E": "Transferability",
+      "F": "Reliability"
+    },
+    "correct_answers": [
+      "C",
+      "D",
+      "E",
+      "F"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 19,
+    "question": "Any normalization that has occurred on a model can be reverted by using this feature.",
+    "options": {
+      "A": "Normalizations cannot be reverted",
+      "B": "Rollback Normalization Business Rule",
+      "C": "Undo Normalization Scheduled Job",
+      "D": "Revert Normalization UI Action"
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 20,
+    "question": "Which of these tables are installed with Hardware Model Normalization? (Choose three.)",
+    "options": {
+      "A": "Device Type",
+      "B": "Hardware Manufacturer",
+      "C": "Hardware Normalize Key",
+      "D": "Hardware Model Library",
+      "E": "Device Name"
+    },
+    "correct_answers": [
+      "A",
+      "B",
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 21,
+    "question": "To perform hardware model normalization, which three fields from the hardware model record are used to set the normalized display name?",
+    "options": {
+      "A": "Name, Asset tracking unit, Model number",
+      "B": "Name, Manufacturer, Model number",
+      "C": "Asset tracking unit, Manufacturer, Model category",
+      "D": "Asset tracking unit, Manufacturer, Model number",
+      "E": "Name, Device type, Model category"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 22,
+    "question": "What is the global standard for product recognition used during hardware model normalization?",
+    "options": {
+      "A": "IAPSO",
+      "B": "UPC",
+      "C": "UNSPSC",
+      "D": "ECCMA",
+      "E": "NIGP"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 23,
+    "question": "During hardware model normalization, a hardware asset is set to a normalization status of, \"Partially Normalized\". What is the most likely cause?",
+    "options": {
+      "A": "The model name is missing from the hardware model record.",
+      "B": "The model number is missing from the hardware model record.",
+      "C": "The model product is missing from the hardware model record.",
+      "D": "The model manufacturer is missing from the hardware model record."
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 24,
+    "question": "What information should be tracked in an asset record? (Choose two.)",
+    "options": {
+      "A": "Physical resources",
+      "B": "Financial information",
+      "C": "Operational details",
+      "D": "Contractual information",
+      "E": "Logical relationships"
+    },
+    "correct_answers": [
+      "B",
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 25,
+    "question": "Once the content update adds hardware lifecycle data to your instance, can it be deleted?",
+    "options": {
+      "A": "Yes, it can",
+      "B": "No, it cannot unless the lifecycle stage is EOL",
+      "C": "No, it cannot",
+      "D": "Yes, it can be deleted or deactivated"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 26,
+    "question": "What feature does the Hardware Asset Management (HAM) application use to fully normalize hardware models?",
+    "options": {
+      "A": "Transform mappings",
+      "B": "Mapping assist",
+      "C": "Normalization transformation",
+      "D": "Normalization mappings",
+      "E": "Transform normalization"
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 27,
+    "question": "During normalization, what is the most common cause for hardware models to generate a status of Match Not Found?",
+    "options": {
+      "A": "Missing transform map",
+      "B": "Plugin issues",
+      "C": "Invalid transform map",
+      "D": "Missing data"
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 28,
+    "question": "Which values does the \"Asset tracking strategy\" field provide to affect individual models? (Choose three.)",
+    "options": {
+      "A": "Create consumable asset",
+      "B": "Don't create assets",
+      "C": "Merge CI",
+      "D": "Leave to category",
+      "E": "Create assets"
+    },
+    "correct_answers": [
+      "A",
+      "B",
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 29,
+    "question": "When activating Hardware Asset Management (HAM) in an instance already running Field Service Management (FSM), how do you configure asset tasks for existing incident, change, and work order flows?",
+    "options": {
+      "A": "No configuration is required: asset tasks automatically activate behind the scenes",
+      "B": "Activate HAM, then run scheduled job \"Asset - Create FSM asset tasks\" to insert the asset tasks",
+      "C": "Activate HAM and then re-run the scheduled FSM jobs",
+      "D": "Stop the scheduled FSM jobs, activate HAM, then restart the scheduled FSM jobs"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 30,
+    "question": "When a hardware asset is retired (e.g., a server), what happens to any existing software allocations on that asset?",
+    "options": {
+      "A": "The software allocations remain with the hardware asset and need to be reclaimed manually.",
+      "B": "The software allocations are automatically returned back into inventory.",
+      "C": "The software allocations are removed from the asset, but not returned to inventory.",
+      "D": "The behavior is controlled by the configurable system property glide.ham.retire_reclaim_sw().",
+      "E": "The behavior is controlled by the configurable system property glide.ham.retire_sw()."
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 31,
+    "question": "With regard to Contract Management notifications, what is the most important contract date to be aware of?",
+    "options": {
+      "A": "Extend date",
+      "B": "Renew date",
+      "C": "Expire date",
+      "D": "Start date"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 32,
+    "question": "Inventory audit results provide easy visibility into the reconciliation of scanned assets to the existing inventory. What audit statuses are displayed as part of the results? (Choose four.)",
+    "options": {
+      "A": "Scanned",
+      "B": "Not found",
+      "C": "New",
+      "D": "Scanned and not expected",
+      "E": "Scanned and expected",
+      "F": "Expected and not found"
+    },
+    "correct_answers": [
+      "C",
+      "D",
+      "E",
+      "F"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 33,
+    "question": "How can you automate the replenishment of stock levels?",
+    "options": {
+      "A": "Transfer Rules",
+      "B": "Transfer Orders",
+      "C": "Stock Filters",
+      "D": "Stock Rules"
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 34,
+    "question": "What are baseline asset states? (Choose three.)",
+    "options": {
+      "A": "In Stock",
+      "B": "Consumed",
+      "C": "Retired",
+      "D": "Duplicate",
+      "E": "Exported"
+    },
+    "correct_answers": [
+      "A",
+      "B",
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 35,
+    "question": "What field must an agent complete when resolving an incident in order for the HAM asset tasks to automatically update all configuration item (CI) and asset records associated to the Incident?",
+    "options": {
+      "A": "Asset and CI Action",
+      "B": "Asset-CI Task Action",
+      "C": "Asset Task Action",
+      "D": "Asset Action"
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 36,
+    "question": "Which mobile app allows the user to conduct an inventory audit?",
+    "options": {
+      "A": "ServiceNow Agent mobile app",
+      "B": "Mobile My Inventory",
+      "C": "Mobile Hardware Asset Management",
+      "D": "Mobile My Assets",
+      "E": "ServiceNow Inventory mobile app"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 37,
+    "question": "When running an asset audit, you receive the result of 10 \"Scanned and expected\" assets. What does this mean?",
+    "options": {
+      "A": "You expected 10 assets in your inventory and scanned 10 assets during your audit, but none of them are on your expected inventory list.",
+      "B": "You expected 10 assets in your inventory and scanned these 10 assets during your audit.",
+      "C": "You expected 10 assets during your audit inventory and scanned 10 assets, but none of them have a record in your ServiceNow instance.",
+      "D": "You scanned 10 assets in your inventory, but none of them were on your expected inventory list."
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 38,
+    "question": "During an audit, when is the Expected Assets list populated in the asset audit form?",
+    "options": {
+      "A": "When the nightly scheduled job runs",
+      "B": "When scanning completes",
+      "C": "When scanning begins",
+      "D": "Pre-populated by the asset manager before audit",
+      "E": "When the asset manager Submits the results"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 39,
+    "question": "Which of the following are valid substates of the Retired state? (Choose four.)",
+    "options": {
+      "A": "Disposed",
+      "B": "Donated",
+      "C": "Vendor Credit",
+      "D": "Destroyed",
+      "E": "Pending Disposal",
+      "F": "Sold"
+    },
+    "correct_answers": [
+      "A",
+      "B",
+      "C",
+      "F"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 40,
+    "question": "When a stock manager receives a new delivery of consumables, what happens if all the following fields match another record in the stockroom?\n• Assigned to \n• Model\n• Model category\n• State\n• Stockroom\n• Substate",
+    "options": {
+      "A": "The stock manager must create a separate model record if the cost per item is more/less",
+      "B": "The data is automatically merged to create a blended quantity and cost",
+      "C": "The data is automatically created in a new record if the cost per item is more/less",
+      "D": "The stock manager must merge the consumable records to create a blended quantity and cost"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 41,
+    "question": "How does an end user determine what consumables they have consumed?",
+    "options": {
+      "A": "Navigate to Self-Service > My Consumables",
+      "B": "Navigate to Self-Service > My Assets",
+      "C": "Navigate to Asset > Hardware Asset Dashboard",
+      "D": "Navigate to Self-Service > My Hardware Asset Dashboard"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 42,
+    "question": "When using transfer orders to move multiple assets from a single stockroom to another, how should each asset be listed?",
+    "options": {
+      "A": "Each asset should be listed as a transfer order line on the transfer order",
+      "B": "Each asset should be listed in a transfer order task on the transfer order",
+      "C": "Each asset should be listed as a transfer order line on the transfer order task",
+      "D": "Each asset should be listed in an individual transfer order"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 43,
+    "question": "What happens to the associated assets when you cancel a transfer order line on a transfer order?",
+    "options": {
+      "A": "The asset(s) on the order line are released, but their state remains Pre-allocated",
+      "B": "The asset(s) on the order line are released and they can be attached to another transfer order",
+      "C": "All assets on the transfer order are released, but their state remains Pre-allocated",
+      "D": "A transfer order line cannot be cancelled once it is in a state of Ready for fulfillment",
+      "E": "All assets on the transfer order are released and they can be attached to another transfer order"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 44,
+    "question": "When transferring non-consumable assets between stockrooms, how must they be transferred?",
+    "options": {
+      "A": "In sets of two items",
+      "B": "No more than 10% of the source stockroom's inventory",
+      "C": "As a single entity with a quantity of one",
+      "D": "In groups of ten items"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 45,
+    "question": "When disposing of an IT asset through a vendor, what documentation should be attached to the retired asset's record as proof of adherence to environmental, regulatory, and legal requirements?",
+    "options": {
+      "A": "Certificate of discharge",
+      "B": "Certificate of decommission",
+      "C": "Certificate of destruction",
+      "D": "Certificate of disposal",
+      "E": "Certificate of retirement"
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 46,
+    "question": "You may adjust a contract when it is in which of the following states? (Choose two.)",
+    "options": {
+      "A": "Active",
+      "B": "Extended",
+      "C": "Canceled",
+      "D": "Expired",
+      "E": "Renewed"
+    },
+    "correct_answers": [
+      "A",
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 47,
+    "question": "Which catalogs support the request and procurement process? (Choose three.)",
+    "options": {
+      "A": "Product Catalog",
+      "B": "Vendor Catalog",
+      "C": "Asset Catalog",
+      "D": "Service Catalog",
+      "E": "Procurement Catalog"
+    },
+    "correct_answers": [
+      "A",
+      "B",
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 48,
+    "question": "What are the three types of catalogs in ServiceNow? (Choose three.)",
+    "options": {
+      "A": "Product Catalog",
+      "B": "Consumable Catalog",
+      "C": "Asset Catalog",
+      "D": "Vendor Catalog",
+      "E": "Service Catalog"
+    },
+    "correct_answers": [
+      "A",
+      "D",
+      "E"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 49,
+    "question": "The Stock Rule Runner scheduled job replenishes stock in a stockroom__________.",
+    "options": {
+      "A": "When stock is less than the threshold specified in the stock rule",
+      "B": "By creating a purchase orders to restock from other stockrooms",
+      "C": "By creating transfer orders to restock from other stockrooms",
+      "D": "By notifying the stockroom manager of new transfer orders"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 50,
+    "question": "When creating a list report that groups all assets by product model, which table is used?",
+    "options": {
+      "A": "alm_asset",
+      "B": "alm_model",
+      "C": "alm_model_category",
+      "D": "alm_hardware"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 51,
+    "question": "Assets can be scanned and created in ServiceNow via the Agent mobile application in which scenarios? (Choose two.)",
+    "options": {
+      "A": "Create a single asset via barcode scan",
+      "B": "Receive one or multiple assets from a purchase order",
+      "C": "Create multiple assets listed on a contract PDF scan",
+      "D": "Create a single asset via Name search"
+    },
+    "correct_answers": [
+      "A",
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 52,
+    "question": "When viewing the Model Management tab of the Hardware Asset dashboard, you see that several models are reported as Match Not Found. What are potential causes of this? (Choose three.)",
+    "options": {
+      "A": "You have opted out of the Content Service",
+      "B": "The content is not available from the Content Service",
+      "C": "Your model form contains a good Model number, but a bad model Name",
+      "D": "Something on your model form may be badly formatted",
+      "E": "The content has not been downloaded from the Content Service"
+    },
+    "correct_answers": [
+      "B",
+      "D",
+      "E"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 53,
+    "question": "Which of the following are components of the asset request structure? (Choose three.)",
+    "options": {
+      "A": "Procurement orders",
+      "B": "Transfer orders",
+      "C": "Stock order tasks",
+      "D": "Purchase orders",
+      "E": "Catalog tasks"
+    },
+    "correct_answers": [
+      "B",
+      "D",
+      "E"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 54,
+    "question": "What is the primary goal of the Inventory tab of the Hardware Asset Management dashboard?",
+    "options": {
+      "A": "Help the asset manager generate reports",
+      "B": "Show the value from maintaining inventory",
+      "C": "Help the stock manager process transfer orders",
+      "D": "Show the value from bulk purchasing",
+      "E": "Help the asset manager process purchase orders"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 55,
+    "question": "What do certification filters define?",
+    "options": {
+      "A": "The percentage of tasks required for the certification to be considered complete",
+      "B": "When the certification is performed",
+      "C": "The assets to be certified",
+      "D": "What fields are displayed for certification"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 56,
+    "question": "Which features are part of the ServiceNow Mobile App? (Choose two.)",
+    "options": {
+      "A": "Provides end users visibility to their assigned hardware",
+      "B": "Enables reclamation of mobile devices",
+      "C": "Provides users visibility to their disposed consumables",
+      "D": "Enables end users to log incidents for their assigned assets"
+    },
+    "correct_answers": [
+      "A",
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 57,
+    "question": "What information would you find on the End of Life tab of the Hardware Asset dashboard? (Choose two.)",
+    "options": {
+      "A": "Hardware asset disposal status",
+      "B": "New hardware assets found by audits",
+      "C": "Hardware assets disposed (YTD)",
+      "D": "Consumable models up for End of Life"
+    },
+    "correct_answers": [
+      "A",
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 58,
+    "question": "What are some examples of operational expenses of managing an asset throughout its lifecycle? (Choose two.)",
+    "options": {
+      "A": "Replacement parts",
+      "B": "Storage costs",
+      "C": "Maintenance agreements",
+      "D": "Warranty costs"
+    },
+    "correct_answers": [
+      "A",
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 59,
+    "question": "What is the name of the scheduled job that generates expense lines based on rate cards?",
+    "options": {
+      "A": "Process Daily Costs",
+      "B": "Process FM Costs",
+      "C": "Process Daily Allocations",
+      "D": "Process Expense Allocations"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 60,
+    "question": "How do you calculate residual value?",
+    "options": {
+      "A": "Subtract the amortized value from the cost of the asset",
+      "B": "Subtract storage and lease cost from the cost of the asset",
+      "C": "Subtract the depreciation from the cost of the asset",
+      "D": "Subtract the salvage value from the cost of the asset"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 61,
+    "question": "Configuration items (CIs) track what type of information? (Choose two.)",
+    "options": {
+      "A": "Financial",
+      "B": "Operational",
+      "C": "Lifecycle",
+      "D": "Contractual",
+      "E": "Relationship"
+    },
+    "correct_answers": [
+      "B",
+      "E"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 62,
+    "question": "When does an asset’s lifecycle begin?",
+    "options": {
+      "A": "When an asset request is fulfilled",
+      "B": "Upon the asset deployment",
+      "C": "When the asset is procured",
+      "D": "Upon the asset’s request"
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 63,
+    "question": "What are the goals of IT asset management (ITAM)? (Choose four.)",
+    "options": {
+      "A": "Optimize cost",
+      "B": "Provide decision support",
+      "C": "Improve productivity",
+      "D": "Provide financial reporting",
+      "E": "Improve operational usage",
+      "F": "Track logical relationships"
+    },
+    "correct_answers": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 64,
+    "question": "A given collection of methodologies, assets, and templates within Now Create is referred to as what?",
+    "options": {
+      "A": "Now Create pack",
+      "B": "Project pack",
+      "C": "Success pack",
+      "D": "Methodology pack",
+      "E": "Asset pack"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 65,
+    "question": "To access the full spectrum of asset management functionality, which inactive plugins should be installed? (Choose five.)",
+    "options": {
+      "A": "Discovery",
+      "B": "Cost Management",
+      "C": "Procurement",
+      "D": "Hardware Asset Management",
+      "E": "Data Certification",
+      "F": "Service Mapping",
+      "G": "Managed Documents"
+    },
+    "correct_answers": [
+      "B",
+      "C",
+      "D",
+      "E",
+      "G"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 66,
+    "question": "What are the four tiers of Capability Blueprint?",
+    "options": {
+      "A": "Trustworthy Data, Lifecycle Management, Process Integration, Strategic Conformance",
+      "B": "Trustworthy Data, Practical Management, Process Integration, Business Alignment",
+      "C": "Trustworthy Data, Practical Management, Operational Integration, Strategic Conformance",
+      "D": "Trustworthy Data, Lifecycle Management, Operational integration, Business Alignment"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 67,
+    "question": "What core table requires migration when extending ITSM Asset Management with Hardware Asset Management?",
+    "options": {
+      "A": "cmdb_model_category",
+      "B": "alm_hardware",
+      "C": "No migration is required",
+      "D": "alm_asset"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 68,
+    "question": "How could you quickly determine if you had the Hardware Asset Management (HAM) plugin installed on your instance?",
+    "options": {
+      "A": "Check for the Hardware Assets module in the application navigator",
+      "B": "Check for the Hardware Asset Dashboard module in the application navigator",
+      "C": "Check for the Asset application in the application navigator",
+      "D": "Check for the Hardware Asset Management application in the application navigator"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 69,
+    "question": "A component is considered an IT asset when you want to: (Choose three.)",
+    "options": {
+      "A": "Manage its procurement",
+      "B": "Know its relationships to a business service",
+      "C": "Track its operational information",
+      "D": "Track its incurred costs",
+      "E": "Manage its maintenance contracts"
+    },
+    "correct_answers": [
+      "A",
+      "D",
+      "E"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 70,
+    "question": "Which is NOT considered an asset?",
+    "options": {
+      "A": "Websites",
+      "B": "Switches",
+      "C": "Routers",
+      "D": "Buildings",
+      "E": "Software entitlements"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 71,
+    "question": "What are model records?",
+    "options": {
+      "A": "Models are specific versions or various configurations of an asset",
+      "B": "Models are any computer, device, software or service in the CMDB",
+      "C": "Models directly associate configuration item (CI) classes with asset classes",
+      "D": "Models are anything capable of being owned or controlled to produce economic value"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 72,
+    "question": "Which of the following are functions of the model category? (Choose two.)",
+    "options": {
+      "A": "Model categories group consumables in the Product Catalog",
+      "B": "Model categories determine when to create assets from configuration items (Cls)",
+      "C": "Model categories group related assets in the Service Catalog",
+      "D": "Model categories provide the link between configuration management and asset management",
+      "E": "Model categories provide the link between procurement management and asset management"
+    },
+    "correct_answers": [
+      "B",
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 73,
+    "question": "When does hardware normalization run by default?",
+    "options": {
+      "A": "On an hourly basis",
+      "B": "On a daily basis",
+      "C": "Every 12 hours",
+      "D": "Upon saving"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 74,
+    "question": "For a model to be fully normalized, what must be added to the model record?",
+    "options": {
+      "A": "Version",
+      "B": "Owner",
+      "C": "Manufacturer",
+      "D": "Model number"
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 75,
+    "question": "Which elements are provided by the hardware asset management content service? (Choose three.)",
+    "options": {
+      "A": "Manufacturer lifecycle dates",
+      "B": "Cost",
+      "C": "Product warranty",
+      "D": "Manufacturer",
+      "E": "Model name",
+      "F": "Compatibles"
+    },
+    "correct_answers": [
+      "A",
+      "D",
+      "E"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 76,
+    "question": "What hardware asset attribute should you track that is NOT part of a configuration item (CI)?",
+    "options": {
+      "A": "IP address",
+      "B": "CPU",
+      "C": "Cost",
+      "D": "Operating system",
+      "E": "Memory"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 77,
+    "question": "Under which condition does the Now Platform NOT create an asset automatically?",
+    "options": {
+      "A": "Configuration normalization",
+      "B": "Enforced CI verification",
+      "C": "Data synching",
+      "D": "Data justification",
+      "E": "Model characterization"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 78,
+    "question": "Which three attributes from a hardware model record are used for setting the normalized display name during hardware model normalization?",
+    "options": {
+      "A": "Name, Manufacturer, Model category",
+      "B": "Asset tracking unit, Manufacturer, Model number",
+      "C": "Name, Manufacturer, Model number",
+      "D": "Name, Asset tracking unit, Model number",
+      "E": "Asset tracking unit, Manufacturer, Model category"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 79,
+    "question": "Which key attribute in the model record does hardware model normalization use to normalize inconsistent manufactures and product names?",
+    "options": {
+      "A": "Asset tag",
+      "B": "Display name",
+      "C": "Model category",
+      "D": "Model number",
+      "E": "Asset tracking unit"
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 80,
+    "question": "What plugin offers consistent, good, clean data for the company names of vendors or manufactures?",
+    "options": {
+      "A": "Hardware Model Normalization (com.sn_hwnorm)",
+      "B": "Service Catalog Scoped API (com.glideapp.servicecatalog.scoped.api)",
+      "C": "Outbound Tracking (com.glide.outbound_tracking)",
+      "D": "Normalization Data Services Client (com.glide.data_services_canonicalization.client)"
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 81,
+    "question": "Hardware models may not be fully normalized until updated content is downloaded from the Hardware Model Normalization Content Service. How do you determine if the content has been downloaded?",
+    "options": {
+      "A": "Determine if the business rule, Create a Hardware Normalization Download, has been triggered yet or not",
+      "B": "Review the Last updated date of the Central Data Service Download Status jobs on the Normalization and Content Service dashboard",
+      "C": "Review the Hardware Model Content Service Download section on the Model Management tab of the Hardware Asset dashboard",
+      "D": "Query the scheduled job reports to determine if the Hardware Normalization Content Library Download job has completed yet"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 82,
+    "question": "How do you prevent normalization information for a specific hardware model from being sent to the ServiceNow Content Service?",
+    "options": {
+      "A": "Select Exclude from content service on the Normalization tab of the hardware model record",
+      "B": "Click the Exclude button on the hardware model record",
+      "C": "Click the Opt-out button on the hardware model record",
+      "D": "Select Opt-out from content service on the Normalization tab of the hardware model record"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 83,
+    "question": "What are the two primary benefits of deploying asset tasks during the retirement of an asset? (Choose two.)",
+    "options": {
+      "A": "Reduces manual intervention",
+      "B": "Reduces field agent training",
+      "C": "Increases data accuracy",
+      "D": "Reduces process cost",
+      "E": "Increases speed of updates"
+    },
+    "correct_answers": [
+      "A",
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 84,
+    "question": "A user’s broken laptop is replaced via an incident. Upon completion, the Incident Management application triggers the swap/replace asset task. Which fields are automatically updated in the associated asset record? (Choose three.)",
+    "options": {
+      "A": "Software allocations",
+      "B": "Maintenance contracts",
+      "C": "Depreciation values",
+      "D": "Related CI record",
+      "E": "Disposal information"
+    },
+    "correct_answers": [
+      "A",
+      "B",
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 85,
+    "question": "A transfer order is used to do what?",
+    "options": {
+      "A": "Transfer an asset between vendors",
+      "B": "Move an asset to an external stockroom",
+      "C": "Move an asset between stockrooms",
+      "D": "Transfer an asset to a user"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 86,
+    "question": "What types of inventory audits are supported with the Hardware Asset Management (HAM) application? (Choose two.)",
+    "options": {
+      "A": "Stockroom audit",
+      "B": "Vendor audit",
+      "C": "Location audit",
+      "D": "Discovery audit"
+    },
+    "correct_answers": [
+      "A",
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 87,
+    "question": "Which of the following are considered valid contract states? (Choose three.)",
+    "options": {
+      "A": "Draft",
+      "B": "Active",
+      "C": "In use",
+      "D": "New",
+      "E": "Expired"
+    },
+    "correct_answers": [
+      "A",
+      "B",
+      "E"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 88,
+    "question": "Stockroom C has seven Bluetooth keyboards with a total value of $630. The asset manager procures two more of the same model keyboards for $360 and adds them to Stockroom C. When one of these keyboards is consumed, what is the value of the consumed Bluetooth keyboard?",
+    "options": {
+      "A": "110",
+      "B": "180",
+      "C": "63",
+      "D": "90"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 89,
+    "question": "Which applications are required to perform a blind audit of your asset inventory?",
+    "options": {
+      "A": "Hardware Asset Management (HAM) and ServiceNow My Assets mobile app",
+      "B": "Hardware Asset Management (HAM) and Software Asset Management (SAM)",
+      "C": "ITSM Asset Management and ServiceNow My Assets mobile app",
+      "D": "ITSM Asset Management and ServiceNow Agent mobile app",
+      "E": "Hardware Asset Management (HAM) and ServiceNow Agent mobile app"
+    },
+    "correct_answers": [
+      "E"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 90,
+    "question": "Within the asset audit form, where would you find the list of all assets that were found at the stockroom or warehouse that is being audited?",
+    "options": {
+      "A": "Identified assets",
+      "B": "Scanned assets",
+      "C": "Expected assets",
+      "D": "Labelled assets",
+      "E": "Inventoried assets"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 91,
+    "question": "What is the purpose of stock rules? (Choose two.)",
+    "options": {
+      "A": "To automatically transfer assets when a low quantity threshold is detected in a stockroom",
+      "B": "To track stock orders from a vendor",
+      "C": "To send notifications when a low quantity threshold is detected in a stockroom",
+      "D": "To track stock movement between stockrooms",
+      "E": "To send notifications when a stock shipment arrives at a stockroom"
+    },
+    "correct_answers": [
+      "A",
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 92,
+    "question": "Which of an organization’s assets are managed using stockrooms?",
+    "options": {
+      "A": "All available stock, consumable or not",
+      "B": "Just consumable assets",
+      "C": "All hardware and software assets",
+      "D": "All disposable assets"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 93,
+    "question": "When using transform maps to transform imported hardware model data to your desired asset tables, what option do you set to uniquely identify the same asset in order to merge/update records?",
+    "options": {
+      "A": "Coalesce",
+      "B": "Consolidate",
+      "C": "Unique identifier",
+      "D": "Unique source",
+      "E": "Unique target",
+      "F": "Combine"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 94,
+    "question": "An event runs each night to send reminders to contract administrators about contract expiration dates (e.g., so they can renew or renegotiate the contract). By default, when does the contract administrator receive these notifications? (Choose four.)",
+    "options": {
+      "A": "10 days before",
+      "B": "1 week before",
+      "C": "60 days before",
+      "D": "Day of expiration",
+      "E": "90 days before",
+      "F": "30 days before"
+    },
+    "correct_answers": [
+      "C",
+      "D",
+      "E",
+      "F"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 95,
+    "question": "Which of the following are valid contract states during a contract’s lifecycle? (Choose four.)",
+    "options": {
+      "A": "Draft",
+      "B": "Canceled",
+      "C": "Renewed",
+      "D": "Extended",
+      "E": "Active",
+      "F": "Renegotiated",
+      "G": "Expired"
+    },
+    "correct_answers": [
+      "A",
+      "B",
+      "E",
+      "G"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 96,
+    "question": "What are the key steps for importing asset data? (Choose three.)",
+    "options": {
+      "A": "Merge transform maps",
+      "B": "Run transform map",
+      "C": "Update transform map",
+      "D": "Create transform map",
+      "E": "Load data",
+      "F": "Consolidate data"
+    },
+    "correct_answers": [
+      "B",
+      "D",
+      "E"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 97,
+    "question": "What must exist before a consumable can be consumed? (Choose three.)",
+    "options": {
+      "A": "A stock order record",
+      "B": "A model record",
+      "C": "A transfer order record",
+      "D": "A model category record",
+      "E": "A consumable record"
+    },
+    "correct_answers": [
+      "B",
+      "D",
+      "E"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 98,
+    "question": "When using the HAM application, what happens when you create a new transfer order line on a transfer order?",
+    "options": {
+      "A": "The asset(s) listed in the transfer order line are automatically transferred to the new stockroom",
+      "B": "The transfer order line is automatically placed in a state of Ready for fulfilment",
+      "C": "A transfer order line task is automatically created to move the transfer order line from one stage to another",
+      "D": "A transfer order line task is automatically created to validate enough stock exists",
+      "E": "The asset(s) listed in the transfer order line are automatically readied for shipment"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 99,
+    "question": "Which ServiceNow Mobile app provides end users visibility to their assigned hardware and consumable assets?",
+    "options": {
+      "A": "Mobile Asset App",
+      "B": "Mobile App",
+      "C": "Mobile ITAM App",
+      "D": "Mobile Agent App"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 100,
+    "question": "Select the three main components of the data certification process. (Choose three.)",
+    "options": {
+      "A": "Certify the certification",
+      "B": "Assign the certification tasks",
+      "C": "Create the certification filter",
+      "D": "Create the certification schedule",
+      "E": "Run the certification"
+    },
+    "correct_answers": [
+      "C",
+      "D",
+      "E"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 101,
+    "question": "Which catalog facilitates the ability to source from existing stock?",
+    "options": {
+      "A": "Procurement Catalog",
+      "B": "Vendor Catalog",
+      "C": "Service Catalog",
+      "D": "Product Catalog"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 102,
+    "question": "From where can you publish catalog items? (Choose two.)",
+    "options": {
+      "A": "From the model category",
+      "B": "From an asset record",
+      "C": "From a user record",
+      "D": "From a vendor item",
+      "E": "From a model"
+    },
+    "correct_answers": [
+      "D",
+      "E"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 103,
+    "question": "Publishing an item to the Service Catalog can be done by using the “Publish to Hardware Catalog” related link in:",
+    "options": {
+      "A": "Product Catalog",
+      "B": "Inventory Catalog",
+      "C": "Asset Catalog",
+      "D": "Supplier Catalog"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 104,
+    "question": "An asset is manually created from a purchase order before it has been shipped by the supplier. By default, the state of the asset is set to:",
+    "options": {
+      "A": "On order",
+      "B": "In use",
+      "C": "Awaiting delivery",
+      "D": "Pending transfer"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 105,
+    "question": "How often are the tabs in the Hardware Asset dashboard updated?",
+    "options": {
+      "A": "Daily based on scheduled job",
+      "B": "Hourly",
+      "C": "In real time",
+      "D": "Every 15 minutes"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 106,
+    "question": "What minimum role is required in order to use the Hardware Asset dashboard?",
+    "options": {
+      "A": "asset",
+      "B": "asset_manager",
+      "C": "ham_user",
+      "D": "ham_admin",
+      "E": "inventory_admin"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 107,
+    "question": "What information would you find on the Inventory tab of the Hardware Asset dashboard? (Choose three.)",
+    "options": {
+      "A": "New hardware assets found by audits",
+      "B": "Hardware models up for end of life",
+      "C": "Hardware nearing end of warranty",
+      "D": "Active stock rules",
+      "E": "Open asset audits",
+      "F": "Requests that require sourcing"
+    },
+    "correct_answers": [
+      "A",
+      "D",
+      "E"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 108,
+    "question": "Which mobile app can users leverage to create assets, perform inventory audits, and receive assets?",
+    "options": {
+      "A": "Now Agent Mobile App",
+      "B": "Now Procurement App",
+      "C": "Now Mobile App",
+      "D": "Now Onboarding App"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 109,
+    "question": "Several of your models are listed as Match Not Found on the Model Management tab of the Hardware Asset dashboard. What are the potential causes of this? (Choose three.)",
+    "options": {
+      "A": "The hardware model content has not yet been downloaded from the Content Service",
+      "B": "Normalization could not match any of the three key fields in the hardware model form with a rule in the Content Service",
+      "C": "Your hardware model form contains a good model number, but a badly formatted model name",
+      "D": "You have opted out of the ServiceNow Content Service",
+      "E": "A normalization rule for the hardware model does not exist in the Content Service"
+    },
+    "correct_answers": [
+      "A",
+      "B",
+      "E"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 110,
+    "question": "What original costs are involved in purchasing an asset and putting it into use? (Choose three.)",
+    "options": {
+      "A": "Lease",
+      "B": "Delivery",
+      "C": "Spare parts",
+      "D": "Maintenance",
+      "E": "Storage"
+    },
+    "correct_answers": [
+      "A",
+      "B",
+      "E"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 111,
+    "question": "A scheduled job runs nightly to determine if any rate cards need to be applied to generate expense lines. What is the name of the scheduled job?",
+    "options": {
+      "A": "Process CM Costs",
+      "B": "Process Rate Cards",
+      "C": "Process FM Costs",
+      "D": "Process Expense Lines"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 112,
+    "question": "What is included in the total cost of ownership? (Choose two.)",
+    "options": {
+      "A": "Delivery cost",
+      "B": "Original cost",
+      "C": "Depreciation expense",
+      "D": "Operational expense"
+    },
+    "correct_answers": [
+      "B",
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 113,
+    "question": "What is a requirement for sourcing a request from the requester’s local stockroom?",
+    "options": {
+      "A": "The requested stock must be in transit from a vendor",
+      "B": "The requested stock must be available in the local stockroom",
+      "C": "The requested stock must be available via transfer order from a remote stockroom",
+      "D": "The requested stock must be in transit from a remote stockroom"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 114,
+    "question": "By default, what Quick links are available on the Hardware asset overview view? (Choose three.)",
+    "options": {
+      "A": "Transfer orders",
+      "B": "Assets eligible for refresh by model category",
+      "C": "Asset requests",
+      "D": "Model normalization",
+      "E": "Asset count by model category",
+      "F": "Asset count by lifecycle state"
+    },
+    "correct_answers": [
+      "A",
+      "C",
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 115,
+    "question": "A component is considered a configuration item (CI) as opposed to an IT asset when you want to:",
+    "options": {
+      "A": "Track its incurred costs",
+      "B": "Manage its retirement",
+      "C": "Track its relationship information",
+      "D": "Manage its license contracts",
+      "E": "Know who is using it"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 116,
+    "question": "What is tracked throughout the life of an asset? (Choose three.)",
+    "options": {
+      "A": "Financial data",
+      "B": "Contractual data",
+      "C": "Lifecycle data",
+      "D": "Configuration data",
+      "E": "Hardware data"
+    },
+    "correct_answers": [
+      "A",
+      "B",
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 117,
+    "question": "What is the focus of asset management?",
+    "options": {
+      "A": "Financial tracking of an organization's property",
+      "B": "Financial tracking of the organization's network",
+      "C": "Building of the organization's property",
+      "D": "Building the elements that create the organization's network"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 118,
+    "question": "Which tier of the capability blueprint focuses on achieving best-in-class?",
+    "options": {
+      "A": "Operational integration",
+      "B": "Trustworthy data",
+      "C": "Strategic conformance",
+      "D": "Practical management"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 119,
+    "question": "Which of the following are components of the ServiceNow asset lifecycle? (Choose three.)",
+    "options": {
+      "A": "Discard",
+      "B": "Order",
+      "C": "Procure",
+      "D": "Request",
+      "E": "Install",
+      "F": "Receive"
+    },
+    "correct_answers": [
+      "C",
+      "D",
+      "F"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 120,
+    "question": "What are the five valid phases of the Now Create methodology?",
+    "options": {
+      "A": "Review, prepare, create, validate, recap",
+      "B": "Initiate, plan, execute, deliver, close",
+      "C": "Create, recap, execute, deliver, review",
+      "D": "Initiate, plan, execute, review, close"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 121,
+    "question": "What are types of assets? (Choose four.)",
+    "options": {
+      "A": "Model",
+      "B": "Software entitlement",
+      "C": "Hardware",
+      "D": "Consumable",
+      "E": "Stockroom",
+      "F": "Facility"
+    },
+    "correct_answers": [
+      "B",
+      "C",
+      "D",
+      "F"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 122,
+    "question": "What are the baseline asset lifecycle automation flows provided by the Hardware Asset Management (HAM) plugin? (Choose three.)",
+    "options": {
+      "A": "Hardware asset order",
+      "B": "Hardware bulk stock order",
+      "C": "Hardware swap order",
+      "D": "Hardware retire order",
+      "E": "Hardware deployment",
+      "F": "Hardware disposal"
+    },
+    "correct_answers": [
+      "A",
+      "B",
+      "F"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 123,
+    "question": "What plugin helps alleviate inconsistencies in company names?",
+    "options": {
+      "A": "Extended CMDB",
+      "B": "Normalization Data Services",
+      "C": "Contract Management",
+      "D": "Data Certification"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 124,
+    "question": "What are the Normalization statuses? (Choose six.)",
+    "options": {
+      "A": "Manufacturer Normalized",
+      "B": "Match Not Found",
+      "C": "Partially Normalized",
+      "D": "Normalized",
+      "E": "Manually Normalized",
+      "F": "Version Normalized",
+      "G": "New",
+      "H": "Found"
+    },
+    "correct_answers": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "G"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 125,
+    "question": "An asset record tracks which data that is NOT part of configuration management? (Choose three.)",
+    "options": {
+      "A": "Lifecycle data",
+      "B": "Contractual data",
+      "C": "Financial data",
+      "D": "Logical data",
+      "E": "Operational data"
+    },
+    "correct_answers": [
+      "A",
+      "B",
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 126,
+    "question": "When selected on the model category form, what feature prevents the automatic creation of an asset?",
+    "options": {
+      "A": "Enforce Asset Creation",
+      "B": "Enforce Asset Verification",
+      "C": "Enforce Asset Validation",
+      "D": "Enforce CI Validation",
+      "E": "Enforce CI Verification"
+    },
+    "correct_answers": [
+      "E"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 127,
+    "question": "In order for a hardware model to be fully normalized rather than partially normalized, what field is required in the hardware model record?",
+    "options": {
+      "A": "Manufacturer",
+      "B": "Name",
+      "C": "Asset tag",
+      "D": "Display name",
+      "E": "Model number"
+    },
+    "correct_answers": [
+      "E"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 128,
+    "question": "You have just created a new hardware model record for a group of laptops you purchased. When does normalization first run to normalize the record?",
+    "options": {
+      "A": "When the daily scheduled HAM – Daily job runs",
+      "B": "When the weekly scheduled HAM – Normalization job runs",
+      "C": "When you save the hardware model record",
+      "D": "When you click the Normalize Hardware Model link under Related Links"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 129,
+    "question": "When opted-in to the Hardware Asset Management Content Service, how often is updated content downloaded to the customer instance from ServiceNow?",
+    "options": {
+      "A": "Monthly",
+      "B": "Weekly",
+      "C": "Daily",
+      "D": "Quarterly"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 130,
+    "question": "Normalization status is the level of normalization match based on what characteristics? (Choose three.)",
+    "options": {
+      "A": "Model name",
+      "B": "Model category",
+      "C": "Model number",
+      "D": "Display name",
+      "E": "Manufacturer"
+    },
+    "correct_answers": [
+      "A",
+      "C",
+      "E"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 131,
+    "question": "As part of the hardware model normalization process, the Content Library automatically populates your inventory with what non-discoverable asset metadata?",
+    "options": {
+      "A": "Manufacturer comparables",
+      "B": "Manufacturer part number",
+      "C": "Manufacturer lifecycle dates",
+      "D": "Manufacturer price"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 132,
+    "question": "What core sets of data are required for effective IT asset management? (Choose four.)",
+    "options": {
+      "A": "Manufacturers",
+      "B": "Relationships",
+      "C": "Locations",
+      "D": "Users",
+      "E": "Projects",
+      "F": "Models"
+    },
+    "correct_answers": [
+      "A",
+      "C",
+      "D",
+      "F"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 133,
+    "question": "What role is required to use the Hardware Model Normalization Overview dashboard?",
+    "options": {
+      "A": "ham_normalization",
+      "B": "ham_user",
+      "C": "ham_admin",
+      "D": "asset_manager",
+      "E": "asset"
+    },
+    "correct_answers": [
+      "E"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 134,
+    "question": "When working in conjunction with a Field Service Management (Change) change task, what feature removes the need to manually update the asset record associated to the task?",
+    "options": {
+      "A": "CI update flow",
+      "B": "Asset inventory",
+      "C": "Scheduled job",
+      "D": "Asset task",
+      "E": "On-demand job"
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 135,
+    "question": "For what asset actions are asset tasks provided? (Choose three.)",
+    "options": {
+      "A": "Provision",
+      "B": "Retire",
+      "C": "Update/Repair",
+      "D": "Swap",
+      "E": "Assign/Allocate"
+    },
+    "correct_answers": [
+      "B",
+      "C",
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 136,
+    "question": "What happens to the consumable's asset record after it has been consumed?",
+    "options": {
+      "A": "The record is marked inactive but remains in the system",
+      "B": "The record state is set to In use",
+      "C": "The record remains in the system for reporting purposes only",
+      "D": "The record is removed from the system"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 137,
+    "question": "A contract can be cancelled when the State is what?",
+    "options": {
+      "A": "Expired",
+      "B": "Active",
+      "C": "Inactive",
+      "D": "Rejected"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 138,
+    "question": "During an inventory audit, what happens if you accidentally scan the same asset twice?",
+    "options": {
+      "A": "The first scan is imported",
+      "B": "Both records are imported",
+      "C": "HAM automatically removes duplicates",
+      "D": "The most recent scan is imported"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 139,
+    "question": "A blind inventory audit is typically initiated via which interface?",
+    "options": {
+      "A": "Third-party API",
+      "B": "Now Inventory app",
+      "C": "Now Agent Mobile app",
+      "D": "Now Mobile app"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 140,
+    "question": "Assets can be moved between stockrooms by using:",
+    "options": {
+      "A": "Stock orders",
+      "B": "Stock rules",
+      "C": "Transfer rules",
+      "D": "Transfer orders"
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 141,
+    "question": "Describe the structure of a Transfer Order.",
+    "options": {
+      "A": "Transfer Order Task > Transfer Order",
+      "B": "Transfer Order > Transfer Order Line > Transfer Order Task",
+      "C": "Transfer Order > Transfer Order Task > Transfer Order Line",
+      "D": "Transfer Order Task > Transfer Order Line"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 142,
+    "question": "When running an asset audit, you receive the result of 10 \"Expected and not found\" assets. What does this mean?",
+    "options": {
+      "A": "You expected 10 assets in your inventory and scanned these 10 assets during your audit.",
+      "B": "You scanned 20 assets in your inventory, but only 10 of them were on your expected inventory list.",
+      "C": "You expected 10 assets in your inventory and scanned 10 assets during your audit, but none of them are on your expected inventory list.",
+      "D": "You expected 10 assets during your audit inventory and scanned 10 assets, but none of them have a record in your ServiceNow instance."
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 143,
+    "question": "What requirements must be met in order for a consumable asset to be consumed? (Choose three.)",
+    "options": {
+      "A": "Quantity > 0",
+      "B": "State is In stock or Pending Delivery",
+      "C": "Substate is pre-allocated",
+      "D": "Substate is Available",
+      "E": "Quantity > stockroom threshold",
+      "F": "State is In stock"
+    },
+    "correct_answers": [
+      "A",
+      "D",
+      "F"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 144,
+    "question": "What are the main purposes of transfer order line tasks? (Choose two.)",
+    "options": {
+      "A": "To help track service levels and the time frame needed to complete a transfer order",
+      "B": "To move transfer order lines from one stage to another",
+      "C": "To help track the total number of assets moved from one stockroom to another",
+      "D": "To automate reordering of consumables as they are consumed by users",
+      "E": "To move transfer orders from one stage to another"
+    },
+    "correct_answers": [
+      "A",
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 145,
+    "question": "What prevents two asset managers from transferring the same asset at the same time?",
+    "options": {
+      "A": "A business rule",
+      "B": "A stock rule",
+      "C": "A stockroom rule",
+      "D": "A transfer rule"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 146,
+    "question": "When should you retire an IT asset?",
+    "options": {
+      "A": "At any point it is recommended by the HAM-defined asset policy",
+      "B": "At any point that it is recommended by your company-defined policies and procedures",
+      "C": "At any point it is recommended by the HAM-defined asset disposal procedure",
+      "D": "When the Hardware Content Service Lifecycle data reports the asset is nearing end-of-service",
+      "E": "When the Hardware Content Service Lifecycle data reports the asset is nearing end-of-life"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 147,
+    "question": "What critical information should be tracked for your contracts? (Choose two.)",
+    "options": {
+      "A": "Who purchased the assets",
+      "B": "What each contract costs",
+      "C": "What needs to be cancelled",
+      "D": "What assets each contract covers"
+    },
+    "correct_answers": [
+      "B",
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 148,
+    "question": "Why may users request loaner assets even when the requested asset is not available in the local stockroom?",
+    "options": {
+      "A": "The request creates an automatic transfer order to move assets from a warehouse with in stock assets.",
+      "B": "The wait-listed loaner asset requests provide visibility to streamline internal transfer order flows.",
+      "C": "The wait-listed loaner asset requests provide visibility to the demand for loaner orders.",
+      "D": "The request automatically creates a purchase order to obtain the assets from a vendor"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 149,
+    "question": "Stock rules have automatic restocking actions that occur through a daily scheduled job. What plugin must be activated in order to configure and use the scheduled job?",
+    "options": {
+      "A": "Cost Management",
+      "B": "Procurement",
+      "C": "Field Service Mobile",
+      "D": "Order Management"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 150,
+    "question": "Classes are represented as tables in the ServiceNow database. Which is the base asset class?",
+    "options": {
+      "A": "cmdb_asset",
+      "B": "alm_hardware",
+      "C": "alm_asset",
+      "D": "cmdb_hardware"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 151,
+    "question": "Which view displays metrics to the user to indicate when they are due for a refresh based on the scheduled retirement of their assets?",
+    "options": {
+      "A": "Homepage",
+      "B": "Home",
+      "C": "Overview",
+      "D": "My Assets"
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 152,
+    "question": "Which of these automatic restocking actions are available in baseline? (Choose two.)",
+    "options": {
+      "A": "Create a task assigned to stock room manager to contact procurement manager",
+      "B": "Create a task assigned to the stock room manage to create a purchase order",
+      "C": "Create a new asset from any returned inventory",
+      "D": "Create a transfer order to restock from another stockroom",
+      "E": "Create a transfer order to restock from a vendor"
+    },
+    "correct_answers": [
+      "B",
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 153,
+    "question": "When sourcing a requested item from a supplier using the catalog task form to create a purchase order, the catalog item must be available in:",
+    "options": {
+      "A": "Supplier Catalog",
+      "B": "Product Catalog",
+      "C": "Inventory Catalog",
+      "D": "Vendor Catalog"
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 154,
+    "question": "What information would you find on the Procurement tab of the Hardware Asset dashboard? (Choose two.)",
+    "options": {
+      "A": "Hardware nearing end of warranty",
+      "B": "Hardware model normalization status",
+      "C": "Hardware expenditure by vendor",
+      "D": "Hardware models up for end of life",
+      "E": "New hardware assets found by audits",
+      "F": "Requests that require sourcing"
+    },
+    "correct_answers": [
+      "C",
+      "F"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 155,
+    "question": "Since trustworthy data is key to good asset management practices, where would you look to determine the number of days until next Content Service download will occur?",
+    "options": {
+      "A": "Asset > Administration",
+      "B": "Asset > Overview",
+      "C": "Asset Hardware Model Normalization > Content Service Setup",
+      "D": "Asset > Asset Audits > Asset Audits",
+      "E": "Asset > Hardware Asset Dashboard"
+    },
+    "correct_answers": [
+      "E"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 156,
+    "question": "Which mobile app can users leverage to view the assets assigned to them and create incidents to report issues with their devices?",
+    "options": {
+      "A": "Now Agent Mobile app",
+      "B": "Now Onboarding app",
+      "C": "Now Mobile app",
+      "D": "Now My Assets app"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 157,
+    "question": "When creating a stock rule that replenishes from a vender, what is primary requirement for the warehouse stockroom? (Choose two.)",
+    "options": {
+      "A": "The stockroom manager must have a valid email address",
+      "B": "The stockroom must have an assigned manager",
+      "C": "The stockroom must have an assignment group",
+      "D": "The stockroom manager must have a valid mobile phone",
+      "E": "The stockroom manager must have a valid time zone"
+    },
+    "correct_answers": [
+      "A",
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 158,
+    "question": "Which tab on the Hardware Asset Dashboard enables tracking asset models with missing purchase details?",
+    "options": {
+      "A": "Asset Heath",
+      "B": "Procurement",
+      "C": "Model Management",
+      "D": "Inventory",
+      "E": "End of Lite"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 159,
+    "question": "To utilize the contract rate cards features, which plugin is required to be activated?",
+    "options": {
+      "A": "Financial Management",
+      "B": "Contract Management",
+      "C": "Rate Management",
+      "D": "Cost Management"
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 160,
+    "question": "The current value of an asset (original cost less the depreciated amount) is known as:",
+    "options": {
+      "A": "Cost of ownership",
+      "B": "Residual value",
+      "C": "Current balance",
+      "D": "Salvage value"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 161,
+    "question": "Which of the following are considered original costs as opposed to operational expenses? (Choose three.)",
+    "options": {
+      "A": "Warranty costs",
+      "B": "Purchase price or lease cost",
+      "C": "Delivery costs",
+      "D": "Resource costs for support",
+      "E": "Replacement parts",
+      "F": "Maintenance agreements"
+    },
+    "correct_answers": [
+      "A",
+      "B",
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 162,
+    "question": "After installing the Hardware Asset Management (HAM) plugin, how do you update it when new versions become available?",
+    "options": {
+      "A": "The HI portal team automatically updates as new versions become available",
+      "B": "On your instance, filter on application updates, then click Update",
+      "C": "On your instance, filter on application updates, then request an update from HI",
+      "D": "Run scheduled job, HAM Check for Updates, and request an update",
+      "E": "Check the HI portal for updates and request an update"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 163,
+    "question": "Baseline ITSM Asset Management provides which features? (Choose three.)",
+    "options": {
+      "A": "Mobile My Assets",
+      "B": "Hardware Model Normalization",
+      "C": "Asset Inventory Audit",
+      "D": "Hardware Asset Dashboard",
+      "E": "Hardware Manufacturer Lifecycle Dates",
+      "F": "Stockrooms",
+      "G": "Mobile Asset Receiving"
+    },
+    "correct_answers": [
+      "A",
+      "F",
+      "G"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 164,
+    "question": "Taxes paid at the time of purchase are what type of cost?",
+    "options": {
+      "A": "Operating Expense",
+      "B": "Capital Expense",
+      "C": "Operating Cost",
+      "D": "Original Cost"
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 165,
+    "question": "Within the asset audit form, where would you find the list of all assets that are currently assigned to the stockroom or warehouse that is being audited?",
+    "options": {
+      "A": "Labelled assets",
+      "B": "Expected assets",
+      "C": "Inventoried assets",
+      "D": "Scanned assets",
+      "E": "Stored assets"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 166,
+    "question": "When a hardware asset is retired what happens to any existing software allocations on that asset?",
+    "options": {
+      "A": "The software allocations remain with the hardware asset and need to be reclaimed manually",
+      "B": "The software allocations are handled based upon the configuration of the system property glide.ham.retire_sw()",
+      "C": "The software allocations are removed from the asset but not returned to inventory",
+      "D": "The software allocations are automatically returned back into inventory"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 167,
+    "question": "Which are valid hardware model lifecycle phases? (Choose three.)",
+    "options": {
+      "A": "General Availably",
+      "B": "Upgrade",
+      "C": "End of Subscription",
+      "D": "Pre-release",
+      "E": "Beta",
+      "F": "End of Life"
+    },
+    "correct_answers": [
+      "A",
+      "D",
+      "F"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 168,
+    "question": "What functionality enables you to automatically create asset records from information provided by your vendor while your assets are still in transit?",
+    "options": {
+      "A": "Advanced Shipment Notification (ASN)",
+      "B": "Advanced Vendor Notification (AVN)",
+      "C": "Automatic Shipment Notification (ASN)",
+      "D": "Automatic Asset Notification (AAN)",
+      "E": "Advanced Delivery Notification (ADN)"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 169,
+    "question": "During an audit, when is the Scanned Assets related list updated in the asset audit form?",
+    "options": {
+      "A": "When the nightly scheduled job runs",
+      "B": "Every 15 minutes",
+      "C": "Every hour",
+      "D": "Each time scans are submitted from the app",
+      "E": "Every time an item is scanned from the app"
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 170,
+    "question": "What is an attribute that will remain unchanged throughout the life of the asset?",
+    "options": {
+      "A": "Memory",
+      "B": "Operating system",
+      "C": "CPU type",
+      "D": "Serial number"
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 171,
+    "question": "During the hardware model normalization process, which field is the most important criteria for creating a fully Normalized hardware model?",
+    "options": {
+      "A": "Model number",
+      "B": "Display name",
+      "C": "Manufacturer",
+      "D": "Model name"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 172,
+    "question": "Key features of consumables are: (Choose two.)",
+    "options": {
+      "A": "Can be discovered",
+      "B": "Managed in bulk",
+      "C": "Retired on consumption",
+      "D": "Fixed cost",
+      "E": "Low value"
+    },
+    "correct_answers": [
+      "B",
+      "E"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 173,
+    "question": "What baseline flow could you use to replace hardware assets nearing their end-of-life?",
+    "options": {
+      "A": "Loaner Asset Refresh",
+      "B": "Update Asset Request",
+      "C": "Hardware Asset Refresh",
+      "D": "Refresh Asset Request"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 174,
+    "question": "Fixed assets refer to what type of assets?",
+    "options": {
+      "A": "Current assets",
+      "B": "Intangible assets",
+      "C": "Short-term assets",
+      "D": "Long-term assets"
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 175,
+    "question": "Which single view of the Hardware Asset Workspace provides a consolidated set of quick links to manage model normalization, asset requests, transfer orders, stock orders, refresh requests, and disposal orders?",
+    "options": {
+      "A": "Hardware asset overview",
+      "B": "Inventory",
+      "C": "Asset estate",
+      "D": "Procurement",
+      "E": "Asset operations"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 176,
+    "question": "When an employee leaves a company and their manager submits an Asset Reclamation Request for them which of their assigned assets are reclaimed by default?",
+    "options": {
+      "A": "All hardware and software assets but not consumable assets",
+      "B": "All hardware, software, and consumable assets selected in the reclaim asset service catalog",
+      "C": "All hardware software and consumable assets",
+      "D": "All hardware and software assets selected in the reclaim asset service catalog"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 177,
+    "question": "What does the depreciation effective date field modify on the depreciation tab? (Choose three.)",
+    "options": {
+      "A": "Salvage value",
+      "B": "Residual date",
+      "C": "Depreciated amount",
+      "D": "Residual value",
+      "E": "Depreciation quantity"
+    },
+    "correct_answers": [
+      "B",
+      "C",
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 178,
+    "question": "What is the second tier of the capability blueprint?",
+    "options": {
+      "A": "Practical management",
+      "B": "Strategic conformance",
+      "C": "Trustworthy data",
+      "D": "Operational integration",
+      "E": "Financial management"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 179,
+    "question": "Which are assets? (Choose three.)",
+    "options": {
+      "A": "Servers",
+      "B": "Software entitlements",
+      "C": "Software distributions",
+      "D": "Network cables",
+      "E": "Facilities"
+    },
+    "correct_answers": [
+      "A",
+      "B",
+      "E"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 180,
+    "question": "Which view within the Hardware Asset Management Workspace enables Asset Managers to work on features such as RMA request lines asset audits, disposal orders and stock orders?",
+    "options": {
+      "A": "Asset estate",
+      "B": "Asset operations",
+      "C": "Inventory",
+      "D": "Model management"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 181,
+    "question": "What information would you find on me Model Management tab of me Hardware Asset dashboard? (Choose two.)",
+    "options": {
+      "A": "Hardware nearing end of lease",
+      "B": "Hardware model normalization status",
+      "C": "Hardware models up for end of life",
+      "D": "Hardware model expenditure by vendor",
+      "E": "Hardware model purchase orders pending delivery",
+      "F": "New hardware assets found by audits"
+    },
+    "correct_answers": [
+      "B",
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 182,
+    "question": "What is required to manage utilization of the Hardware Asset Management Content Service?",
+    "options": {
+      "A": "The service must be opted in to and can be opted out of in the future, if required.",
+      "B": "The service must be opted in to, but once enabled it cannot be opted out of.",
+      "C": "A script must be defined to identify what information should be shared with the Content Service.",
+      "D": "Nothing. The service is atomically enabled and cannot be opted out of.",
+      "E": "The service is automatically enabled through the baseline installation but can be opted out of, if required."
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 183,
+    "question": "What is the first tier of the capability blueprint?",
+    "options": {
+      "A": "Practical management",
+      "B": "Strategic conformance",
+      "C": "Trustworthy data",
+      "D": "Operational integration",
+      "E": "Financial management"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 184,
+    "question": "Populating CMDB tables using import sets can inadvertently result in duplicate configuration items (CIs). To minimize this duplication, you can apply what process to the import sets?",
+    "options": {
+      "A": "Import set prioritization",
+      "B": "Manual reconciliation",
+      "C": "Identification and reconciliation",
+      "D": "Transform map consolidation"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 185,
+    "question": "What happens when auto-allocate assets is selected when building an asset bundle?",
+    "options": {
+      "A": "Assets are allocated only when all the assets that are part of the defined bundle are available in the local stockroom",
+      "B": "Assets that are available only in the local stockroom are displayed and are available for selection",
+      "C": "Assets are auto-allocated once the inventory is uploaded for a defined bundle",
+      "D": "Assets are auto-allocated to the bundle as they are transferred into the stockroom"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 186,
+    "question": "What type of information is tracked by Configuration Items (Cis)? (Choose two.)",
+    "options": {
+      "A": "Financial",
+      "B": "Operational",
+      "C": "Contractual",
+      "D": "Lifecycle",
+      "E": "Relationship"
+    },
+    "correct_answers": [
+      "B",
+      "E"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 187,
+    "question": "Which hardware asset attribute should be tracked separately from a configuration item (CI)?",
+    "options": {
+      "A": "Memory",
+      "B": "CPU",
+      "C": "Operating system",
+      "D": "Warranty",
+      "E": "IP address"
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 188,
+    "question": "How is the Technology Reference Model (TRM) information updated within the Hardware Asset Management (HAM) application?",
+    "options": {
+      "A": "By using external USB drives to import TRM phase data monthly",
+      "B": "By manually entering data at the end of each week",
+      "C": "By importing the TRM data provided by the hardware vendors on an as-needed basis",
+      "D": "By using the HAM – Sync TRM information scheduled job that runs daily"
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": ""
+  }
+]
