@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { CheckCircle2, XCircle, ChevronRight, RotateCcw, Award, BookOpen, Home, Settings, Info, Lightbulb } from 'lucide-react';
+import { CheckCircle2, XCircle, ChevronRight, RotateCcw, Award, BookOpen, Home, Settings, Info, Lightbulb, Clock } from 'lucide-react';
 import hamData from '../data/ham_questions.json';
 import samData from '../data/sam_questions.json';
 
@@ -19,6 +19,7 @@ const QuizApp = () => {
   const [isValidated, setIsValidated] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
   const [showExplanation, setShowExplanation] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(30);
 
   // --- Dynamic Dataset Base ---
   const allModuleQuestions = useMemo(() => {
@@ -86,6 +87,31 @@ const QuizApp = () => {
     setIsValidated(false);
     setIsFinished(false);
     setShowExplanation(false);
+    setTimeLeft(30);
+  };
+
+  // --- Timer Logic ---
+  useEffect(() => {
+    if (timeLeft === 0 || isValidated || isFinished || !selectedModule) return;
+
+    const timer = setInterval(() => {
+      setTimeLeft(prev => prev - 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [timeLeft, isValidated, isFinished, selectedModule]);
+
+  useEffect(() => {
+    if (selectedModule) {
+      setTimeLeft(30);
+    }
+  }, [currentIndex, currentQuestion?.id || currentQuestion?.question_id, selectedModule]);
+
+  const getTimerColorClass = () => {
+    if (timeLeft > 10) return "text-gray-500";
+    if (timeLeft > 5) return "text-orange-500";
+    if (timeLeft > 0) return "text-red-500";
+    return "text-gray-500";
   };
 
   const handleGoHome = () => {
@@ -419,20 +445,29 @@ const QuizApp = () => {
 
       <div className="glass-card rounded-3xl overflow-hidden animate-slide-up shadow-2xl border border-white/40">
         <div className="p-8">
-          <div className="flex items-center gap-2 mb-4">
-              <span className={`px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-widest ${selectedModule === 'HAM' ? 'bg-orange-100 text-orange-600' : 'bg-blue-100 text-blue-600'}`}>
-                  Module {selectedModule}
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+                <span className={`px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-widest ${selectedModule === 'HAM' ? 'bg-orange-100 text-orange-600' : 'bg-blue-100 text-blue-600'}`}>
+                    Module {selectedModule}
+                </span>
+                {currentQuestion.type === 'matching' && (
+                    <span className="bg-green-100 text-green-600 px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-widest">
+                        Association
+                    </span>
+                )}
+                {currentQuestions.length < allModuleQuestions.length && (
+                    <span className="bg-purple-100 text-purple-600 px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-widest">
+                        Révision
+                    </span>
+                )}
+            </div>
+
+            <div className={`flex items-center gap-2 font-bold transition-all duration-300 ${getTimerColorClass()}`}>
+              <Clock size={18} className={timeLeft <= 5 && timeLeft > 0 ? "animate-pulse" : ""} />
+              <span className="text-sm tracking-tighter">
+                {timeLeft > 0 ? `${timeLeft}s` : "Time's up"}
               </span>
-              {currentQuestion.type === 'matching' && (
-                  <span className="bg-green-100 text-green-600 px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-widest">
-                      Association
-                  </span>
-              )}
-              {currentQuestions.length < allModuleQuestions.length && (
-                  <span className="bg-purple-100 text-purple-600 px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-widest">
-                      Révision
-                  </span>
-              )}
+            </div>
           </div>
           
           <h1 className="text-2xl md:text-3xl font-black text-gray-800 leading-tight mb-8">
