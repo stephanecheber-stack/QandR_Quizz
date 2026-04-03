@@ -14,7 +14,8 @@
             "B",
             "C",
             "E"
-        ]
+        ],
+        "explanation": "Les allocations, les modèles, les données de base (Foundation data) et les droits (entitlements) sont les piliers fondamentaux du SAM dans ServiceNow. Bien que les contrats soient utiles, ils relèvent du Contract Management, tandis que les quatre autres sont indispensables au calcul de la conformité logicielle."
     },
     {
         "id": 2,
@@ -25,7 +26,7 @@
             "Import data": "Medium amount of data",
             "Manual": "Small amount of data"
         },
-        "explanation": "Discovery is best for large environments, Import data for medium batches, and Manual for small, ad-hoc entries."
+        "explanation": "Discovery est l'outil automatisé idéal pour scanner un grand volume de données d'infrastructure. L'import de données via des fichiers (Import Sets) convient parfaitement aux volumes moyens, tandis que la saisie manuelle est réservée aux ajouts ponctuels ou de très faible volume."
     },
     {
         "question_id": 3,
@@ -39,7 +40,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "La normalisation dans ServiceNow SAM consiste à standardiser les données d'installation de logiciels découvertes (éditeur, produit, version) pour qu'elles correspondent aux normes exactes du Content Service. Cela permet une réconciliation précise et évite les doublons dus aux variations de nommage."
     },
     {
         "question_id": 4,
@@ -54,7 +56,8 @@
         "correct_answers": [
             "C",
             "D"
-        ]
+        ],
+        "explanation": "ServiceNow recommande fortement d'utiliser sa propre solution native (ServiceNow Discovery) ou Microsoft SCCM (souvent via le Service Graph Connector) pour peupler la table des installations. Ces deux outils offrent l'intégration la plus robuste pour remonter les inventaires logiciels de manière fiable."
     },
     {
         "question_id": 5,
@@ -65,7 +68,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "Vrai. Créer un modèle (template) pour les imports de données permet d'accélérer et de standardiser les chargements futurs. Cela garantit que le mappage des champs est correct et réutilisable lors de l'utilisation d'Import Sets."
     },
     {
         "question_id": 6,
@@ -76,7 +80,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Faux. Une licence d'accès client (CAL - Client Access) définit le nombre spécifique d'utilisateurs ou d'appareils autorisés à accéder à un produit. Le droit d'utilisation limité dans le temps correspond en réalité à une licence par abonnement (Subscription)."
     },
     {
         "question_id": 7,
@@ -87,7 +92,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Faux. Dans ServiceNow, lors d'un import de données via une Transform Map, vous pouvez définir plusieurs champs comme 'Coalesce'. L'outil utilisera alors la combinaison exacte de ces différents champs pour identifier de manière unique un enregistrement existant."
     },
     {
         "question_id": 8,
@@ -100,7 +106,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "Lors de la réception d'une commande (Hardware/Software) dans le cycle d'approvisionnement standard de ServiceNow, la balise d'actif (Asset Tag) est le point de données obligatoire. Elle permet d'identifier formellement l'actif et de l'intégrer au processus de gestion financière et d'inventaire."
     },
     {
         "question_id": 9,
@@ -114,7 +121,8 @@
         },
         "correct_answers": [
             "D"
-        ]
+        ],
+        "explanation": "Les plugins de la version Professional de SAM (SAMP) nécessitent une licence distincte et spécifique. Par conséquent, ils ne peuvent pas être activés directement par un administrateur local, mais doivent être formellement demandés et activés par le support technique de ServiceNow (HI)."
     },
     {
         "question_id": 10,
@@ -129,7 +137,8 @@
         "correct_answers": [
             "B",
             "E"
-        ]
+        ],
+        "explanation": "Les plugins sont des composants logiciels qui ajoutent des fonctionnalités spécifiques à la plateforme (E) et un grand nombre d'entre eux sont déjà activés par défaut dans l'instance de base (B). Attention, une fois activé, un plugin ne peut généralement plus être complètement désactivé, ce qui rend l'option A fausse."
     },
     {
         "question_id": 11,
@@ -143,7 +152,8 @@
         },
         "correct_answers": [
             "E"
-        ]
+        ],
+        "explanation": "Tout comme pour le matériel, le processus de réception lie l'achat à l'actif. Bien que virtuel, un enregistrement de droit logiciel (Software Entitlement) est traité comme un actif financier nécessitant un identifiant d'actif (Asset Tag) pour assurer la traçabilité financière."
     },
     {
         "question_id": 12,
@@ -159,7 +169,8 @@
         "correct_answers": [
             "B",
             "F"
-        ]
+        ],
+        "explanation": "Le Publisher Workbench est conçu pour se concentrer uniquement sur les éditeurs pertinents et suivis, et non sur la liste exhaustive de 'tous' les éditeurs (B) ou de tous ceux hors conformité de manière globale (F). Il permet une vue granulaire et filtrée."
     },
     {
         "question_id": 14,
@@ -174,7 +185,8 @@
         },
         "correct_answers": [
             "D"
-        ]
+        ],
+        "explanation": "Dans la méthodologie d'implémentation de ServiceNow (SIM), la phase 'Prepare' est strictement dédiée à la définition des processus, à la collecte des exigences et à la finalisation du backlog (les user stories) avant que les développeurs ne commencent à coder dans la phase 'Create'."
     },
     {
         "question_id": 15,
@@ -187,7 +199,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "Le pourcentage d'inférence (inference percent) est utilisé par le moteur de réconciliation. Si un certain pourcentage défini des composants enfants d'une suite est détecté sur une machine, ServiceNow déduira (inférera) que la suite complète est installée, même si l'exécutable parent n'a pas été trouvé."
     },
     {
         "question_id": 16,
@@ -201,7 +214,8 @@
         "correct_answers": [
             "A",
             "C"
-        ]
+        ],
+        "explanation": "Le processus de distribution de logiciels clients (CSD) commence obligatoirement par une étape de configuration des catalogues et des déploiements (C). De plus, il s'appuie sur des tâches planifiées quotidiennes (scheduled jobs) pour révoquer et désinstaller automatiquement les logiciels sous-utilisés (A)."
     },
     {
         "question_id": 17,
@@ -214,7 +228,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "Le rôle 'sam_developer' est le seul rôle spécifique du module SAM permettant d'avoir un accès complet au code et d'octroyer des droits d'écriture de scripts liés aux fonctionnalités d'Asset Management logiciel."
     },
     {
         "question_id": 18,
@@ -227,7 +242,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "Dans le Blueprint de maturité SAM de ServiceNow, le Tier 1 est 'Trustworthy Data' (Données fiables). Toute stratégie de gestion des actifs doit impérativement commencer par l'obtention d'une base de données d'inventaire propre, normalisée et digne de confiance."
     },
     {
         "question_id": 19,
@@ -245,7 +261,8 @@
             "C",
             "E",
             "F"
-        ]
+        ],
+        "explanation": "ServiceNow propose des 'Publisher Packs' natifs pour gérer les métriques de licences complexes et spécifiques des plus grands éditeurs du marché, à savoir SAP, Citrix, Oracle et IBM. OpenVMS et NetSuite ne bénéficient pas de tels packs standards."
     },
     {
         "question_id": 20,
@@ -259,7 +276,8 @@
         },
         "correct_answers": [
             "E"
-        ]
+        ],
+        "explanation": "Une règle de récupération (Software reclamation rule) est paramétrée pour définir ce qu'est la sous-utilisation. Elle analyse les données agrégées et vérifie si le temps d'utilisation minimum ou la date de dernière utilisation requise ne sont pas atteints, déclenchant ainsi la désinstallation."
     },
     {
         "question_id": 21,
@@ -272,7 +290,8 @@
         },
         "correct_answers": [
             "D"
-        ]
+        ],
+        "explanation": "Bien que le support ServiceNow intervienne pour activer les plugins Premium côté serveur, c'est à l'administrateur système global de l'instance locale (sys_admin) de vérifier techniquement que l'installation s'est bien déroulée et que l'instance est fonctionnelle."
     },
     {
         "question_id": 22,
@@ -287,7 +306,8 @@
         "correct_answers": [
             "B",
             "C"
-        ]
+        ],
+        "explanation": "Pour récupérer automatiquement les données d'utilisation logicielle, il faut combiner le plugin d'intégration SCCM de base (C) avec le plugin additionnel spécifique 'Microsoft SCCM Software Usage' (B) qui est chargé d'importer les métriques de comptage logiciel."
     },
     {
         "question_id": 23,
@@ -302,7 +322,8 @@
         "correct_answers": [
             "B",
             "E"
-        ]
+        ],
+        "explanation": "Une allocation est créée automatiquement par le système lorsque l'administrateur clique sur l'option de remédiation 'Créer une allocation' (B), ou lorsqu'un utilisateur demande un logiciel via le portail de service et que cette demande est sourcée avec succès à partir d'un droit existant en stock (E)."
     },
     {
         "question_id": 24,
@@ -315,7 +336,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "Le rafraîchissement des définitions de processeurs est crucial pour le calcul exact des licences basées sur les cœurs (Core/Processor). Il s'agit d'une tâche d'administration critique qui est strictement réservée aux rôles 'sam_admin' et 'sys_admin'."
     },
     {
         "question_id": 25,
@@ -332,7 +354,8 @@
             "B",
             "E",
             "F"
-        ]
+        ],
+        "explanation": "Pour que les données d'utilisation SCCM soient correctement liées et traitées, ServiceNow nécessite l'identification du produit logiciel (Software Product), le processus exécutable technique associé (Product Process), et une règle de récupération (Reclamation Rule) pour savoir comment analyser cette utilisation."
     },
     {
         "question_id": 26,
@@ -344,11 +367,9 @@
             "D": "Manually"
         },
         "correct_answers": [
-            "A",
-            "B",
-            "C",
-            "D"
-        ]
+            "C"
+        ],
+        "explanation": "Bien qu'il existe d'autres moyens d'importer des données brutes, ServiceNow utilise nativement et recommande Microsoft System Center Configuration Manager (SCCM) comme la source standard et automatisée pour remonter les données de comptage (Software Usage) des postes de travail."
     },
     {
         "question_id": 27,
@@ -362,7 +383,8 @@
         },
         "correct_answers": [
             "D"
-        ]
+        ],
+        "explanation": "C'est incorrect (donc la bonne réponse) : par défaut, l'application de gestion de la bibliothèque sur site (On-Premise) n'est pas activée automatiquement. Vous devez expressément configurer ce plugin et faire la démarche d'opt-in pour gérer manuellement la normalisation."
     },
     {
         "question_id": 28,
@@ -375,7 +397,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "Dans la configuration d'une Transform Map (Choice action), l'option 'Reject' indique explicitement au moteur d'import d'ignorer la ligne complète si la valeur de référence n'existe pas déjà en base, empêchant ainsi la création de données polluantes ou non conformes."
     },
     {
         "question_id": 29,
@@ -389,7 +412,8 @@
         },
         "correct_answers": [
             "D"
-        ]
+        ],
+        "explanation": "La fonctionnalité 'Import data' (utilisant les Import Sets et les modèles Excel) est la méthode la plus équilibrée et recommandée par ServiceNow pour charger des volumes moyens d'informations, évitant ainsi la lourdeur d'un traitement manuel tout en restant très accessible."
     },
     {
         "question_id": 30,
@@ -402,7 +426,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "La structure des bases de données de ServiceNow évolue avec les mises à jour. Il est donc indispensable, avant tout import massif de droits (entitlements), de télécharger la toute dernière version du modèle Excel depuis l'instance pour s'assurer que les colonnes correspondent parfaitement."
     },
     {
         "question_id": 31,
@@ -415,7 +440,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "ServiceNow prend en charge plusieurs méthodes pour intégrer des données d'actifs logiciels. Les trois principales sont la découverte automatisée (Discovery), l'importation de fichiers ou données externes (Import Data), et la saisie manuelle (Manual) via l'interface utilisateur."
     },
     {
         "question_id": 32,
@@ -426,7 +452,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Faux. Le service de contenu (SAM Content Service) est une fonctionnalité 'opt-in'. Les clients doivent l'activer explicitement pour autoriser le partage anonyme de leurs données non normalisées afin d'améliorer la bibliothèque globale de ServiceNow."
     },
     {
         "question_id": 33,
@@ -439,7 +466,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "Les données téléchargées depuis le Content Service pour mettre à jour la bibliothèque locale sont stockées dans la table 'Software Package' (samp_sw_package). Cette table contient les définitions normalisées utilisées pour correspondre avec les modèles découverts."
     },
     {
         "question_id": 34,
@@ -452,7 +480,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "Le numéro de pièce de l'éditeur (PPN - Publisher Part Number) est un identifiant unique fourni par le vendeur. Lors de l'import d'un droit (entitlement), ServiceNow utilise ce PPN pour interroger la bibliothèque et créer automatiquement le modèle logiciel exact associé."
     },
     {
         "question_id": 35,
@@ -467,7 +496,8 @@
         "correct_answers": [
             "B",
             "C"
-        ]
+        ],
+        "explanation": "La normalisation s'effectue dynamiquement via des règles métier (Business rules) dès qu'un nouveau modèle de découverte est créé ou mis à jour. De plus, une tâche planifiée (Scheduled job) s'exécute quotidiennement pour traiter les modèles restés non normalisés."
     },
     {
         "question_id": 36,
@@ -480,7 +510,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "Un modèle est considéré comme 'Partiellement normalisé' (Partially Normalized) lorsque le moteur a réussi à identifier avec certitude l'éditeur (Publisher) et le produit (Product), mais n'a pas pu déterminer la version ou l'édition exacte."
     },
     {
         "question_id": 37,
@@ -493,7 +524,8 @@
         },
         "correct_answers": [
             "D"
-        ]
+        ],
+        "explanation": "Le job planifié responsable de repasser sur les modèles en attente s'appelle 'Discovery Model Normalization'. Il s'assure que toute nouvelle donnée de la Content Library est appliquée aux modèles précédemment non reconnus."
     },
     {
         "question_id": 38,
@@ -506,7 +538,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "Dans le module SAM, une allocation logicielle (Software Allocation) est l'action administrative d'attribuer un droit d'utilisation acquis (licence) à un utilisateur spécifique ou à un appareil précis, garantissant ainsi sa couverture lors de la réconciliation."
     },
     {
         "question_id": 39,
@@ -520,7 +553,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "Le job planifié pour le processus de normalisation s'exécute de manière nocturne (Nightly). Cela permet de traiter de gros volumes de données d'inventaire en dehors des heures de pointe afin de ne pas impacter les performances de l'instance."
     },
     {
         "question_id": 40,
@@ -533,7 +567,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "Pour vérifier si le contenu a bien été synchronisé, il faut consulter la date de 'Dernière mise à jour' (Last updated) dans la section 'Central Data Service Download Status' située sur le tableau de bord Normalization and Content Service."
     },
     {
         "question_id": 41,
@@ -546,7 +581,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Les droits de version antérieure (Downgrade rights) lient un logiciel parent à ses versions plus anciennes. Si la Content Library fournit des droits de downgrade pour une version spécifique qui n'a pas encore de 'Software Model' dans votre instance, ServiceNow crée ce modèle automatiquement."
     },
     {
         "question_id": 42,
@@ -560,7 +596,8 @@
         },
         "correct_answers": [
             "E"
-        ]
+        ],
+        "explanation": "Les installations logicielles découvertes sur les différents équipements sont spécifiquement enregistrées dans la table 'Software Installation' (cmdb_sam_sw_install). C'est cette table qui sert de référence au moteur de réconciliation SAM Pro."
     },
     {
         "question_id": 43,
@@ -573,20 +610,22 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Dans le cycle de vie de ServiceNow Discovery, la phase d'Exploration est celle où le système pose la question : 'Que peux-tu me dire d'autre sur toi ?' (What else can you tell me about yourself?), afin de collecter les processus en cours, les logiciels installés et les composants matériels."
     },
     {
         "question_id": 44,
         "question": "If your organization is currently running Discovery, but has not yet installed the SAM Professional application, what must you do after installing SAM in order to make your discovered software installation information available to SAM?",
         "options": {
-            "A": "Convert the records from the [cmdb_ci_spkg] table into the [cmdb_sam_sw_install] table",
-            "B": "Run the “Migrate software installations” script to copy records from the [cmdb_ci_spkg] table to the [cmdb_sam_sw_install] table",
+            "A": "Convert the records from the [cmdb_ci_spkg] table into the[cmdb_sam_sw_install] table",
+            "B": "Run the “Migrate software installations” script to copy records from the [cmdb_ci_spkg] table to the[cmdb_sam_sw_install] table",
             "C": "Run the “Discover software installations” script to copy records from the [cmdb_ci_spkg] table to the [cmdb_sam_sw_install] table",
             "D": "Export the records from the [cmdb_ci_spkg] table into an xml spreadsheet and import them into the [cmdb_sam_sw_install] table"
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Avant l'installation de SAM Pro, les logiciels découverts sont placés dans la table historique [cmdb_ci_spkg]. Lors de l'activation de SAM Pro, il est impératif d'exécuter le script de migration fourni pour déplacer ces données vers la table dédiée [cmdb_sam_sw_install]."
     },
     {
         "question_id": 45,
@@ -600,7 +639,8 @@
         },
         "correct_answers": [
             "D"
-        ]
+        ],
+        "explanation": "C'est la phase d'Exploration (Exploration) qui exécute les patterns et les sondes (probes) spécifiques à l'OS pour identifier avec précision quels sont les logiciels installés et les processus en cours d'exécution sur la machine cible."
     },
     {
         "question_id": 46,
@@ -613,7 +653,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "Dès qu'une installation est remontée, ServiceNow tente de la lier à un Modèle de Découverte Logicielle (Software Discovery Model). Ce modèle abstrait sert de pont pour regrouper les installations identiques avant de les normaliser et de les lier au véritable modèle logiciel (Software Model)."
     },
     {
         "question_id": 47,
@@ -626,7 +667,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "Comme souligné précédemment, la phase d'Exploration (Exploration) est l'étape approfondie du scan. Une fois l'appareil classifié (ex: Serveur Windows), l'exploration lance les commandes (comme WMI ou SSH) pour lister les logiciels présents."
     },
     {
         "question_id": 48,
@@ -637,7 +679,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "Vrai. Bien que ServiceNow recommande son propre outil Discovery ou Microsoft SCCM, la plateforme SAM est agnostique. Tout outil tiers (Tanium, Flexera, etc.) capable de remonter des données d'inventaire fiables peut alimenter la table des installations logicielles."
     },
     {
         "question_id": 49,
@@ -651,7 +694,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Les modèles de découverte (Discovery models) sont créés automatiquement par le système pendant le processus de découverte. Lorsqu'une chaîne de caractères inédite (éditeur/produit/version) est remontée, un nouveau modèle de découverte est généré pour être ensuite normalisé."
     },
     {
         "question_id": 50,
@@ -665,7 +709,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Le gestionnaire SAM (SAM manager) porte la responsabilité opérationnelle. Il s'assure de l'exactitude des droits entrés, supervise le processus de normalisation, lance la réconciliation et gère la remédiation au jour le jour."
     },
     {
         "question_id": 51,
@@ -678,7 +723,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Les produits personnalisés (Custom products) sont conçus pour gérer des logiciels spécifiques développés en interne ou très obscurs. Si un logiciel existe déjà dans la Content Library globale de ServiceNow, vous ne devez pas recréer un produit personnalisé, sous peine de corrompre la normalisation."
     },
     {
         "question_id": 52,
@@ -689,7 +735,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Faux. Il est fortement déconseillé de modifier les scripts de base du moteur de réconciliation SAM. Ces altérations invalident le support ServiceNow, rendent les futures mises à niveau complexes et risquent de produire des calculs de licences totalement erronés."
     },
     {
         "question_id": 53,
@@ -702,7 +749,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Le rôle standard 'sam_user' permet à un utilisateur de visualiser les données SAM, ce qui inclut les tableaux de bord et la consultation des résultats de la réconciliation (licences manquantes, sur-licenciement, etc.)."
     },
     {
         "question_id": 54,
@@ -715,7 +763,8 @@
         },
         "correct_answers": [
             "D"
-        ]
+        ],
+        "explanation": "La Réconciliation (Reconciliation) est l'objectif ultime de SAM Pro. C'est le processus mathématique qui aligne les achats (droits acquis) avec l'inventaire réel (installations normalisées) pour produire le statut de conformité."
     },
     {
         "question_id": 55,
@@ -728,7 +777,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Le 'True-up cost' (coût de régularisation) est un terme métier clé. Il désigne la pénalité ou le coût estimé pour acheter les licences manquantes de la manière la plus optimisée possible afin de redevenir conforme vis-à-vis de l'éditeur."
     },
     {
         "question_id": 56,
@@ -739,7 +789,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Faux. Le résultat de réconciliation primaire au niveau du produit (Product result) affiche la conformité globale au niveau de la famille de logiciels. Il faut forer plus profondément dans les résultats pour voir les détails par version ou par édition."
     },
     {
         "question_id": 57,
@@ -750,7 +801,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Faux. Il n'existe aucun rôle nommé 'sam_reconcile_user' dans le système de base. Les résultats de réconciliation sont générés automatiquement par le système, et les actions de remédiation sont gérées par les rôles 'sam_admin' ou 'sam_user' standard."
     },
     {
         "question_id": 58,
@@ -763,7 +815,8 @@
         },
         "correct_answers": [
             "D"
-        ]
+        ],
+        "explanation": "ServiceNow conserve un historique des exécutions. L'attribut booléen 'Latest' (Le plus récent) est défini sur 'Vrai' pour identifier instantanément les données générées lors du tout dernier cycle de réconciliation."
     },
     {
         "question_id": 59,
@@ -776,7 +829,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "Dans la logique de ServiceNow (et de l'informatique en général), un chiffre plus bas (Lower) dans un champ de type 'Order' ou 'Priority' indique une précédence plus forte. L'ordre 100 sera donc évalué avant l'ordre 200 lors de la réconciliation."
     },
     {
         "question_id": 60,
@@ -787,7 +841,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "Vrai. Les attributs de métrique de licence (License metric attributes) permettent de stocker des critères spécifiques liés à l'achat, que le moteur de réconciliation utilisera pour vérifier les conditions exactes de conformité."
     },
     {
         "question_id": 61,
@@ -801,7 +856,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "Lors de la réconciliation, ServiceNow génère toujours un résultat de niveau produit (Product result) pour chaque logiciel licenciable découvert sur le réseau. Cela se produit même si l'entreprise n'a acheté aucune licence (aucun droit) ni créé de modèle pour ce produit, afin de mettre en évidence les risques de non-conformité."
     },
     {
         "question_id": 62,
@@ -815,7 +871,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "Le License Workbench (Espace de travail des licences) est l'interface centrale et interactive de SAM Pro. C'est là que les gestionnaires SAM analysent les résultats de la réconciliation, visualisent l'état de conformité par éditeur et prennent des mesures concrètes de remédiation."
     },
     {
         "question_id": 63,
@@ -833,7 +890,8 @@
             "B",
             "E",
             "F"
-        ]
+        ],
+        "explanation": "Les résultats de réconciliation sont hiérarchisés en quatre niveaux de granularité croissante pour faciliter l'analyse : d'abord l'Éditeur (Publisher), ensuite le Produit global (Product), puis le Modèle logiciel spécifique (Software Model), et enfin la Métrique de licence exacte (License Metric)."
     },
     {
         "question_id": 64,
@@ -846,7 +904,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "Le niveau 'License Metric Result' est le plus détaillé. Il décompose l'état de conformité d'un modèle logiciel spécifique en fonction de chaque règle de calcul (métrique) qui lui est associée (par exemple, conformité des licences 'Per User' versus licences 'Per Core' pour un même modèle)."
     },
     {
         "question_id": 65,
@@ -861,7 +920,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Bien que la réconciliation puisse être planifiée, un gestionnaire SAM a souvent besoin de la lancer manuellement après avoir corrigé des données. Le chemin de navigation standard dans le menu ServiceNow est 'Software Asset > Reconciliation > Run Reconciliation'."
     },
     {
         "question_id": 66,
@@ -878,7 +938,8 @@
             "A",
             "C",
             "E"
-        ]
+        ],
+        "explanation": "L'écran principal du License Workbench offre trois vues (onglets) principales pour organiser le travail : 'All Publishers' (Tous les éditeurs), 'Publishers Out of Compliance' (Éditeurs en non-conformité, nécessitant une attention immédiate), et 'Pinned Publishers' (Éditeurs épinglés favoris pour un suivi régulier)."
     },
     {
         "question_id": 67,
@@ -892,7 +953,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "L'option 'Unlicensed Software Products' (Produits logiciels sans licence) n'est pas une liste associée (related list) disponible au niveau du modèle logiciel dans le Workbench. Les autres listes (candidats au retrait, options de remédiation, etc.) sont bien présentes pour aider à la mise en conformité du modèle."
     },
     {
         "question_id": 68,
@@ -911,7 +973,8 @@
             "C",
             "D",
             "G"
-        ]
+        ],
+        "explanation": "Dans SAM Pro, les métriques de licence définissent ce qui consomme le droit. Les cibles de consommation classiques et configurables sont les Utilisateurs (Users), les Appareils/Machines (Devices), ainsi que les éléments matériels des serveurs comme les Cœurs (Cores) et les Processeurs (Processors)."
     },
     {
         "question_id": 69,
@@ -924,7 +987,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "La métrique 'Per Named Device' (Par appareil nommé) lie spécifiquement et exclusivement un droit de licence à une machine physique ou virtuelle unique, indépendamment du nombre d'utilisateurs qui se connectent à cet appareil."
     },
     {
         "question_id": 70,
@@ -941,7 +1005,8 @@
         "correct_answers": [
             "C",
             "D"
-        ]
+        ],
+        "explanation": "Les métriques contenant le terme 'Named' (Nommé) impliquent que la licence est nominative. Ainsi, les licences 'Per Named Device' et 'Per Named User' exigent impérativement qu'une allocation explicite soit enregistrée dans le système pour l'appareil ou l'utilisateur afin d'être comptabilisée comme conforme."
     },
     {
         "question_id": 71,
@@ -958,7 +1023,8 @@
             "A",
             "D",
             "E"
-        ]
+        ],
+        "explanation": "Comme vu précédemment, les trois vrais onglets du Workbench sont 'All Publishers', 'Publishers Out of Compliance' et 'Pinned Publishers'. Les options A, D et E sont des noms inventés ou des concepts qui n'apparaissent pas sous forme d'onglets de navigation principaux."
     },
     {
         "question_id": 72,
@@ -969,7 +1035,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Faux. Les métriques complexes spécifiques à ces grands éditeurs (IBM, Microsoft, Oracle, VMware) ne font pas partie de la configuration de base (baseline). Elles nécessitent l'activation payante de leurs 'Publisher Packs' respectifs au sein de la suite SAM Professional."
     },
     {
         "question_id": 73,
@@ -982,7 +1049,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Dans le moteur de reporting de ServiceNow, lors de la création de graphiques à barres complexes (comme pour l'analyse des licences), vous avez la possibilité d'utiliser simultanément le regroupement principal ('Group by') et l'empilement visuel secondaire ('Stacked by') pour croiser deux dimensions de données."
     },
     {
         "question_id": 74,
@@ -993,7 +1061,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Faux. Un même produit logiciel peut être commercialisé et acheté sous plusieurs modèles de licences différents (par exemple, vous pouvez acheter Microsoft SQL Server en métrique 'Per Core' pour un cluster, et en métrique 'Server + CAL' pour un petit serveur isolé)."
     },
     {
         "question_id": 75,
@@ -1007,7 +1076,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "C'est au moment de l'achat et de la saisie du droit que la métrique est définie. Par conséquent, le champ 'License metric' (Métrique de licence) se trouve sur le formulaire du Droit Logiciel (Software Entitlement), qui représente le contrat d'achat spécifique."
     },
     {
         "question_id": 76,
@@ -1021,7 +1091,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "Pour que ServiceNow puisse interagir techniquement avec des systèmes externes (comme SCCM) afin d'installer ou de désinstaller automatiquement des logiciels sur des postes clients (CSD), vous devez posséder une licence pour le module d'automatisation 'Orchestration'."
     },
     {
         "question_id": 77,
@@ -1035,7 +1106,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "L'objectif fondamental de la gestion des licences logicielles (SLM) est financier et sécuritaire : il s'agit de suivre l'inventaire pour contrôler et optimiser les dépenses logicielles, tout en minimisant les risques de pénalités lors d'audits de conformité menés par les éditeurs."
     },
     {
         "question_id": 78,
@@ -1049,7 +1121,8 @@
         },
         "correct_answers": [
             "E"
-        ]
+        ],
+        "explanation": "La métrique 'Per Named Device' couvre spécifiquement un appareil préalablement désigné (nommé via une allocation). Tant que le logiciel est installé sur cet appareil exact, il est conforme, peu importe le nombre de fois qu'il y est installé ou qui s'en sert."
     },
     {
         "question_id": 79,
@@ -1062,7 +1135,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "Le groupe de métriques (Metric Group) permet de filtrer et de sélectionner le bloc de règles de calcul approprié pour un droit donné. Par exemple, choisir le groupe 'Microsoft' limitera le choix aux métriques de licences spécifiques à Microsoft."
     },
     {
         "question_id": 80,
@@ -1075,7 +1149,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "Si l'utilisation d'un logiciel diminue constamment, l'entreprise paie probablement des droits d'utilisation ou des maintenances annuelles pour des licences qui ne sont plus consommées. C'est l'indicateur principal d'une situation de sur-licenciement (Over-licensed) nécessitant une optimisation."
     },
     {
         "question_id": 81,
@@ -1088,7 +1163,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "Dans la terminologie ServiceNow, bien que l'on parle couramment de 'licence', l'enregistrement technique et financier qui permet légalement à l'entreprise de consommer et d'allouer des droits est appelé un 'Droit' (Entitlement)."
     },
     {
         "question_id": 82,
@@ -1102,7 +1178,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "L'Allocation (Software Allocation) est le pont entre le droit acquis par l'entreprise et le consommateur final. Elle agit comme une réservation explicite, identifiant formellement quel utilisateur ou quel appareil a l'autorisation (le droit) d'utiliser le logiciel."
     },
     {
         "question_id": 83,
@@ -1117,7 +1194,8 @@
         "correct_answers": [
             "A",
             "E"
-        ]
+        ],
+        "explanation": "Dans la configuration standard de SAM Pro, les droits acquis peuvent être alloués au niveau le plus granulaire, c'est-à-dire directement à des Appareils (Device allocations) ou à des Utilisateurs (User allocations), en fonction de la métrique de licence choisie."
     },
     {
         "question_id": 84,
@@ -1130,7 +1208,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "S'il s'agit d'un droit expiré et inutile générant une erreur d'importation (Import Error), la meilleure pratique de gestion de base de données est l'action de Suppression (Delete). L'ignorer le laisserait dans les tables d'erreurs, tandis que le supprimer garde l'espace de travail d'importation propre."
     },
     {
         "question_id": 85,
@@ -1143,7 +1222,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "Dans le Blueprint de maturité SAM, 'Practical Management' (Tier 2) correspond à l'étape où l'entreprise, ayant désormais des données fiables, commence à appliquer des contrôles de gestion de base (comme les allocations et les importations de droits) pour générer des bénéfices financiers rapides et tangibles (quick wins)."
     },
     {
         "id": 86,
@@ -1154,7 +1234,7 @@
             "Utilized to determine compliance options because the information includes rights owned and rights used.": "License Metric Result",
             "Generated for licensable products after reconciliation.": "Product Result"
         },
-        "explanation": "In ServiceNow SAM, a Product Result is the highest level, generated for any licensable product found. A Software Model Result is only created if an entitlement or specific software model is defined. The License Metric Result is the most granular, directly comparing rights owned versus rights used to determine compliance and remediation options."
+        "explanation": "Dans ServiceNow SAM, le 'Product Result' est le niveau le plus haut, généré pour tout produit licenciable découvert. Le 'Software Model Result' n'est créé que si un droit (entitlement) ou un modèle spécifique est défini. Enfin, le 'License Metric Result' est le niveau opérationnel le plus fin, comparant directement les droits possédés et consommés pour définir les options de remédiation."
     },
     {
         "question_id": 87,
@@ -1167,7 +1247,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "Les candidats sur liste noire (Blacklisted candidates) désignent des logiciels explicitement interdits par la politique de sécurité ou de gestion de l'entreprise (ex: logiciels de minage de crypto, jeux vidéo sur des postes professionnels). Leur détection entraîne des actions immédiates de retrait."
     },
     {
         "question_id": 88,
@@ -1180,7 +1261,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "Bien que SAM interagisse fortement avec les finances (achats, contrats), la Gestion Financière pure (Financial Management) n'est pas une fonction technique du module SAM lui-même. L'inventaire, l'allocation des droits et la récupération (reclamation) sont, eux, les moteurs fondamentaux du moteur SAM."
     },
     {
         "question_id": 89,
@@ -1194,7 +1276,8 @@
         "correct_answers": [
             "A",
             "C"
-        ]
+        ],
+        "explanation": "Pour corriger une non-conformité sans dépenser d'argent (achat), les résultats de remédiation proposent des options de désinstallation ciblées : 'Remove Unallocated Installs' (Supprimer les installations non allouées) et 'Remove Unlicensed Installs' (Supprimer les installations n'ayant aucune licence de couverture)."
     },
     {
         "question_id": 90,
@@ -1206,8 +1289,9 @@
             "D": "Software Usage"
         },
         "correct_answers": [
-            "A"
-        ]
+            "C"
+        ],
+        "explanation": "La liste des 'Candidats au retrait' (Removal Candidates) regroupe toutes les demandes de désinstallation de logiciels. Ces candidats peuvent être générés manuellement par un administrateur, automatiquement par le système via les options de remédiation de conformité, ou par des règles de récupération liées à une sous-utilisation (Reclamation rules)."
     },
     {
         "question_id": 91,
@@ -1223,7 +1307,8 @@
             "A",
             "B",
             "D"
-        ]
+        ],
+        "explanation": "Lors de la remédiation, les actions liées aux installations et aux allocations sont granulaires et peuvent cibler un utilisateur ou une machine spécifique (A, B, D). À l'inverse, l'achat de droits (E) ou la création massive d'allocations (C) s'effectuent généralement au niveau global du modèle logiciel."
     },
     {
         "question_id": 92,
@@ -1236,8 +1321,10 @@
             "E": "Customer instance is pending updates to CDS Server"
         },
         "correct_answers": [
-            "A"
-        ]
+            "A",
+            "C"
+        ],
+        "explanation": "Le statut 'In Progress' d'une option de remédiation indique qu'une action humaine ou automatisée a été déclenchée mais n'est pas encore finalisée. C'est typiquement le cas lorsqu'un workflow de création d'allocations (A) ou un processus de demande d'achat (PO) pour de nouveaux droits (C) a été lancé."
     },
     {
         "question_id": 93,
@@ -1251,7 +1338,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Dans le cycle de vie des actifs logiciels (Software Asset Lifecycle), toutes ces actions (découverte, normalisation, réconciliation et remédiation) constituent le cœur de la phase de Gestion ('Manage'). C'est l'étape d'exploitation quotidienne continue de la pratique SAM."
     },
     {
         "question_id": 94,
@@ -1265,7 +1353,8 @@
         },
         "correct_answers": [
             "D"
-        ]
+        ],
+        "explanation": "Le 'Vendor Catalog' (Catalogue fournisseur) répertorie spécifiquement les articles, logiciels et services qui sont disponibles à l'achat auprès de tiers (fournisseurs externes), contrairement au Service Catalog qui liste ce que l'IT interne propose à ses employés."
     },
     {
         "question_id": 95,
@@ -1279,7 +1368,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "Pour des raisons d'unicité et de propreté des données de base, un modèle logiciel (Software Model) ne peut être associé qu'à un seul et unique élément de catalogue (Catalog Item) actif à la fois pour la commande des utilisateurs."
     },
     {
         "id": 96,
@@ -1290,7 +1380,7 @@
             "Service Catalog": "Listing of goods an organization provides.",
             "Vendor Catalog": "Listing of goods offered or available by a third party."
         },
-        "explanation": "Product Catalog: models in the environment. Service Catalog: goods the organization provides internally. Vendor Catalog: goods available from a third party."
+        "explanation": "Product Catalog : Regroupe les modèles matériels/logiciels gérés par l'entreprise. Service Catalog : Liste des biens/services proposés par l'IT aux employés en interne. Vendor Catalog : Liste des biens disponibles à l'achat chez des tiers."
     },
     {
         "question_id": 97,
@@ -1304,7 +1394,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Dans l'architecture de ServiceNow (Request Management), lorsqu'un utilisateur passe une commande, une seule Requête globale (REQ - Request) est créée, agissant comme un panier. Celle-ci contiendra en revanche trois éléments d'articles distincts (RITM - Requested Items) pour chaque logiciel demandé."
     },
     {
         "question_id": 98,
@@ -1322,7 +1413,8 @@
             "B",
             "C",
             "D"
-        ]
+        ],
+        "explanation": "Dans le modèle de maturité (Capability Blueprint), l'intégration opérationnelle (Tier 3) implique de connecter SAM aux autres processus ITSM et financiers. Cela inclut la gestion des contrats (B), l'approvisionnement / Sourcing (C) et la projection financière des changements de licences via Change Management (D)."
     },
     {
         "question_id": 99,
@@ -1339,7 +1431,8 @@
             "B",
             "C",
             "F"
-        ]
+        ],
+        "explanation": "Lorsqu'un contrat arrive à échéance dans ServiceNow Contract Management, les trois actions officielles de gestion du cycle de vie sont : le Renouveler (Renew) pour créer un nouveau contrat basé sur l'ancien, l'Étendre (Extend) pour repousser la date de fin, ou l'Annuler/Résilier (Cancel)."
     },
     {
         "question_id": 100,
@@ -1354,7 +1447,8 @@
         "correct_answers": [
             "C",
             "D"
-        ]
+        ],
+        "explanation": "Le rôle 'sam_admin' est un rôle de haut niveau très permissif. Il hérite automatiquement des rôles nécessaires à la gestion complète du cycle de vie logiciel, incluant notamment 'contract_manager' pour gérer les accords fournisseurs et 'model_manager' pour administrer le catalogue de modèles."
     },
     {
         "question_id": 101,
@@ -1368,7 +1462,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "Un audit externe est généralement mené ou commandité par l'éditeur de logiciels (comme Microsoft, Oracle ou IBM). Son seul but juridique et financier est de s'assurer que l'entreprise cliente respecte strictement les termes des accords et contrats de licences signés."
     },
     {
         "id": 102,
@@ -1380,7 +1475,7 @@
             "Client Access": "Specific number of users or devices that can access a product.",
             "Publisher Pack": "Compliance dashboards."
         },
-        "explanation": "Downgrade/Upgrade: contractual right to switch to a previous or future version. Software Subscription: time-limited license that must be renewed periodically. Client Access: defines the number of authorized users or devices (CAL). Publisher Pack: SAM bundle providing compliance dashboards and reporting tools from the publisher."
+        "explanation": "Downgrade/Upgrade : Droit d'utiliser une version précédente ou future du logiciel. Software Subscription : Modèle locatif (SaaS), le droit est limité dans le temps. Client Access : CAL, définit le droit d'accès pour un nombre d'utilisateurs/machines. Publisher Pack : Tableaux de bord de conformité fournis spécifiquement pour un éditeur majeur."
     },
     {
         "question_id": 103,
@@ -1393,7 +1488,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "Le cycle de vie standard des actifs logiciels (Software Asset Lifecycle) tel que défini dans les bonnes pratiques ServiceNow et ITIL comporte 8 composants ou phases distinctes (Plan, Request, Approve, Source, Allocate, Manage, Support, Sunset)."
     },
     {
         "question_id": 104,
@@ -1406,7 +1502,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "Dans la configuration de l'instance ServiceNow, si vous souhaitez suivre des étapes de cycle de vie de modèles logiciels qui ne sont pas natives, vous devez ajouter ces nouvelles phases en tant que 'Choices' (Choix) dans la liste de référence (Choice List) du dictionnaire de données de la table concernée."
     },
     {
         "question_id": 105,
@@ -1417,7 +1514,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Faux. Bien que le Content Service fournisse les dates de cycle de vie officielles de l'éditeur (comme la date de fin de support 'End of Life'), les entreprises peuvent créer leurs propres cycles de vie internes (Internal lifecycles) basés sur leurs politiques IT spécifiques."
     },
     {
         "question_id": 106,
@@ -1430,7 +1528,8 @@
         },
         "correct_answers": [
             "D"
-        ]
+        ],
+        "explanation": "C'est une protection système de ServiceNow : pour garantir l'intégrité de la base de données de normalisation, les données de cycle de vie générées automatiquement par le Content Service ne peuvent pas être supprimées par l'administrateur local."
     },
     {
         "question_id": 107,
@@ -1443,7 +1542,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Le rapport 'Software Model Lifecycle Report' offre une visibilité directe sur les différentes phases de vie des logiciels installés. Il est crucial pour les renouvellements de contrats car il permet d'identifier les logiciels approchant de leur fin de support (EOS - End of Support) qu'il serait inutile de renouveler."
     },
     {
         "question_id": 108,
@@ -1457,7 +1557,8 @@
         },
         "correct_answers": [
             "D"
-        ]
+        ],
+        "explanation": "Avant de retirer officiellement un logiciel (Retirement), la première étape technique indispensable consiste à révoquer toutes les allocations en cours ('Revoke all current allocations'). Cela libère les droits et garantit que les utilisateurs ne croient plus disposer d'un accès valide au produit."
     },
     {
         "question_id": 109,
@@ -1470,8 +1571,9 @@
             "E": "Reconciliation dimensions"
         },
         "correct_answers": [
-            "C"
-        ]
+            "B"
+        ],
+        "explanation": "Les dates clés fournies par l'éditeur, comme la disponibilité générale (GA) ou la fin de vie (EOL - End of Life), sont directement intégrées et gérées via la fonctionnalité du Cycle de vie des modèles logiciels (Software Model Lifecycle) alimentée par le Content Service."
     },
     {
         "question_id": 110,
@@ -1484,7 +1586,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Dans le workflow de récupération (Reclamation) standard de ServiceNow, si l'utilisateur ciblé refuse la demande de désinstallation (justifiant qu'il a encore besoin du logiciel malgré une faible utilisation apparente), une étape d'escalade est déclenchée. C'est à son manager hiérarchique (line manager) de trancher et d'approuver ou refuser la récupération."
     },
     {
         "question_id": 111,
@@ -1496,8 +1599,9 @@
             "D": "Software Allocation"
         },
         "correct_answers": [
-            "C"
-        ]
+            "B"
+        ],
+        "explanation": "Pour passer d'une version 'Standard' à une version 'Enterprise', on parle de montée en 'Édition' (Edition Upgrade). ServiceNow gère cela techniquement via les modèles de droits de mise à niveau (Upgrade Rights) liés aux différentes 'Software Editions'."
     },
     {
         "question_id": 112,
@@ -1510,7 +1614,8 @@
         },
         "correct_answers": [
             "D"
-        ]
+        ],
+        "explanation": "Dans ServiceNow, n'importe quel utilisateur disposant d'un accès de base (comme 'itil') peut créer des rapports pour lui-même. Cependant, pour pouvoir sauvegarder et publier un rapport visible globalement (par d'autres utilisateurs), le rôle spécifique 'report_global' est impératif."
     },
     {
         "question_id": 113,
@@ -1525,7 +1630,8 @@
             "A",
             "B",
             "D"
-        ]
+        ],
+        "explanation": "Performance Analytics (PA) est un outil de Business Intelligence (BI) qui enregistre des instantanés quotidiens pour dégager des tendances dans le temps. Il sert à analyser l'utilisation (A), visualiser l'évolution de la conformité (B) et la tendance des allocations (D). Il ne permet pas de 'configurer' (C) la plateforme."
     },
     {
         "question_id": 114,
@@ -1540,7 +1646,8 @@
             "B",
             "C",
             "D"
-        ]
+        ],
+        "explanation": "Le moteur de reporting de ServiceNow permet d'exporter et de distribuer de manière planifiée les rapports d'inventaire ou de conformité SAM dans les formats standard : PDF (pour l'impression/présentation), CSV et Excel/XLS (pour le retraitement externe)."
     },
     {
         "question_id": 115,
@@ -1556,7 +1663,8 @@
             "A",
             "C",
             "E"
-        ]
+        ],
+        "explanation": "Les trois grands piliers fondateurs de la pratique SAM sont : l'optimisation financière des dépenses logicielles (A), le maintien d'une stricte conformité contractuelle (C), et la préparation/défense de l'entreprise lors des audits éditeurs (E)."
     },
     {
         "question_id": 116,
@@ -1570,7 +1678,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "Le bon fonctionnement de SAM Pro repose en grande partie sur l'homogénéité des noms d'éditeurs (ex: unifier 'Microsoft Corp.', 'Microsoft', 'MS'). C'est le rôle du plugin 'Normalization Data Services' (NDS) qui est un prérequis configuré lors de l'installation de SAM."
     },
     {
         "question_id": 117,
@@ -1584,7 +1693,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Le rôle 'sam_developer' dispose de droits étendus permettant de modifier le code, les scripts métiers et la logique interne du module. Étant donné l'impact potentiel sur l'instance entière, ce rôle exige des compétences pointues d'administrateur/développeur ServiceNow certifié."
     },
     {
         "question_id": 118,
@@ -1598,7 +1708,8 @@
         },
         "correct_answers": [
             "E"
-        ]
+        ],
+        "explanation": "La réconciliation est le moteur de calcul de SAM Pro. C'est le processus qui produit la 'position de conformité' en comparant rigoureusement les droits achetés (entitlements) avec l'inventaire des logiciels effectivement installés (une fois normalisés)."
     },
     {
         "question_id": 119,
@@ -1612,7 +1723,8 @@
         },
         "correct_answers": [
             "D"
-        ]
+        ],
+        "explanation": "Bien que l'équipe SAM définisse les besoins fonctionnels, la mise en place technique des intégrations (API, connecteurs SCCM, configuration de Discovery) et l'import initial massif de données nécessitent des droits systèmes (sys_admin) détenus par l'administrateur global ServiceNow."
     },
     {
         "question_id": 120,
@@ -1625,7 +1737,8 @@
         },
         "correct_answers": [
             "D"
-        ]
+        ],
+        "explanation": "C'est la clé de l'efficience de la base de données : ServiceNow ne crée pas de doublons. Si un modèle de découverte (éditeur, produit, version) existe déjà, la nouvelle installation trouvée sur un PC sera simplement liée à ce modèle de découverte existant via une clé de référence (Reference Field)."
     },
     {
         "question_id": 121,
@@ -1641,7 +1754,8 @@
             "A",
             "C",
             "D"
-        ]
+        ],
+        "explanation": "Lors de l'importation de droits via le modèle, le système effectue des validations en direct (on import). Il générera des erreurs d'importation immédiates si les droits achetés sont à 0 (A), s'il y a un doublon exact d'entrée (D), ou s'il ne parvient à trouver ni le PPN ni le modèle logiciel correspondant en base (C)."
     },
     {
         "question_id": 122,
@@ -1656,7 +1770,8 @@
         "correct_answers": [
             "A",
             "B"
-        ]
+        ],
+        "explanation": "Face à une suggestion de normalisation fournie par le Content Service, le gestionnaire SAM a deux choix définitifs : 'Accepter' (A) pour mettre à jour le modèle local avec les données standardisées, ou 'Rejeter' (B) pour ignorer la suggestion de façon permanente pour cette règle précise."
     },
     {
         "question_id": 123,
@@ -1670,7 +1785,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "Le 'Software Discovery Model' (Modèle de découverte logicielle) est l'enregistrement clé qui capture les données brutes d'installation (nom brut, éditeur brut, version brute) et sert de base exclusive au moteur de normalisation pour les nettoyer."
     },
     {
         "question_id": 124,
@@ -1686,7 +1802,8 @@
             "A",
             "C",
             "E"
-        ]
+        ],
+        "explanation": "Lorsqu'un éditeur rachète un logiciel (ex: Broadcom rachetant Symantec), le Content Service met à jour ses règles. Cette mise à jour de la bibliothèque se répercute automatiquement sur vos modèles de découverte (E), vos modèles logiciels (C) et vos droits d'utilisation existants (A) pour refléter le nouveau propriétaire."
     },
     {
         "question_id": 125,
@@ -1701,7 +1818,8 @@
         "correct_answers": [
             "B",
             "E"
-        ]
+        ],
+        "explanation": "L'utilisation de la fonction 'Coalesce' sur plusieurs champs clés crée une signature unique. Cela permet d'éviter les doublons d'installations (B) si le logiciel est déjà connu sur cette machine, et garantit la création d'un nouvel enregistrement (E) uniquement si cette combinaison exacte n'existe pas encore."
     },
     {
         "question_id": 126,
@@ -1717,7 +1835,8 @@
             "A",
             "D",
             "E"
-        ]
+        ],
+        "explanation": "Pour qu'une allocation soit valide lors d'un import, elle doit lier trois éléments fondamentaux : la quantité de droits que l'on donne (E), le droit (Entitlement) spécifique d'où sont tirés ces droits (D), et le modèle logiciel (A) que l'appareil est désormais autorisé à utiliser."
     },
     {
         "question_id": 127,
@@ -1730,7 +1849,8 @@
         },
         "correct_answers": [
             "D"
-        ]
+        ],
+        "explanation": "La phase de Scanning (Scan des ports) est la toute première étape de Discovery. Son rôle est très basique : envoyer un ping pour demander 'Es-tu là ?' et vérifier les ports ouverts (SSH, WMI, SNMP) pour commencer à se demander 'Comment vais-je te classifier ?'."
     },
     {
         "question_id": 128,
@@ -1744,7 +1864,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "La 'Discovery Map' (DMAP) est le mécanisme central de ServiceNow (la colle) qui lie un modèle logiciel (ce que vous avez acheté) aux modèles de découverte correspondants (ce qui est installé sur le réseau), permettant ainsi à la réconciliation de fonctionner."
     },
     {
         "question_id": 129,
@@ -1758,7 +1879,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "Comme vu dans une question précédente, les trois méthodes standard pour intégrer des données d'inventaire ou d'achat sont : la découverte automatisée (Discovery), l'import de fichiers structurés (Import Data) et la création manuelle (Manual)."
     },
     {
         "question_id": 130,
@@ -1774,7 +1896,8 @@
             "C",
             "D",
             "E"
-        ]
+        ],
+        "explanation": "Le fonctionnement sans agent (agentless) de ServiceNow Discovery s'appuie sur un triptyque technique : les 'Probes' (Sondes) qui exécutent des commandes, les 'Sensors' (Capteurs) qui analysent les réponses, et la nouvelle architecture basée sur les 'Patterns' (Modèles de découverte) pour structurer cette collecte."
     },
     {
         "question_id": 131,
@@ -1787,7 +1910,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "CAL signifie 'Client Access License' (Licence d'Accès Client). C'est un type de licence très courant (notamment chez Microsoft) qui ne licencie pas le serveur lui-même, mais donne le droit à un utilisateur ou à un appareil de se connecter et d'utiliser les services de ce serveur."
     },
     {
         "question_id": 132,
@@ -1800,7 +1924,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Lors du lancement manuel d'une réconciliation, ServiceNow permet de regrouper et d'isoler les résultats de conformité par sous-entités organisationnelles : Pays (Country), Département (Department), Entreprise (Company), Région (Region) et Centre de Coûts (Cost Center)."
     },
     {
         "question_id": 133,
@@ -1813,7 +1938,8 @@
         },
         "correct_answers": [
             "D"
-        ]
+        ],
+        "explanation": "C'est une distinction de sécurité importante : l'administrateur SAM ('sam_admin') peut lire les scripts de métriques de licences personnalisées pour comprendre comment ils calculent, mais seul le 'sam_developer' a les droits d'écriture pour les créer ou les modifier."
     },
     {
         "question_id": 134,
@@ -1827,7 +1953,8 @@
         },
         "correct_answers": [
             "D"
-        ]
+        ],
+        "explanation": "La 'License metric' (Métrique de licence) est définie sur le droit d'utilisation (entitlement). C'est l'algorithme mathématique précis (ex: Per Core, Per User) que le moteur de réconciliation utilisera pour vérifier si le nombre d'installations découvertes respecte les conditions d'achat."
     },
     {
         "question_id": 135,
@@ -1840,7 +1967,8 @@
         },
         "correct_answers": [
             "D"
-        ]
+        ],
+        "explanation": "Tout comme pour les données de cycle de vie, les droits de déclassement (Downgrade rights) automatiquement fournis et gérés par le ServiceNow Content Service sont verrouillés. Ils ne peuvent pas être supprimés manuellement afin de préserver l'intégrité du calcul de conformité global."
     },
     {
         "question_id": 136,
@@ -1854,7 +1982,8 @@
         },
         "correct_answers": [
             "D"
-        ]
+        ],
+        "explanation": "Le lancement manuel d'une réconciliation (Run Reconciliation) est une opération lourde qui consomme des ressources système et met à jour des données financières critiques. Elle est donc réservée par défaut au rôle d'administration 'sam_admin'."
     },
     {
         "question_id": 137,
@@ -1868,7 +1997,8 @@
         },
         "correct_answers": [
             "E"
-        ]
+        ],
+        "explanation": "Le coût estimé pour corriger une situation de non-conformité (c'est-à-dire le prix d'achat des licences manquantes pour être en règle lors d'un audit) est défini dans ServiceNow et dans l'industrie sous le terme 'True-up cost'."
     },
     {
         "question_id": 138,
@@ -1882,7 +2012,8 @@
         },
         "correct_answers": [
             "E"
-        ]
+        ],
+        "explanation": "Par défaut, la tâche planifiée de réconciliation globale automatisée (Scheduled Reconciliation) s'exécute de manière hebdomadaire (Weekly). Une exécution quotidienne serait trop lourde, et mensuelle ne fournirait pas une visibilité assez fraîche."
     },
     {
         "question_id": 139,
@@ -1895,7 +2026,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "Le niveau 'Product Result' (Résultat par produit) consolide et affiche les données de conformité pour tous les modèles logiciels (ex: Standard, Enterprise) et toutes les installations qui appartiennent à la même famille de produits globaux (ex: SQL Server)."
     },
     {
         "question_id": 140,
@@ -1908,7 +2040,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "Le niveau le plus élevé, 'Publisher Result' (Résultat par éditeur), consolide et affiche la conformité financière et technique globale de tous les produits, modèles et installations rattachés à un éditeur spécifique (ex: Microsoft dans sa globalité)."
     },
     {
         "question_id": 141,
@@ -1921,7 +2054,8 @@
         },
         "correct_answers": [
             "D"
-        ]
+        ],
+        "explanation": "Comme expliqué précédemment, contrairement au résultat de Produit (qui est toujours généré si le logiciel est découvert), le 'Software Model Result' n'est calculé et créé par le moteur que si l'entreprise a défini un modèle logiciel explicite ou saisi un droit d'achat pour celui-ci."
     },
     {
         "question_id": 142,
@@ -1935,7 +2069,8 @@
         },
         "correct_answers": [
             "D"
-        ]
+        ],
+        "explanation": "Une installation est considérée comme 'non licenciée' (Unlicensed) si le moteur de réconciliation ne peut pas relier la découverte technique au contrat d'achat. Cela arrive si la Discovery Map ne relie pas correctement le Modèle de découverte (technique) au Modèle logiciel (financier)."
     },
     {
         "question_id": 143,
@@ -1949,7 +2084,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Le rôle 'sam_user' est conçu pour les collaborateurs qui ont besoin de consulter les données d'inventaire et les résultats de conformité (lecture seule sur la réconciliation), sans pour autant avoir les droits d'administration pour modifier les métriques ou lancer de nouvelles réconciliations."
     },
     {
         "question_id": 144,
@@ -1962,7 +2098,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "L'intégration SCCM standard de ServiceNow importe deux métriques critiques pour alimenter les règles de récupération (reclamation) : la date de 'Dernière utilisation' (Last Used) pour repérer les logiciels abandonnés, et le 'Temps total d'utilisation' (Total Usage Time) pour vérifier s'ils sont suffisamment utilisés."
     },
     {
         "question_id": 145,
@@ -1976,7 +2113,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "Le 'Product Catalog' (Catalogue de produits) est le référentiel maître de ServiceNow qui rassemble et organise tous les modèles de matériels et de logiciels (Product Models) approuvés et gérés dans l'environnement informatique de l'entreprise."
     },
     {
         "question_id": 146,
@@ -1989,7 +2127,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "Le module 'Client Software Distribution' (CSD) couplé à Orchestration est le bras armé de la remédiation automatique. C'est lui qui exécute techniquement la commande de désinstallation d'un logiciel sur le poste de l'utilisateur suite à une règle de récupération (Reclamation)."
     },
     {
         "question_id": 147,
@@ -2004,7 +2143,8 @@
         "correct_answers": [
             "A",
             "D"
-        ]
+        ],
+        "explanation": "Les règles de récupération s'appliquent pour optimiser les coûts. Elles ciblent donc les logiciels physiquement installés sur les machines ('Installed software' - licences perpétuelles non utilisées) et les logiciels en mode SaaS ('Subscription software' - abonnements cloud non consultés)."
     },
     {
         "question_id": 148,
@@ -2024,7 +2164,8 @@
             "E",
             "F",
             "G"
-        ]
+        ],
+        "explanation": "Les cinq options officielles de remédiation générées par ServiceNow pour corriger la conformité sont : Acheter des droits (C), Créer (F) ou Supprimer (G) des allocations, et Supprimer physiquement les installations non allouées (D) ou non licenciées (E)."
     },
     {
         "question_id": 149,
@@ -2042,7 +2183,8 @@
             "C",
             "D",
             "F"
-        ]
+        ],
+        "explanation": "Le statut d'une option de remédiation suit un cycle de vie précis. Elle naît sous le statut 'New' (Nouveau). Lors de son exécution, elle passe 'In Progress' (En cours), et termine en 'Complete' (Terminé). Si l'option n'est plus pertinente suite à une nouvelle réconciliation, elle passe en 'Void' (Annulé/Caduque)."
     },
     {
         "question_id": 150,
@@ -2057,7 +2199,8 @@
         "correct_answers": [
             "A",
             "D"
-        ]
+        ],
+        "explanation": "La fonctionnalité de détection des dépenses logicielles (Spend Detection) nécessite des privilèges spécifiques. Les imports financiers peuvent être réalisés soit par l'administrateur SAM global ('sam_admin'), soit par un utilisateur disposant du rôle dédié à cette tâche financière ('sam_spend_import')."
     },
     {
         "question_id": 151,
@@ -2071,7 +2214,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Le moteur de reporting ServiceNow donne toujours la priorité à la connaissance interne de l'entreprise. Si un utilisateur (ou administrateur) saisit manuellement une date de cycle de vie (lifecycle) personnalisée pour un logiciel, cette donnée prendra le pas sur la date générique fournie par la bibliothèque de contenus (Software Library)."
     },
     {
         "question_id": 152,
@@ -2087,7 +2231,8 @@
             "A",
             "B",
             "D"
-        ]
+        ],
+        "explanation": "Les droits de maintenance logiciels (support et mises à jour) peuvent s'attacher à une licence 'Perpétuelle' de base (B), à un pack combiné existant 'Perpétuel + Maintenance' (D), ou à une licence de mise à niveau 'Upgrade' (A). Les abonnements (Subscription) incluent généralement déjà la maintenance par définition."
     },
     {
         "question_id": 153,
@@ -2100,7 +2245,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "Dans le cadre d'un contrat Microsoft Entreprise avec des licences Office 365 (SaaS), ServiceNow gère le processus de True-up. Les licences qui avaient été temporairement provisionnées/réservées pour répondre à une demande sont automatiquement converties en licences régulières (et facturées) lors du processus de True-up annuel."
     },
     {
         "question_id": 154,
@@ -2114,7 +2260,8 @@
         },
         "correct_answers": [
             "D"
-        ]
+        ],
+        "explanation": "Le rapport 'Software Product Lifecycle Report' (Rapport sur le cycle de vie des produits logiciels) est l'outil principal des RSSI et des gestionnaires SAM pour auditer l'inventaire. Il met en évidence tous les logiciels installés qui ont dépassé leur date de fin de support (EOS/EOL) et qui ne reçoivent plus de correctifs de sécurité."
     },
     {
         "question_id": 155,
@@ -2130,7 +2277,8 @@
             "A",
             "B",
             "E"
-        ]
+        ],
+        "explanation": "Performance Analytics est un outil de visualisation et de suivi de tendances dans le temps. Il permet de suivre l'évolution de la conformité (A), la courbe d'utilisation d'un logiciel (E) et la dynamique des allocations (B). Il n'effectue aucune action de configuration (C) ou de remédiation technique (D)."
     },
     {
         "question_id": 156,
@@ -2144,7 +2292,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Le workflow standard de récupération (Reclamation workflow) intègre une règle d'escalade managériale. Si l'employé refuse la désinstallation de son logiciel (en justifiant un besoin futur), c'est obligatoirement à son responsable direct (Manager) de valider ou rejeter cette décision."
     },
     {
         "question_id": 157,
@@ -2158,7 +2307,8 @@
         },
         "correct_answers": [
             "E"
-        ]
+        ],
+        "explanation": "Les enregistrements d'utilisation (Usage records) importés par exemple via SCCM agglomèrent les données d'utilisation pour lisser les pics. ServiceNow configure cette analyse pour stocker la somme d'utilisation calculée sur une base mensuelle (monthly basis)."
     },
     {
         "question_id": 158,
@@ -2171,7 +2321,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "La phase de Classification dans Discovery intervient juste après le balayage des ports (Scanning). Après avoir détecté une réponse, le système utilise les informations de base de l'appareil (ex: type d'OS, port ouvert) pour répondre à la question : 'Comment dois-je te classifier spécifiquement ?' (Serveur Windows, Routeur Cisco, etc.)."
     },
     {
         "question_id": 159,
@@ -2185,7 +2336,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "S'il s'agissait d'un volume moyen (comme vu précédemment), l'import manuel de données via fichier Excel serait suffisant. Mais pour de très grands volumes constants d'installations, l'utilisation d'un outil de scan automatisé comme ServiceNow Discovery (ou SCCM) est la seule méthode pérenne."
     },
     {
         "question_id": 160,
@@ -2199,7 +2351,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "Contrairement au 'Named Device' qui cible une machine, la métrique 'Per Named User' couvre un collaborateur spécifique (nommé via allocation). Ce collaborateur est ensuite généralement autorisé à installer et utiliser le logiciel sur un certain nombre de ses propres appareils (selon les termes du contrat)."
     },
     {
         "question_id": 161,
@@ -2212,7 +2365,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "Bien que les problèmes de performance (D) ou les coûts inutiles (B) soient problématiques, le risque absolument majeur avec les logiciels en fin de vie (EOL) est l'arrêt de la publication des correctifs de sécurité par l'éditeur. Cela crée des vulnérabilités béantes exposant l'entreprise aux cyberattaques (C)."
     },
     {
         "question_id": 163,
@@ -2227,7 +2381,8 @@
         "correct_answers": [
             "D",
             "E"
-        ]
+        ],
+        "explanation": "Les quatre niveaux officiels de granularité des résultats de réconciliation dans le License Workbench sont : Publisher, Product, Software Model, et License Metric. L'Allocation et le Droit (Entitlement) sont des sources de données, pas des niveaux de résultat."
     },
     {
         "question_id": 164,
@@ -2244,7 +2399,8 @@
             "A",
             "D",
             "F"
-        ]
+        ],
+        "explanation": "Dans la configuration de base de ServiceNow (sans packs éditeurs spécifiques), les métriques logicielles ciblent nativement la consommation basée sur : les Cœurs matériels (Cores), les Processeurs physiques/virtuels (Processors), et les Appareils ou Utilisateurs (Devices/Users)."
     },
     {
         "question_id": 165,
@@ -2260,7 +2416,8 @@
             "B",
             "C",
             "D"
-        ]
+        ],
+        "explanation": "Pour corriger une non-conformité depuis le License Workbench, les options officielles de remédiation automatisée incluent la suppression des allocations inutiles (B), le retrait des installations qui n'ont pas d'allocations liées (C) et la désinstallation des logiciels découverts sans aucune licence (D)."
     },
     {
         "question_id": 166,
@@ -2276,7 +2433,8 @@
             "A",
             "B",
             "E"
-        ]
+        ],
+        "explanation": "Le cycle de vie exact d'une option de remédiation passe par les statuts : 'Nouveau' (New) lors de sa création, 'En cours' (In Progress) lorsqu'elle est actionnée, puis 'Terminé' (Complete) une fois que le changement (achat, allocation, désinstallation) a été appliqué avec succès."
     },
     {
         "question_id": 167,
@@ -2290,7 +2448,8 @@
         },
         "correct_answers": [
             "E"
-        ]
+        ],
+        "explanation": "Les logiciels dits 'Restreints' (Restricted / Blacklisted) sont des installations découvertes sur le parc informatique qui contreviennent aux politiques de l'entreprise et qui n'ont reçu aucune autorisation d'utilisation de la part de la DSI ou de la sécurité."
     },
     {
         "question_id": 168,
@@ -2303,7 +2462,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Avant de retirer le modèle ou de désinstaller le logiciel, la première action administrative et financière cruciale est de faire expirer tous les droits logiciels (Entitlements) associés pour éviter qu'ils ne soient réalloués ou faussement pris en compte dans les prochaines réconciliations financières."
     },
     {
         "question_id": 169,
@@ -2316,7 +2476,8 @@
         },
         "correct_answers": [
             "D"
-        ]
+        ],
+        "explanation": "ServiceNow regroupe intelligemment les fonctions métier. Pour corriger des erreurs d'import de droits, vous n'allez pas dans les outils système globaux, mais directement dans la section métier appropriée : 'Software Asset > Licensing > Entitlement import Errors'."
     },
     {
         "question_id": 170,
@@ -2332,7 +2493,8 @@
             "A",
             "D",
             "E"
-        ]
+        ],
+        "explanation": "Dans la nouvelle interface (Software Asset Workspace), les états fondamentaux des options de remédiation restent les mêmes que dans l'interface classique (Workbench) : 'New' à la création, 'In Progress' pendant l'exécution, et 'Complete' à la fin. Les mots 'Done' ou 'Cancelled' (Caduque) ne sont pas les statuts primaires."
     },
     {
         "question_id": 171,
@@ -2345,7 +2507,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "Dans les versions récentes de ServiceNow (Workspace), le 'Guided Walkthrough Playbook' est une interface pas-à-pas (wizard) spécialement conçue pour guider les administrateurs novices lors de la création d'un droit (Entitlement), s'assurant qu'aucun champ financier ou contractuel critique ne soit oublié."
     },
     {
         "question_id": 172,
@@ -2360,7 +2523,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "C'est dans l'onglet 'Removal Candidates' (Candidats à la suppression) que le système regroupe toutes les installations qui ont déclenché une règle de faible utilisation (Reclamation rule) et qui sont prêtes à être désinstallées pour récupérer la licence."
     },
     {
         "question_id": 173,
@@ -2373,7 +2537,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "Comme répété dans de nombreuses questions de certification, les trois méthodes classiques de peuplement de la CMDB et de l'inventaire logiciel sont : la découverte automatique du réseau (Discovery), l'import massif de données (Import Data), et la création manuelle d'enregistrements (Manual)."
     },
     {
         "question_id": 174,
@@ -2387,7 +2552,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "Dans la nouvelle interface moderne de ServiceNow SAM, c'est la vue 'License usage view' (Vue de l'utilisation des licences) qui sert de centre de commandement post-réconciliation. Elle fournit l'analyse détaillée des droits possédés versus les installations consommées."
     },
     {
         "question_id": 175,
@@ -2401,7 +2567,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "Le propriétaire du processus (SAM process owner) est le dirigeant stratégique. Contrairement au gestionnaire (SAM manager) qui gère le quotidien, le Process Owner s'assure de l'adoption globale, de la gouvernance, et du succès global du déploiement de la gestion des actifs dans l'entreprise."
     },
     {
         "question_id": 176,
@@ -2414,7 +2581,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "Créer une métrique de licence personnalisée (Custom license metric) exige d'écrire des scripts de calcul dans ServiceNow (JavaScript). Cette tâche technique complexe de développement est donc exclusivement réservée au rôle 'sam_developer'."
     },
     {
         "question_id": 177,
@@ -2430,7 +2598,8 @@
             "A",
             "D",
             "E"
-        ]
+        ],
+        "explanation": "Le processus d'import de données (Import Sets) dans ServiceNow est immuable : 1) On charge les données brutes dans une table temporaire (Load data), 2) On crée une carte de transformation pour mapper les champs (Create transform map), et 3) On exécute la transformation pour insérer les données en base (Run transform)."
     },
     {
         "question_id": 178,
@@ -2443,7 +2612,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "La 'Software Assurance' est le programme de maintenance spécifique de Microsoft. Outre l'accès au support technique et aux correctifs, ce programme accorde souvent le droit de mettre à jour le logiciel ('Step-up rights' ou 'Upgrade rights') vers une édition supérieure ou une version plus récente sans racheter de licence pleine."
     },
     {
         "question_id": 179,
@@ -2458,7 +2628,8 @@
         "correct_answers": [
             "A",
             "E"
-        ]
+        ],
+        "explanation": "Lorsqu'un employé demande un logiciel via le portail, la tâche d'approvisionnement (Source Request) se déclenche. Le gestionnaire SAM a alors deux choix logiques : piocher dans le stock existant en allouant un droit disponible (Add allocation - E), ou lancer une procédure d'achat s'il n'y a plus de stock (Add purchase order - A)."
     },
     {
         "question_id": 180,
@@ -2471,7 +2642,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "Si vous n'avez pas de PPN (qui automatise tout), vous devez saisir les composants minimaux qui définissent financièrement et techniquement ce droit. Ces éléments critiques sont : l'Éditeur, le Produit, le Type de licence, le nombre de Droits achetés, le Groupe de métrique et la Métrique spécifique de la licence."
     },
     {
         "question_id": 181,
@@ -2484,7 +2656,8 @@
         },
         "correct_answers": [
             "D"
-        ]
+        ],
+        "explanation": "In baseline SAM Professional, SCCM (Microsoft System Center Configuration Manager) is the supported integration for importing software usage data. While Discovery and other sources can feed data into ServiceNow, the out-of-the-box SAM Professional baseline integration for software usage data specifically leverages SCCM as the designated import source."
     },
     {
         "question_id": 182,
@@ -2499,7 +2672,8 @@
         "correct_answers": [
             "A",
             "B"
-        ]
+        ],
+        "explanation": "ServiceNow contract records support two primary methods for storing contract terms: attaching a PDF of the physical contract directly to the contract record as an attachment, and entering the details directly in the Terms and Conditions section of the contract record. These two methods keep all contract information centralized within the contract record itself."
     },
     {
         "question_id": 183,
@@ -2512,7 +2686,8 @@
         },
         "correct_answers": [
             "D"
-        ]
+        ],
+        "explanation": "To use CSD with SCCM for automated software removal and license reclamation, an SCCM configuration record must be created within ServiceNow. This record identifies the target application and the associated software discovery mode, enabling the integration to correctly locate and remove the software via SCCM. The software does not need to have been originally installed or discovered exclusively by SCCM."
     },
     {
         "question_id": 184,
@@ -2525,7 +2700,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "The SAM Content Service automatically enriches software models with publisher-provided data, including version upgrade rights and downgrade rights. By leveraging the Content Library maintained by ServiceNow, the Content Service keeps software models up to date without requiring manual intervention from the SAM administrator."
     },
     {
         "question_id": 185,
@@ -2540,7 +2716,8 @@
         "correct_answers": [
             "A",
             "E"
-        ]
+        ],
+        "explanation": "In the Software Asset Workspace License usage view on the Details tab, a product's compliance status is displayed as either Compliant or Not Compliant. These are the two definitive states used by SAM Professional to indicate whether the number of installations is within the number of entitled licenses or exceeds it."
     },
     {
         "question_id": 186,
@@ -2555,7 +2732,8 @@
         "correct_answers": [
             "A",
             "E"
-        ]
+        ],
+        "explanation": "License Change Projection in SAM Professional is designed to work with Normal and Emergency change types within the ServiceNow Change Management process. This allows SAM to forecast how a proposed change will impact license compliance before the change is implemented, supporting proactive license governance for these two change categories."
     },
     {
         "question_id": 187,
@@ -2569,7 +2747,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "Partially Normalized means that a discovery model has been matched and normalized at the publisher and product level, but not at the version level. Full normalization requires matching on publisher, product, and version; when the version cannot be identified, the model is considered only partially normalized."
     },
     {
         "question_id": 188,
@@ -2584,7 +2763,8 @@
         "correct_answers": [
             "C",
             "D"
-        ]
+        ],
+        "explanation": "Per Named User and Per Named Device license metrics require explicit allocations because the license rights are tied to specific, identified individuals or devices rather than any user or device. Without allocations mapping the license to a specific named user or device, SAM cannot determine compliance for these metric types."
     },
     {
         "question_id": 189,
@@ -2597,7 +2777,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "When ServiceNow Discovery identifies installed software on devices in the environment, the data is automatically stored in the Software Installation table [cmdb_sam_sw_install]. This table serves as the central repository for discovered software installation records that are later used during the SAM reconciliation process."
     },
     {
         "question_id": 190,
@@ -2613,7 +2794,8 @@
             "C",
             "D",
             "E"
-        ]
+        ],
+        "explanation": "The Details tab in the License usage view of the Software Asset Workspace provides three key navigational functions: filtering products to narrow the displayed list, expanding and collapsing tree links to navigate hierarchical relationships, and the Expand All option to display all tree nodes at once. These features help SAM analysts efficiently navigate complex software model hierarchies."
     },
     {
         "question_id": 191,
@@ -2626,7 +2808,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "After a reconciliation run, the related lists for Software Model Results, Removal Candidates, Entitlements, and Remediation Options are all accessible from the License usage view in the Software Asset Workspace. This view acts as the central hub for reviewing reconciliation outcomes and taking corrective action."
     },
     {
         "question_id": 192,
@@ -2640,7 +2823,8 @@
         },
         "correct_answers": [
             "D"
-        ]
+        ],
+        "explanation": "Software discovery models in ServiceNow SAM are stored in the cmdb_sam_sw_discovery_model table. This table holds the raw software product information discovered from endpoints, which is then processed through the normalization engine to be matched against known software models in the Content Library."
     },
     {
         "question_id": 193,
@@ -2653,7 +2837,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "In SAM Professional, Microsoft Office 365 reserved licenses are used to accurately calculate the annual true-up cost and total spend for a subscription product. They represent the committed license quantity in a subscription agreement, enabling the system to correctly project costs even when actual usage fluctuates throughout the subscription period."
     },
     {
         "question_id": 194,
@@ -2666,7 +2851,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "The sam_admin role is the highest-privilege SAM role and is required to configure reclamation rules. Reclamation rules are administrative settings that define the criteria under which unused software licenses can be automatically reclaimed, making this a function restricted to the SAM administrator."
     },
     {
         "question_id": 195,
@@ -2681,7 +2867,8 @@
         "correct_answers": [
             "A",
             "D"
-        ]
+        ],
+        "explanation": "To accurately calculate true-up costs during reconciliation, both the License cost and the Maintenance cost must be populated on the software model. These two fields together allow SAM to compute the full financial exposure for non-compliant or over-purchased software, giving an accurate picture of the total spend."
     },
     {
         "question_id": 196,
@@ -2696,7 +2883,8 @@
         "correct_answers": [
             "A",
             "C"
-        ]
+        ],
+        "explanation": "When a Publisher Part Number (PPN) is selected on the Software Entitlement Form, the License metric and License type are automatically defaulted from the PPN record. This data comes from the Content Library, which stores standardized entitlement attributes associated with each publisher's part numbers to reduce manual data entry errors."
     },
     {
         "question_id": 197,
@@ -2709,7 +2897,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "The Vendor Catalog item feature in ServiceNow allows a single software model to be associated with multiple vendors or resellers when creating purchase orders. This enables organizations to source the same software product from different providers and still track it under a unified software model for licensing and compliance purposes."
     },
     {
         "question_id": 198,
@@ -2722,11 +2911,12 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "When no out-of-the-box integration exists for a SaaS application, SAM Professional provides the SaaS License Management connections feature, which allows administrators to build custom integrations to retrieve license and usage data from SaaS providers. This enables organizations to manage and optimize SaaS subscriptions even for applications not natively supported by the platform."
     },
     {
         "question_id": 199,
-        "question": "Using content library data to track a software model’s lifecycle phase assists which ServiceNow product to perform application rationalization?",
+        "question": "Using content library data to track a software model's lifecycle phase assists which ServiceNow product to perform application rationalization?",
         "options": {
             "A": "Integrated Risk Management",
             "B": "Technology Portfolio Management",
@@ -2735,7 +2925,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Technology Portfolio Management (TPM) leverages the lifecycle phase data maintained in SAM's Content Library to perform application rationalization. By knowing whether a software product is in active development, general availability, or end-of-life, TPM can help organizations make informed decisions about which applications to retain, replace, or retire."
     },
     {
         "question_id": 200,
@@ -2749,7 +2940,8 @@
         },
         "correct_answers": [
             "E"
-        ]
+        ],
+        "explanation": "The SaaS Overview dashboard in the SAM Professional workspace is specifically designed to provide consolidated visibility into SaaS subscriptions, including Microsoft Office 365 and Adobe Cloud. It presents key metrics such as license consumption, active users, and optimization opportunities in a single unified view."
     },
     {
         "question_id": 201,
@@ -2763,7 +2955,8 @@
         },
         "correct_answers": [
             "E"
-        ]
+        ],
+        "explanation": "Reconciliation is the core SAM process that compares the software entitlements (rights owned) against the normalized software installations discovered on devices to determine the compliance position. It produces results such as over-licensed, under-licensed, or compliant status for each software product, forming the basis for remediation decisions."
     },
     {
         "question_id": 202,
@@ -2780,7 +2973,8 @@
             "A",
             "C",
             "F"
-        ]
+        ],
+        "explanation": "Full normalization of a discovery model requires matching on three key fields: Publisher, Product, and Version. When all three are successfully matched against the Content Library, the discovery model achieves a Fully Normalized status, enabling accurate reconciliation and compliance reporting."
     },
     {
         "question_id": 203,
@@ -2794,7 +2988,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "Orchestration is a separately licensed ServiceNow product that is required to automate software installation on devices through Workflow and Client Software Distribution (CSD). Orchestration provides the automation engine that executes remote commands and scripts on target devices, which is necessary for automated software deployment and removal."
     },
     {
         "question_id": 204,
@@ -2807,7 +3002,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "In the ServiceNow Discovery process, the Identification phase answers the question \"Have I seen you before?\" — it determines whether the discovered CI already exists in the CMDB by matching it against existing records using identification rules. This prevents duplicate CI creation and ensures the CMDB remains accurate."
     },
     {
         "question_id": 205,
@@ -2820,7 +3016,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "Unmanaged spend on the Software Spend Detection Overview dashboard represents financial transactions where the publisher and product have been identified from spend data, but no corresponding software model exists in SAM to manage those licenses. This highlights software expenditure that is not yet under formal SAM governance."
     },
     {
         "question_id": 206,
@@ -2834,7 +3031,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "For a small number of records, manually entering data through ServiceNow forms is the most efficient and appropriate method. Import sets and other automated mechanisms are better suited for large volumes of data, while manual entry via forms provides full control with minimal overhead for just a few records."
     },
     {
         "question_id": 207,
@@ -2848,7 +3046,8 @@
         },
         "correct_answers": [
             "D"
-        ]
+        ],
+        "explanation": "Performance Analytics is included with SAM Professional, but its use is scoped specifically to SAM-related dashboards and indicators. If an organization wants to use Performance Analytics for other ServiceNow modules or use cases beyond SAM, an additional PA license must be purchased."
     },
     {
         "question_id": 208,
@@ -2863,7 +3062,8 @@
         "correct_answers": [
             "C",
             "E"
-        ]
+        ],
+        "explanation": "Custom software products should be created in SAM when the software is not available in the ServiceNow Content Library — for example, niche or regional software — or when the software has been developed internally (in-house). These products won't have Content Service data and must be manually defined to enable proper tracking and compliance management."
     },
     {
         "question_id": 209,
@@ -2877,7 +3077,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "The SAM Content Service requires an explicit opt-in by the administrator before it becomes active, but organizations retain the flexibility to opt out at any time if they no longer wish to participate. This gives customers control over whether their software discovery data is shared with ServiceNow to contribute to and benefit from the shared Content Library."
     },
     {
         "question_id": 210,
@@ -2891,7 +3092,8 @@
         },
         "correct_answers": [
             "E"
-        ]
+        ],
+        "explanation": "The True-up cost on the Software Asset Workspace License usage view represents the estimated financial cost of remediating a non-compliant position — i.e., the amount an organization would need to spend to purchase additional licenses to cover the shortfall identified during reconciliation. It is a key metric for budgeting and compliance planning."
     },
     {
         "question_id": 211,
@@ -2906,7 +3108,8 @@
         },
         "correct_answers": [
             "F"
-        ]
+        ],
+        "explanation": "Les Publisher Packs disponibles dans ServiceNow SAM Professional couvrent les éditeurs majeurs tels qu'IBM, VMware, Oracle, SAP et Citrix, qui font l'objet d'audits fréquents et de règles de licence complexes. NetSuite n'est pas un Publisher Pack disponible dans le catalogue SAM, ce qui en fait la bonne réponse."
     },
     {
         "question_id": 212,
@@ -2922,7 +3125,8 @@
             "B",
             "C",
             "E"
-        ]
+        ],
+        "explanation": "L'onglet Publishers de la vue License usage du Software Asset Workspace propose trois fonctionnalités principales : la vue de tous les éditeurs (All Publishers), la vue des éditeurs en non-conformité (Publishers Out of Compliance), et la liste des éditeurs épinglés (Pinned Publishers) pour un accès rapide. Les options Publisher Discovery Models et Publisher Software Models ne sont pas des vues disponibles directement depuis cet onglet."
     },
     {
         "question_id": 213,
@@ -2935,7 +3139,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "Le Software Lifecycle Report est utilisé lors des négociations contractuelles pour identifier les produits logiciels approchant de leur fin de support ou de leur fin de vie. Il s'appuie sur les données du Content Library pour fournir une visibilité sur le cycle de vie des logiciels et orienter les décisions de renouvellement ou de remplacement."
     },
     {
         "question_id": 214,
@@ -2949,7 +3154,8 @@
         },
         "correct_answers": [
             "E"
-        ]
+        ],
+        "explanation": "Lors de l'examen des candidats à la suppression (Removal Candidates) dans la vue License usage, les justifications valides incluent Low Usage, Restricted Software, Unallocated et Duplicate License. « Unlicensed » n'est pas une justification de suppression valide dans ce contexte, car un logiciel non licencié doit être traité via un processus de remédiation et non de suppression."
     },
     {
         "question_id": 215,
@@ -2962,7 +3168,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "Le rôle sam_admin est requis pour visualiser et gérer l'ensemble des rapports disponibles dans la vue License Usage du workspace SAM. C'est le rôle disposant des privilèges les plus élevés dans SAM, permettant un accès complet à toutes les fonctionnalités administratives et de reporting."
     },
     {
         "question_id": 216,
@@ -2974,7 +3181,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "À partir de la version Tokyo de ServiceNow, le Service Graph Connector for Microsoft SCCM est la fonctionnalité utilisée pour alimenter automatiquement les enregistrements d'utilisation logicielle via SCCM. Ce connecteur remplace les méthodes d'intégration précédentes et s'inscrit dans l'architecture moderne des Service Graph Connectors de ServiceNow."
     },
     {
         "question_id": 217,
@@ -2989,7 +3197,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "Une réconciliation à la demande peut être déclenchée directement depuis la vue License usage du Software Asset Workspace. C'est depuis cette interface centrale que le SAM analyst ou l'administrateur peut lancer manuellement le processus de réconciliation pour obtenir une position de conformité actualisée."
     },
     {
         "question_id": 218,
@@ -3002,7 +3211,8 @@
         },
         "correct_answers": [
             "D"
-        ]
+        ],
+        "explanation": "Le Software performance tracker est la fonctionnalité dédiée au suivi des performances des applications dans l'environnement SAM. Il permet au Software Asset Manager de mesurer et d'évaluer l'efficacité de l'utilisation des logiciels, facilitant ainsi les décisions d'optimisation du portefeuille applicatif."
     },
     {
         "question_id": 219,
@@ -3016,7 +3226,8 @@
         },
         "correct_answers": [
             "B"
-        ]
+        ],
+        "explanation": "Une Software Allocation correspond à l'attribution d'un ou plusieurs droits d'utilisation à un appareil ou un utilisateur spécifique. Ce concept est essentiel pour les métriques de licence de type Per Named User ou Per Named Device, où la conformité est déterminée par l'allocation explicite des droits et non par la simple détection d'une installation."
     },
     {
         "question_id": 220,
@@ -3029,7 +3240,8 @@
         },
         "correct_answers": [
             "A"
-        ]
+        ],
+        "explanation": "Après l'importation d'entitlements via un modèle, les erreurs d'import doivent être consultées et corrigées depuis le chemin Software Asset Workspace > Licensing > Licensing operations > Entitlement Import Errors. Cet emplacement centralise les erreurs liées aux opérations d'import d'entitlements pour faciliter leur résolution."
     },
     {
         "question_id": 221,
@@ -3043,7 +3255,8 @@
         },
         "correct_answers": [
             "C"
-        ]
+        ],
+        "explanation": "Les logiciels de type Freeware sont distribués gratuitement sans restriction de licence commerciale, ce qui signifie qu'une organisation ne peut pas faire l'objet d'un audit externe basé sur leur utilisation. Contrairement aux logiciels commerciaux, les freewares ne génèrent aucune obligation de conformité de licence pouvant être vérifiée par un éditeur."
     },
     {
         "question_id": 222,
@@ -3059,6 +3272,7 @@
             "A",
             "D",
             "E"
-        ]
+        ],
+        "explanation": "Dans la configuration de base de ServiceNow SAM, les métriques de licence disponibles incluent Per Named Device, Per User et Per Core. Des métriques plus avancées ou spécifiques à certains éditeurs, comme Concurrent User ou Processor Value Unit (PVU), ne font pas partie de la configuration baseline standard et nécessitent des configurations ou des Publisher Packs supplémentaires."
     }
 ]

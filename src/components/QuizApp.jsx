@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { CheckCircle2, XCircle, ChevronRight, RotateCcw, Award, BookOpen, Home, Settings, Info } from 'lucide-react';
+import { CheckCircle2, XCircle, ChevronRight, RotateCcw, Award, BookOpen, Home, Settings, Info, Lightbulb } from 'lucide-react';
 import hamData from '../data/ham_questions.json';
 import samData from '../data/sam_questions.json';
 
@@ -18,6 +18,7 @@ const QuizApp = () => {
   const [selectedAnswers, setSelectedAnswers] = useState([]); // Array for MCQ, Object for Matching
   const [isValidated, setIsValidated] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
+  const [showExplanation, setShowExplanation] = useState(false);
 
   // --- Dynamic Dataset Base ---
   const allModuleQuestions = useMemo(() => {
@@ -84,6 +85,7 @@ const QuizApp = () => {
     setSelectedAnswers([]);
     setIsValidated(false);
     setIsFinished(false);
+    setShowExplanation(false);
   };
 
   const handleGoHome = () => {
@@ -162,6 +164,7 @@ const QuizApp = () => {
       setCurrentIndex(nextIndex);
       setSelectedAnswers(nextQuestion.type === 'matching' ? {} : []);
       setIsValidated(false);
+      setShowExplanation(false);
     } else {
       setIsFinished(true);
     }
@@ -177,6 +180,7 @@ const QuizApp = () => {
       setSelectedAnswers(startQuestion?.type === 'matching' ? {} : []);
       setIsValidated(false);
       setIsFinished(false);
+      setShowExplanation(false);
       
       const prefix = `${selectedModule}_`;
       localStorage.removeItem(`${prefix}current_index`);
@@ -196,6 +200,7 @@ const QuizApp = () => {
     setSelectedAnswers(startQuestion?.type === 'matching' ? {} : []);
     setIsValidated(false);
     setIsFinished(false);
+    setShowExplanation(false);
   };
 
   // --- RENDER: Selection Screen ---
@@ -572,11 +577,24 @@ const QuizApp = () => {
                     ? "Félicitations ! Toutes les réponses sont correctes." 
                     : "Certaines réponses sont incorrectes. Regardez les détails ci-dessus."}
                 </p>
+                
                 {currentQuestion.explanation && (
-                  <p className="text-gray-600 font-medium text-sm mt-2 leading-relaxed bg-white/50 p-4 rounded-xl border border-white">
-                      <span className="font-black text-xs uppercase tracking-widest text-gray-400 block mb-1">Explication</span>
-                      {currentQuestion.explanation}
-                  </p>
+                  <div className="mt-4 flex flex-col gap-3">
+                    <button 
+                      onClick={() => setShowExplanation(!showExplanation)}
+                      className="flex items-center gap-2 text-primary-600 font-bold text-sm bg-primary-50 px-4 py-2 rounded-xl border border-primary-100 hover:bg-primary-100 transition-colors self-start"
+                    >
+                      <Lightbulb size={16} />
+                      {showExplanation ? "Masquer l'explication" : "Voir l'explication"}
+                    </button>
+                    
+                    {showExplanation && (
+                      <div className="text-slate-700 font-medium text-sm leading-relaxed bg-slate-50 p-4 rounded-xl border border-slate-200 animate-fade-in">
+                        <span className="font-black text-[10px] uppercase tracking-widest text-slate-400 block mb-2">Explication pédagogique</span>
+                        {currentQuestion.explanation}
+                      </div>
+                    )}
+                  </div>
                 )}
               </div>
             </div>
