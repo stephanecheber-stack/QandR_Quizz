@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { CheckCircle2, XCircle, ChevronRight, RotateCcw, Award, BookOpen, Home, Settings, Info, Lightbulb, Clock } from 'lucide-react';
+import { db } from '../firebase';
+import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import hamData from '../data/ham_questions.json';
 import samData from '../data/sam_questions.json';
 
-const QuizApp = () => {
-  // --- Module Selection State ---
-  const [selectedModule, setSelectedModule] = useState(() => {
-    return localStorage.getItem('quiz_selected_module');
-  });
+const QuizApp = ({ user, userData, onGoHome }) => {
+  // --- Module Selection State (Now from Props/Firestore) ---
+  const selectedModule = userData?.lockedModule;
 
   // --- Core State ---
   const [currentQuestions, setCurrentQuestions] = useState([]);
@@ -20,6 +20,12 @@ const QuizApp = () => {
   const [isFinished, setIsFinished] = useState(false);
   const [showExplanation, setShowExplanation] = useState(false);
   const [timeLeft, setTimeLeft] = useState(30);
+  const [isSyncing, setIsSyncing] = useState(false);
+  const [isVIP, setIsVIP] = useState(false);
+
+  // --- Paywall Logic ---
+  const isFreemiumBlocked = !userData?.hasPaid && currentIndex >= 3 && !isVIP;
+  const isExpired = userData?.hasPaid && userData?.accessExpiration && new Date() > new Date(userData.accessExpiration) && !isVIP;
 
   // --- Dynamic Dataset Base ---
   const allModuleQuestions = useMemo(() => {
@@ -27,45 +33,83 @@ const QuizApp = () => {
     return selectedModule === 'HAM' ? hamData : samData;
   }, [selectedModule]);
 
+  // --- Cloud Sync Logic ---
+  const saveProgressToCloud = useCallback(async (module, idx, currentScore, errors) => {
+    if (!user || !module) return;
+    try {
+      const userRef = doc(db, "users", user.uid);
+      await setDoc(userRef, {
+        progress: {
+          [module]: {
+            currentIndex: idx,
+            score: currentScore,
+            sessionErrors: errors.map(q => ({ id: q.id || q.question_id, question: q.question }))
+          }
+        }
+      }, { merge: true });
+    } catch (error) {
+      console.error("Error saving progress to Firestore:", error);
+    }
+  }, [user]);
+
+  const loadProgressFromCloud = useCallback(async (module) => {
+    if (!user || !module) return null;
+    try {
+      const userRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(userRef);
+      if (docSnap.exists() && docSnap.data().progress && docSnap.data().progress[module]) {
+        return docSnap.data().progress[module];
+      }
+    } catch (error) {
+      console.error("Error loading progress from Firestore:", error);
+    }
+    return null;
+  }, [user]);
+
   // --- Load Data when Module is selected ---
   useEffect(() => {
-    if (selectedModule) {
-      const prefix = `${selectedModule}_`;
-      
-      const savedQuestions = localStorage.getItem(`${prefix}current_questions`);
-      
-      setCurrentQuestions(savedQuestions ? JSON.parse(savedQuestions) : allModuleQuestions);
-      
-      const savedIndex = localStorage.getItem(`${prefix}current_index`);
-      setCurrentIndex(savedIndex ? parseInt(savedIndex, 10) : 0);
-      
-      const savedScore = localStorage.getItem(`${prefix}score`);
-      setScore(savedScore ? parseInt(savedScore, 10) : 0);
-      
-      const savedErrors = localStorage.getItem(`${prefix}session_errors`);
-      setSessionErrors(savedErrors ? JSON.parse(savedErrors) : []);
-      
-      localStorage.setItem('quiz_selected_module', selectedModule);
-    } else {
-      localStorage.removeItem('quiz_selected_module');
-      // Reset state when going home
-      setCurrentQuestions([]);
-      setCurrentIndex(0);
-      setScore(0);
-      setSessionErrors([]);
-    }
-  }, [selectedModule, allModuleQuestions]);
+    const loadData = async () => {
+      if (selectedModule) {
+        setIsSyncing(true);
+        // Fetch/Sync VIP status from userData prop
+        setIsVIP(userData?.isVIP || false);
+        
+        const cloudData = await loadProgressFromCloud(selectedModule);
+        
+        if (cloudData) {
+          setCurrentIndex(cloudData.currentIndex || 0);
+          setScore(cloudData.score || 0);
+          
+          const errorIds = (cloudData.sessionErrors || []).map(e => e.id);
+          const reconstructedErrors = allModuleQuestions.filter(q => errorIds.includes(q.id || q.question_id));
+          setSessionErrors(reconstructedErrors);
+          setCurrentQuestions(allModuleQuestions);
+        } else {
+          setCurrentQuestions(allModuleQuestions);
+          setCurrentIndex(0);
+          setScore(0);
+          setSessionErrors([]);
+        }
+        setIsSyncing(false);
+      }
+    };
 
-  // --- Persistent Storage ---
+    loadData();
+  }, [selectedModule, allModuleQuestions, loadProgressFromCloud]);
+
+  // --- Sync VIP status when userData updates ---
   useEffect(() => {
-    if (selectedModule && currentQuestions.length > 0) {
-      const prefix = `${selectedModule}_`;
-      localStorage.setItem(`${prefix}current_index`, currentIndex.toString());
-      localStorage.setItem(`${prefix}score`, score.toString());
-      localStorage.setItem(`${prefix}current_questions`, JSON.stringify(currentQuestions));
-      localStorage.setItem(`${prefix}session_errors`, JSON.stringify(sessionErrors));
+    if (userData?.isVIP !== undefined) {
+      setIsVIP(userData.isVIP);
     }
-  }, [currentIndex, score, currentQuestions, sessionErrors, selectedModule]);
+  }, [userData?.isVIP]);
+
+  // --- Persistent Storage (Local & Cloud) ---
+  useEffect(() => {
+    if (selectedModule && currentQuestions.length > 0 && !isSyncing) {
+      saveProgressToCloud(selectedModule, currentIndex, score, sessionErrors);
+    }
+  }, [currentIndex, score, sessionErrors, selectedModule, currentQuestions, saveProgressToCloud, isSyncing]);
 
   const currentQuestion = currentQuestions[currentIndex];
 
@@ -81,25 +125,16 @@ const QuizApp = () => {
     return Object.values(currentQuestion.pairs).sort(() => Math.random() - 0.5);
   }, [currentQuestion?.id || currentQuestion?.question_id]);
 
-  const handleModuleSelect = (module) => {
-    setSelectedModule(module);
-    setSelectedAnswers([]);
-    setIsValidated(false);
-    setIsFinished(false);
-    setShowExplanation(false);
-    setTimeLeft(30);
-  };
-
   // --- Timer Logic ---
   useEffect(() => {
-    if (timeLeft === 0 || isValidated || isFinished || !selectedModule) return;
+    if (timeLeft === 0 || isValidated || isFinished || !selectedModule || isFreemiumBlocked || isExpired) return;
 
     const timer = setInterval(() => {
       setTimeLeft(prev => prev - 1);
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [timeLeft, isValidated, isFinished, selectedModule]);
+  }, [timeLeft, isValidated, isFinished, selectedModule, isFreemiumBlocked, isExpired]);
 
   useEffect(() => {
     if (selectedModule) {
@@ -114,9 +149,65 @@ const QuizApp = () => {
     return "text-gray-500";
   };
 
-  const handleGoHome = () => {
-    setSelectedModule(null);
+  // --- POC: Simulate Payment ---
+  const handleSimulatePayment = async () => {
+    if (!user) return;
+    try {
+      const expireDate = new Date();
+      expireDate.setDate(expireDate.getDate() + 10);
+      
+      const userRef = doc(db, "users", user.uid);
+      await setDoc(userRef, {
+        hasPaid: true,
+        accessExpiration: expireDate.toISOString()
+      }, { merge: true });
+    } catch (error) {
+      console.error("Payment simulation error:", error);
+      alert("Erreur lors de la simulation du paiement.");
+    }
   };
+
+
+
+
+  // --- RENDER: Paywall Screen ---
+  if (isFreemiumBlocked || isExpired) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[70vh] px-4 animate-fade-in">
+        <div className="glass-card p-10 rounded-3xl text-center max-w-lg w-full border-2 border-primary-100 shadow-2xl">
+          <div className="bg-primary-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+            <Award className="text-primary-600 w-10 h-10" />
+          </div>
+          
+          <h2 className="text-3xl font-black text-gray-800 mb-4">
+            {isExpired ? "Accès Expiré" : "Essai Gratuit Terminé"}
+          </h2>
+          
+          <p className="text-gray-600 font-medium mb-8 leading-relaxed">
+            {isExpired 
+              ? "Votre accès de 10 jours a expiré. Renouvelez votre licence pour continuer à vous entraîner sans limites."
+              : "Vous avez atteint la limite de 3 questions gratuites. Achetez l'accès complet de 10 jours pour continuer votre préparation."}
+          </p>
+          
+          <div className="flex flex-col gap-4">
+            <button 
+              className="btn btn-primary w-full py-4 text-xl shadow-lg shadow-primary-500/20"
+              onClick={() => alert("Redirection vers Stripe... (Non implémenté dans ce POC)")}
+            >
+              Acheter l'accès (10 jours)
+            </button>
+            
+            <button 
+              onClick={handleSimulatePayment}
+              className="text-primary-600 font-bold text-sm bg-primary-50 px-4 py-3 rounded-xl border border-primary-100 hover:bg-primary-100 transition-colors"
+            >
+              Simuler le paiement (POC)
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   // --- MCQ: Answer Toggle ---
   const handleOptionToggle = (optionKey) => {
@@ -196,7 +287,7 @@ const QuizApp = () => {
     }
   };
 
-  const handleRestart = () => {
+  const handleRestart = async () => {
     if (window.confirm("Êtes-vous sûr de vouloir tout recommencer ? Votre progression pour ce module sera perdue.")) {
       setCurrentIndex(0);
       setScore(0);
@@ -213,6 +304,24 @@ const QuizApp = () => {
       localStorage.removeItem(`${prefix}score`);
       localStorage.removeItem(`${prefix}current_questions`);
       localStorage.removeItem(`${prefix}session_errors`);
+
+      // Reset Cloud
+      if (user && selectedModule) {
+        try {
+          const userRef = doc(db, "users", user.uid);
+          await setDoc(userRef, {
+            progress: {
+              [selectedModule]: {
+                currentIndex: 0,
+                score: 0,
+                sessionErrors: []
+              }
+            }
+          }, { merge: true });
+        } catch (error) {
+          console.error("Error resetting cloud progress:", error);
+        }
+      }
     }
   };
 
@@ -228,60 +337,6 @@ const QuizApp = () => {
     setIsFinished(false);
     setShowExplanation(false);
   };
-
-  // --- RENDER: Selection Screen ---
-  if (!selectedModule) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-[90vh] px-4 animate-fade-in">
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-black text-gray-900 mb-4 tracking-tight">Quiz Training</h1>
-          <p className="text-xl text-gray-500 font-medium">Choisissez votre module d'entraînement</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl">
-          {/* HAM Card */}
-          <div 
-            onClick={() => handleModuleSelect('HAM')}
-            className="group relative bg-white rounded-[2rem] p-8 border-2 border-transparent hover:border-primary-500 hover:shadow-2xl hover:shadow-primary-500/10 transition-all duration-500 cursor-pointer overflow-hidden shadow-xl"
-          >
-            <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
-              <Settings size={120} />
-            </div>
-            <div className="relative z-10">
-              <div className="w-16 h-16 rounded-2xl bg-orange-100 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
-                <BookOpen className="text-orange-600" size={32} />
-              </div>
-              <h2 className="text-3xl font-black text-gray-800 mb-2">HAM</h2>
-              <p className="text-gray-500 font-medium leading-relaxed">Hardware Asset Management</p>
-              <div className="mt-8 flex items-center text-primary-600 font-bold gap-2">
-                Commencer <ChevronRight size={20} className="group-hover:translate-x-2 transition-transform" />
-              </div>
-            </div>
-          </div>
-
-          {/* SAM Card */}
-          <div 
-            onClick={() => handleModuleSelect('SAM')}
-            className="group relative bg-white rounded-[2rem] p-8 border-2 border-transparent hover:border-primary-500 hover:shadow-2xl hover:shadow-primary-500/10 transition-all duration-500 cursor-pointer overflow-hidden shadow-xl"
-          >
-            <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
-              <Info size={120} />
-            </div>
-            <div className="relative z-10">
-              <div className="w-16 h-16 rounded-2xl bg-blue-100 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
-                <BookOpen className="text-blue-600" size={32} />
-              </div>
-              <h2 className="text-3xl font-black text-gray-800 mb-2">SAM</h2>
-              <p className="text-gray-500 font-medium leading-relaxed">Software Asset Management</p>
-              <div className="mt-8 flex items-center text-primary-600 font-bold gap-2">
-                Commencer <ChevronRight size={20} className="group-hover:translate-x-2 transition-transform" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   // --- RENDER: Results ---
   if (isFinished) {
@@ -312,7 +367,7 @@ const QuizApp = () => {
           
           <h2 className="text-4xl font-black text-gray-800 mb-2">Résultats</h2>
           <p className="text-gray-500 font-medium mb-8">
-            {currentQuestions.length < allModuleQuestions.length ? "Mode Révision" : `Sujet : ${selectedModule === 'HAM' ? 'Hardware' : 'Software'} Asset Management`}
+            {currentQuestions.length < allModuleQuestions.length ? "Mode Révision" : `Sujet : Module ${selectedModule}`}
           </p>
           
           {!hasPerfectScore && (
@@ -379,14 +434,6 @@ const QuizApp = () => {
               <RotateCcw size={24} />
               Recommencer tout le QCM
             </button>
-
-            <button 
-              onClick={handleGoHome}
-              className="btn bg-gray-100 hover:bg-gray-200 text-gray-600 w-full flex items-center justify-center gap-2 py-4 shadow-sm"
-            >
-              <Home size={20} />
-              Quitter ce module
-            </button>
           </div>
         </div>
       </div>
@@ -407,13 +454,10 @@ const QuizApp = () => {
       {/* progress header */}
       <div className="flex flex-col gap-4 mb-8">
         <div className="flex justify-between items-center text-sm font-semibold text-gray-500">
-          <button 
-            onClick={handleGoHome}
-            className="flex items-center gap-2 text-gray-400 hover:text-primary-600 transition-colors bg-white/50 px-3 py-1.5 rounded-full border border-gray-100 shadow-sm"
-          >
-            <Home size={18} />
-            <span className="hidden sm:inline">Accueil</span>
-          </button>
+          <div className="flex items-center gap-2 text-gray-400 bg-white/50 px-3 py-1.5 rounded-full border border-gray-100 shadow-sm">
+            <Settings size={18} className="text-primary-500" />
+            <span className="font-bold">Module {selectedModule}</span>
+          </div>
           
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-2 text-gray-500">
@@ -425,6 +469,15 @@ const QuizApp = () => {
                 {currentQuestions.length < allModuleQuestions.length && <Award size={14} className="text-orange-500" />}
                 {score} pts
               </span>
+              {userData?.isVIP && (
+                <button 
+                  onClick={onGoHome}
+                  className="p-2 text-gray-400 hover:text-primary-500 hover:bg-primary-50 rounded-full transition-colors"
+                  title="Changer de module"
+                >
+                  <Home size={18} />
+                </button>
+              )}
               <button 
                 onClick={handleRestart}
                 className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors"
