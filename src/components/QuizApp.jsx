@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { CheckCircle2, XCircle, ChevronRight, RotateCcw, Award, BookOpen, Home, Settings, Info, Lightbulb, Clock } from 'lucide-react';
+import { CheckCircle2, XCircle, ChevronRight, RotateCcw, Award, BookOpen, Home, Settings, Info, Lightbulb, Clock, Sparkles, Loader2 } from 'lucide-react';
 import { db } from '../firebase';
 import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import hamData from '../data/ham_questions.json';
@@ -22,6 +22,9 @@ const QuizApp = ({ user, userData, onGoHome }) => {
   const [timeLeft, setTimeLeft] = useState(30);
   const [isSyncing, setIsSyncing] = useState(false);
   const [isVIP, setIsVIP] = useState(false);
+  const [gemmaExplanation, setGemmaExplanation] = useState("");
+  const [isGemmaLoading, setIsGemmaLoading] = useState(false);
+  const [showGemma, setShowGemma] = useState(false);
 
   // --- Paywall Logic ---
   const isFreemiumBlocked = !userData?.hasPaid && currentIndex >= 3 && !isVIP;
@@ -282,8 +285,51 @@ const QuizApp = ({ user, userData, onGoHome }) => {
       setSelectedAnswers(nextQuestion.type === 'matching' ? {} : []);
       setIsValidated(false);
       setShowExplanation(false);
+      setShowGemma(false);
+      setGemmaExplanation("");
     } else {
       setIsFinished(true);
+    }
+  };
+
+  const fetchGemmaExplanation = async () => {
+    if (isGemmaLoading) return;
+    
+    setIsGemmaLoading(true);
+    setShowGemma(true);
+    setGemmaExplanation("");
+
+    try {
+      const prompt = `Tu es un expert pédagogique en ${selectedModule}. Explique la question suivante de manière claire et détaillée pour un étudiant.
+Question : ${currentQuestion.question}
+Options : ${currentQuestion.type === 'matching' ? JSON.stringify(currentQuestion.pairs) : JSON.stringify(currentQuestion.options)}
+Réponses correctes : ${currentQuestion.type === 'matching' ? 'Toutes les paires listées' : JSON.stringify(currentQuestion.correct_answers)}
+
+Consignes :
+1. Sois encourageant.
+2. Explique pourquoi les réponses correctes sont justes.
+3. Donne un exemple concret si possible.
+4. Réponds exclusivement en Français.
+5. Utilise un format structuré avec des points clés.`;
+
+      const response = await fetch('/ollama/api/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: 'gemma4',
+          prompt: prompt,
+          stream: false
+        })
+      });
+
+      if (!response.ok) throw new Error("Erreur de communication avec Gemma");
+      const data = await response.json();
+      setGemmaExplanation(data.response);
+    } catch (error) {
+      console.error("Gemma Error:", error);
+      setGemmaExplanation("Désolé, je n'ai pas pu générer d'explication pour le moment. Vérifiez que Ollama est bien lancé avec le modèle gemma4.");
+    } finally {
+      setIsGemmaLoading(false);
     }
   };
 
@@ -298,6 +344,8 @@ const QuizApp = ({ user, userData, onGoHome }) => {
       setIsValidated(false);
       setIsFinished(false);
       setShowExplanation(false);
+      setShowGemma(false);
+      setGemmaExplanation("");
       
       const prefix = `${selectedModule}_`;
       localStorage.removeItem(`${prefix}current_index`);
@@ -336,6 +384,8 @@ const QuizApp = ({ user, userData, onGoHome }) => {
     setIsValidated(false);
     setIsFinished(false);
     setShowExplanation(false);
+    setShowGemma(false);
+    setGemmaExplanation("");
   };
 
   // --- RENDER: Results ---
@@ -684,6 +734,49 @@ const QuizApp = ({ user, userData, onGoHome }) => {
                     )}
                   </div>
                 )}
+
+                {/* --- Gemma AI Section --- */}
+                <div className="mt-4 flex flex-col gap-3">
+                  <div className="flex items-center gap-4">
+                    <button 
+                      onClick={fetchGemmaExplanation}
+                      disabled={isGemmaLoading}
+                      className="flex items-center gap-2 text-purple-600 font-bold text-sm bg-purple-50 px-4 py-2 rounded-xl border border-purple-100 hover:bg-purple-100 transition-all active:scale-95 disabled:opacity-50"
+                    >
+                      {isGemmaLoading ? <Loader2 size={16} className="animate-spin" /> : <Sparkles size={16} />}
+                      Explication Gemma
+                    </button>
+                    
+                    <div className="flex items-center gap-2 px-3 py-1.5 bg-gray-50 border border-gray-100 rounded-lg">
+                      <span className="text-[10px] font-bold text-gray-400 italic">
+                        Généré avec Gemma4 - AI local
+                      </span>
+                    </div>
+                  </div>
+                  
+                  {showGemma && (
+                    <div className="text-slate-700 font-medium text-sm leading-relaxed bg-gradient-to-br from-purple-50 to-white p-5 rounded-2xl border border-purple-100 shadow-sm animate-slide-up relative overflow-hidden group">
+                      <div className="absolute top-0 right-0 p-3 opacity-5 group-hover:opacity-10 transition-opacity">
+                        <Sparkles size={40} className="text-purple-600" />
+                      </div>
+                      <span className="font-black text-[10px] uppercase tracking-widest text-purple-400 block mb-3 flex items-center gap-2">
+                         <Sparkles size={12} /> Intelligence Artificielle local
+                      </span>
+                      
+                      {isGemmaLoading ? (
+                        <div className="flex flex-col gap-2">
+                          <div className="h-4 bg-purple-100/50 rounded animate-pulse w-3/4" />
+                          <div className="h-4 bg-purple-100/50 rounded animate-pulse w-full" />
+                          <div className="h-4 bg-purple-100/50 rounded animate-pulse w-5/6" />
+                        </div>
+                      ) : (
+                        <div className="whitespace-pre-wrap">
+                          {gemmaExplanation}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
             <button 
