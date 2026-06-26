@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { CheckCircle2, XCircle, ChevronRight, RotateCcw, Award, BookOpen, Home, Settings, Info, Lightbulb, Clock, Sparkles, Loader2 } from 'lucide-react';
+import { CheckCircle2, XCircle, ChevronRight, RotateCcw, Award, BookOpen, Home, Settings, Lightbulb, Clock, Sparkles, Loader2 } from 'lucide-react';
 import { db } from '../firebase';
-import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import hamData from '../data/ham_questions.json';
 import samData from '../data/sam_questions.json';
 
@@ -21,14 +21,10 @@ const QuizApp = ({ user, userData, onGoHome }) => {
   const [showExplanation, setShowExplanation] = useState(false);
   const [timeLeft, setTimeLeft] = useState(30);
   const [isSyncing, setIsSyncing] = useState(false);
-  const [isVIP, setIsVIP] = useState(false);
+  const [syncError, setSyncError] = useState(false);
   const [gemmaExplanation, setGemmaExplanation] = useState("");
   const [isGemmaLoading, setIsGemmaLoading] = useState(false);
   const [showGemma, setShowGemma] = useState(false);
-
-  // --- Paywall Logic ---
-  const isFreemiumBlocked = !userData?.hasPaid && currentIndex >= 3 && !isVIP;
-  const isExpired = userData?.hasPaid && userData?.accessExpiration && new Date() > new Date(userData.accessExpiration) && !isVIP;
 
   // --- Dynamic Dataset Base ---
   const allModuleQuestions = useMemo(() => {
@@ -52,6 +48,7 @@ const QuizApp = ({ user, userData, onGoHome }) => {
       }, { merge: true });
     } catch (error) {
       console.error("Error saving progress to Firestore:", error);
+      setSyncError(true);
     }
   }, [user]);
 
@@ -65,6 +62,7 @@ const QuizApp = ({ user, userData, onGoHome }) => {
       }
     } catch (error) {
       console.error("Error loading progress from Firestore:", error);
+      setSyncError(true);
     }
     return null;
   }, [user]);
@@ -74,9 +72,6 @@ const QuizApp = ({ user, userData, onGoHome }) => {
     const loadData = async () => {
       if (selectedModule) {
         setIsSyncing(true);
-        // Fetch/Sync VIP status from userData prop
-        setIsVIP(userData?.isVIP || false);
-        
         const cloudData = await loadProgressFromCloud(selectedModule);
         
         if (cloudData) {
@@ -99,13 +94,6 @@ const QuizApp = ({ user, userData, onGoHome }) => {
 
     loadData();
   }, [selectedModule, allModuleQuestions, loadProgressFromCloud]);
-
-  // --- Sync VIP status when userData updates ---
-  useEffect(() => {
-    if (userData?.isVIP !== undefined) {
-      setIsVIP(userData.isVIP);
-    }
-  }, [userData?.isVIP]);
 
   // --- Persistent Storage (Local & Cloud) ---
   useEffect(() => {
@@ -130,14 +118,14 @@ const QuizApp = ({ user, userData, onGoHome }) => {
 
   // --- Timer Logic ---
   useEffect(() => {
-    if (timeLeft === 0 || isValidated || isFinished || !selectedModule || isFreemiumBlocked || isExpired) return;
+    if (timeLeft === 0 || isValidated || isFinished || !selectedModule) return;
 
     const timer = setInterval(() => {
       setTimeLeft(prev => prev - 1);
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [timeLeft, isValidated, isFinished, selectedModule, isFreemiumBlocked, isExpired]);
+  }, [timeLeft, isValidated, isFinished, selectedModule]);
 
   useEffect(() => {
     if (selectedModule) {
@@ -151,66 +139,6 @@ const QuizApp = ({ user, userData, onGoHome }) => {
     if (timeLeft > 0) return "text-red-500";
     return "text-gray-500";
   };
-
-  // --- POC: Simulate Payment ---
-  const handleSimulatePayment = async () => {
-    if (!user) return;
-    try {
-      const expireDate = new Date();
-      expireDate.setDate(expireDate.getDate() + 10);
-      
-      const userRef = doc(db, "users", user.uid);
-      await setDoc(userRef, {
-        hasPaid: true,
-        accessExpiration: expireDate.toISOString()
-      }, { merge: true });
-    } catch (error) {
-      console.error("Payment simulation error:", error);
-      alert("Erreur lors de la simulation du paiement.");
-    }
-  };
-
-
-
-
-  // --- RENDER: Paywall Screen ---
-  if (isFreemiumBlocked || isExpired) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-[70vh] px-4 animate-fade-in">
-        <div className="glass-card p-10 rounded-3xl text-center max-w-lg w-full border-2 border-primary-100 shadow-2xl">
-          <div className="bg-primary-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
-            <Award className="text-primary-600 w-10 h-10" />
-          </div>
-          
-          <h2 className="text-3xl font-black text-gray-800 mb-4">
-            {isExpired ? "Accès Expiré" : "Essai Gratuit Terminé"}
-          </h2>
-          
-          <p className="text-gray-600 font-medium mb-8 leading-relaxed">
-            {isExpired 
-              ? "Votre accès de 10 jours a expiré. Renouvelez votre licence pour continuer à vous entraîner sans limites."
-              : "Vous avez atteint la limite de 3 questions gratuites. Achetez l'accès complet de 10 jours pour continuer votre préparation."}
-          </p>
-          
-          <div className="flex flex-col gap-4">
-            <button 
-              className="btn btn-primary w-full py-4 text-xl shadow-lg shadow-primary-500/20"
-              onClick={() => alert("Redirection vers Stripe... (Non implémenté dans ce POC)")}
-            >
-              Acheter l'accès (10 jours)
-            </button>
-            
-            <button 
-              onClick={handleSimulatePayment}
-              className="text-primary-600 font-bold text-sm bg-primary-50 px-4 py-3 rounded-xl border border-primary-100 hover:bg-primary-100 transition-colors"
-            >
-              Simuler le paiement (POC)
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   // --- MCQ: Answer Toggle ---
   const handleOptionToggle = (optionKey) => {
@@ -347,12 +275,6 @@ Consignes :
       setShowGemma(false);
       setGemmaExplanation("");
       
-      const prefix = `${selectedModule}_`;
-      localStorage.removeItem(`${prefix}current_index`);
-      localStorage.removeItem(`${prefix}score`);
-      localStorage.removeItem(`${prefix}current_questions`);
-      localStorage.removeItem(`${prefix}session_errors`);
-
       // Reset Cloud
       if (user && selectedModule) {
         try {
@@ -368,6 +290,7 @@ Consignes :
           }, { merge: true });
         } catch (error) {
           console.error("Error resetting cloud progress:", error);
+          setSyncError(true);
         }
       }
     }
@@ -501,6 +424,13 @@ Consignes :
 
   return (
     <div className="max-w-3xl mx-auto w-full py-8 px-4 animate-fade-in">
+      {syncError && (
+        <div className="fixed bottom-4 right-4 z-50 flex items-center gap-3 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl shadow-lg animate-fade-in">
+          <XCircle size={16} />
+          <span className="text-sm font-bold">Erreur de synchronisation. Progression locale uniquement.</span>
+          <button onClick={() => setSyncError(false)} className="ml-1 text-red-400 hover:text-red-600 font-black">✕</button>
+        </div>
+      )}
       {/* progress header */}
       <div className="flex flex-col gap-4 mb-8">
         <div className="flex justify-between items-center text-sm font-semibold text-gray-500">
@@ -519,15 +449,13 @@ Consignes :
                 {currentQuestions.length < allModuleQuestions.length && <Award size={14} className="text-orange-500" />}
                 {score} pts
               </span>
-              {userData?.isVIP && (
-                <button 
-                  onClick={onGoHome}
-                  className="p-2 text-gray-400 hover:text-primary-500 hover:bg-primary-50 rounded-full transition-colors"
-                  title="Changer de module"
-                >
-                  <Home size={18} />
-                </button>
-              )}
+              <button
+                onClick={onGoHome}
+                className="p-2 text-gray-400 hover:text-primary-500 hover:bg-primary-50 rounded-full transition-colors"
+                title="Changer de module"
+              >
+                <Home size={18} />
+              </button>
               <button 
                 onClick={handleRestart}
                 className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors"

@@ -11,6 +11,7 @@ function App() {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [viewingSelection, setViewingSelection] = useState(false);
+  const [moduleError, setModuleError] = useState(null);
 
   useEffect(() => {
     let unsubscribeDoc = () => {};
@@ -60,18 +61,13 @@ function App() {
     if (!user) return;
     try {
       const userRef = doc(db, "users", user.uid);
-      await setDoc(userRef, {
-        lockedModule: module,
-        hasPaid: userData?.isVIP ? true : false, // VIPs are always "paid"
-        isVIP: userData?.isVIP || false,
-        accessExpiration: null
-      }, { merge: true });
-      
+      await setDoc(userRef, { lockedModule: module }, { merge: true });
       if (userData?.isVIP) {
         setViewingSelection(false);
       }
     } catch (error) {
       console.error("Error locking module:", error);
+      setModuleError("Erreur réseau lors de la sélection. Vérifiez votre connexion et réessayez.");
     }
   };
 
@@ -92,8 +88,11 @@ function App() {
       <div className="text-center mb-12">
         <h1 className="text-5xl font-black text-gray-900 mb-4 tracking-tight">Quiz Training</h1>
         <p className="text-xl text-gray-500 font-medium">Choisissez votre module pour commencer votre licence</p>
-        {!userData?.isVIP && (
-          <p className="text-sm text-red-500 font-bold mt-2 uppercase tracking-widest">Attention : Ce choix est définitif</p>
+        {moduleError && (
+          <div className="mt-4 flex items-center justify-center gap-2 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl">
+            <span className="text-sm font-bold">{moduleError}</span>
+            <button onClick={() => setModuleError(null)} className="text-red-400 hover:text-red-600 font-black ml-2">✕</button>
+          </div>
         )}
       </div>
 
@@ -155,9 +154,7 @@ function App() {
           <div className="flex items-center gap-4">
             <div className="hidden sm:flex flex-col items-end">
               <span className="text-sm font-black text-gray-800 tracking-tight">{user.email}</span>
-              <span className="text-[10px] uppercase font-bold text-green-500 tracking-widest">
-                {userData?.hasPaid ? "Licence Active" : "Essai Gratuit"}
-              </span>
+              <span className="text-[10px] uppercase font-bold text-green-500 tracking-widest">Accès complet</span>
             </div>
             <button 
               onClick={handleLogout}

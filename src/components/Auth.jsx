@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { auth } from '../firebase';
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { LogIn, UserPlus, Mail, Lock, AlertCircle, Loader2 } from 'lucide-react';
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { LogIn, Mail, Lock, AlertCircle, Loader2 } from 'lucide-react';
 
 const Auth = () => {
-    const [isLogin, setIsLogin] = useState(true);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
@@ -14,21 +13,15 @@ const Auth = () => {
         e.preventDefault();
         setError('');
         setLoading(true);
-
         try {
-            if (isLogin) {
-                await signInWithEmailAndPassword(auth, email, password);
-            } else {
-                await createUserWithEmailAndPassword(auth, email, password);
-            }
+            await signInWithEmailAndPassword(auth, email, password);
         } catch (err) {
             console.error(err);
             let message = "Une erreur est survenue.";
-            if (err.code === 'auth/wrong-password') message = "Mot de passe incorrect.";
-            if (err.code === 'auth/user-not-found') message = "Utilisateur non trouvé.";
-            if (err.code === 'auth/email-already-in-use') message = "Cet email est déjà utilisé.";
+            if (err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') message = "Email ou mot de passe incorrect.";
+            if (err.code === 'auth/user-not-found') message = "Aucun compte trouvé pour cet email.";
             if (err.code === 'auth/invalid-email') message = "Format d'email invalide.";
-            if (err.code === 'auth/weak-password') message = "Le mot de passe doit faire au moins 6 caractères.";
+            if (err.code === 'auth/too-many-requests') message = "Trop de tentatives. Réessayez plus tard.";
             setError(message);
         } finally {
             setLoading(false);
@@ -51,7 +44,6 @@ const Auth = () => {
     return (
         <div className="flex-1 flex items-center justify-center p-4">
             <div className="w-full max-w-md animate-fade-in relative">
-                {/* Decorative background elements */}
                 <div className="absolute -top-10 -left-10 w-32 h-32 bg-primary-500/10 rounded-full blur-3xl animate-pulse"></div>
                 <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-orange-500/10 rounded-full blur-3xl animate-pulse"></div>
 
@@ -59,17 +51,13 @@ const Auth = () => {
                     <div className="p-8 sm:p-10">
                         <div className="flex justify-center mb-8">
                             <div className="w-16 h-16 bg-primary-600 rounded-2xl flex items-center justify-center text-white shadow-xl shadow-primary-500/20 rotate-3">
-                                {isLogin ? <LogIn size={32} /> : <UserPlus size={32} />}
+                                <LogIn size={32} />
                             </div>
                         </div>
 
                         <div className="text-center mb-8">
-                            <h2 className="text-3xl font-black text-gray-800 tracking-tight mb-2">
-                                {isLogin ? 'Bon retour !' : 'Créer un compte'}
-                            </h2>
-                            <p className="text-gray-500 font-medium tracking-tight">
-                                {isLogin ? 'Connectez-vous pour continuer votre entraînement' : 'Rejoignez la plateforme Quiz Center'}
-                            </p>
+                            <h2 className="text-3xl font-black text-gray-800 tracking-tight mb-2">Bon retour, Stéphane !</h2>
+                            <p className="text-gray-500 font-medium tracking-tight">Connectez-vous pour reprendre votre entraînement</p>
                         </div>
 
                         {error && (
@@ -86,7 +74,7 @@ const Auth = () => {
                                 </div>
                                 <input
                                     type="email"
-                                    placeholder="Email address"
+                                    placeholder="Email"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     className="w-full pl-11 pr-4 py-4 bg-white/50 border-2 border-transparent focus:border-primary-500 focus:bg-white rounded-2xl outline-none transition-all duration-300 font-bold text-gray-700 placeholder:text-gray-400 shadow-sm"
@@ -100,7 +88,7 @@ const Auth = () => {
                                 </div>
                                 <input
                                     type="password"
-                                    placeholder="Password"
+                                    placeholder="Mot de passe"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     className="w-full pl-11 pr-4 py-4 bg-white/50 border-2 border-transparent focus:border-primary-500 focus:bg-white rounded-2xl outline-none transition-all duration-300 font-bold text-gray-700 placeholder:text-gray-400 shadow-sm"
@@ -113,25 +101,9 @@ const Auth = () => {
                                 disabled={loading}
                                 className="w-full py-4 mt-4 bg-primary-600 hover:bg-primary-700 text-white font-black text-lg rounded-2xl shadow-xl shadow-primary-500/20 transition-all active:scale-[0.98] flex items-center justify-center gap-3 disabled:opacity-70"
                             >
-                                {loading ? (
-                                    <Loader2 className="animate-spin" size={24} />
-                                ) : (
-                                    isLogin ? 'Se connecter' : "S'inscrire"
-                                )}
+                                {loading ? <Loader2 className="animate-spin" size={24} /> : 'Se connecter'}
                             </button>
                         </form>
-
-                        <div className="mt-8 text-center px-4">
-                            <button
-                                onClick={() => {
-                                    setIsLogin(!isLogin);
-                                    setError('');
-                                }}
-                                className="text-gray-500 font-bold hover:text-primary-600 transition-colors text-sm underline decoration-gray-300 underline-offset-4"
-                            >
-                                {isLogin ? "Vous n'avez pas de compte ? S'inscrire" : "Déjà un compte ? Se connecter"}
-                            </button>
-                        </div>
 
                         <div className="relative my-8">
                             <div className="absolute inset-0 flex items-center">
