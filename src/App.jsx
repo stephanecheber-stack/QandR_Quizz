@@ -4,7 +4,7 @@ import Auth from './components/Auth';
 import { auth, db } from './firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { doc, onSnapshot, setDoc, getDoc } from 'firebase/firestore';
-import { LogOut, Loader2, BookOpen, ChevronRight, Settings, Info } from 'lucide-react';
+import { LogOut, Loader2, BookOpen, ChevronRight, Settings, Info, ShieldCheck } from 'lucide-react';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -87,7 +87,7 @@ function App() {
     <div className="flex flex-col items-center justify-center min-h-[70vh] px-4 animate-fade-in">
       <div className="text-center mb-12">
         <h1 className="text-5xl font-black text-gray-900 mb-4 tracking-tight">Quiz Training</h1>
-        <p className="text-xl text-gray-500 font-medium">Choisissez votre module pour commencer votre licence</p>
+        <p className="text-xl text-gray-500 font-medium">Choisissez votre parcours de certification ou de formation</p>
         {moduleError && (
           <div className="mt-4 flex items-center justify-center gap-2 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl">
             <span className="text-sm font-bold">{moduleError}</span>
@@ -96,7 +96,7 @@ function App() {
         )}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl">
         {/* HAM Card */}
         <div 
           onClick={() => handleSelectModule('HAM')}
@@ -131,6 +131,27 @@ function App() {
             </div>
             <h2 className="text-3xl font-black text-gray-800 mb-2">SAM</h2>
             <p className="text-gray-500 font-medium leading-relaxed">Software Asset Management</p>
+            <div className="mt-8 flex items-center text-primary-600 font-bold gap-2">
+              Verrouiller ce module <ChevronRight size={20} className="group-hover:translate-x-2 transition-transform" />
+            </div>
+          </div>
+        </div>
+
+        {/* ITSM Card */}
+        <div 
+          onClick={() => handleSelectModule('ITSM')}
+          className="group relative bg-white rounded-[2rem] p-8 border-2 border-transparent hover:border-primary-500 hover:shadow-2xl hover:shadow-primary-500/10 transition-all duration-500 cursor-pointer overflow-hidden shadow-xl"
+        >
+          <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+            <ShieldCheck size={120} />
+          </div>
+          <div className="relative z-10">
+            <div className="w-16 h-16 rounded-2xl bg-purple-100 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+              <ShieldCheck className="text-purple-600" size={32} />
+            </div>
+            <h2 className="text-3xl font-black text-gray-800 mb-2">ITSM</h2>
+            <p className="text-gray-500 font-medium leading-relaxed">Certification CIS-ITSM</p>
+            <p className="text-sm text-gray-400 font-medium mt-3">Questions dédiées à l’IT Service Management et aux bonnes pratiques ServiceNow.</p>
             <div className="mt-8 flex items-center text-primary-600 font-bold gap-2">
               Verrouiller ce module <ChevronRight size={20} className="group-hover:translate-x-2 transition-transform" />
             </div>

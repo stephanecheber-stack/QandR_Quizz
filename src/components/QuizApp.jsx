@@ -4,6 +4,7 @@ import { db } from '../firebase';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import hamData from '../data/ham_questions.json';
 import samData from '../data/sam_questions.json';
+import itsmData from '../data/itsm_questions.json';
 
 const QuizApp = ({ user, userData, onGoHome }) => {
   // --- Module Selection State (Now from Props/Firestore) ---
@@ -29,7 +30,10 @@ const QuizApp = ({ user, userData, onGoHome }) => {
   // --- Dynamic Dataset Base ---
   const allModuleQuestions = useMemo(() => {
     if (!selectedModule) return [];
-    return selectedModule === 'HAM' ? hamData : samData;
+    if (selectedModule === 'HAM') return hamData;
+    if (selectedModule === 'SAM') return samData;
+    if (selectedModule === 'ITSM') return itsmData;
+    return [];
   }, [selectedModule]);
 
   // --- Cloud Sync Logic ---
@@ -478,7 +482,7 @@ Consignes :
         <div className="p-8">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
-                <span className={`px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-widest ${selectedModule === 'HAM' ? 'bg-orange-100 text-orange-600' : 'bg-blue-100 text-blue-600'}`}>
+                <span className={`px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-widest ${selectedModule === 'HAM' ? 'bg-orange-100 text-orange-600' : selectedModule === 'ITSM' ? 'bg-purple-100 text-purple-600' : 'bg-blue-100 text-blue-600'}`}>
                     Module {selectedModule}
                 </span>
                 {currentQuestion.type === 'matching' && (
