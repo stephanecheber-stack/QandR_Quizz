@@ -1,478 +1,361 @@
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { CheckCircle2, XCircle, ChevronRight, RotateCcw, Award, BookOpen, Home, Settings, Lightbulb, Clock, Sparkles, Loader2 } from 'lucide-react';
-import { db } from '../firebase';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import hamData from '../data/ham_questions.json';
-import samData from '../data/sam_questions.json';
-import itsmData from '../data/itsm_questions.json';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { BookOpen, ChevronRight, Home, RotateCcw, Timer, XCircle } from 'lucide-react'
+import AnswerFeedback from './AnswerFeedback'
+import QuestionCard from './QuestionCard'
+import QuizResults from './QuizResults'
+import { getModule } from '../modules'
+import { createSeed, deriveSeed, seededShuffle } from '../lib/shuffle'
+import { EMPTY_PROGRESS, loadProgress, resetProgress, saveProgress } from '../lib/progress'
+import { emptyAnswer, hasAnswer, isAnswerCorrect, isMatching } from '../lib/quiz'
+import { formatDuration } from '../lib/format'
 
-const QuizApp = ({ user, userData, onGoHome }) => {
-  // --- Module Selection State (Now from Props/Firestore) ---
-  const selectedModule = userData?.lockedModule;
+/** Délai avant écriture Firestore : évite une écriture par frappe d'état. */
+const SAVE_DEBOUNCE_MS = 800
 
-  // --- Core State ---
-  const [currentQuestions, setCurrentQuestions] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [score, setScore] = useState(0);
-  const [sessionErrors, setSessionErrors] = useState([]);
-  
-  const [selectedAnswers, setSelectedAnswers] = useState([]); // Array for MCQ, Object for Matching
-  const [isValidated, setIsValidated] = useState(false);
-  const [isFinished, setIsFinished] = useState(false);
-  const [showExplanation, setShowExplanation] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(30);
-  const [isSyncing, setIsSyncing] = useState(false);
-  const [syncError, setSyncError] = useState(false);
-  const [gemmaExplanation, setGemmaExplanation] = useState("");
-  const [isGemmaLoading, setIsGemmaLoading] = useState(false);
-  const [showGemma, setShowGemma] = useState(false);
+const QuizApp = ({ user, moduleId, onGoHome }) => {
+  const module = getModule(moduleId)
 
-  // --- Dynamic Dataset Base ---
-  const allModuleQuestions = useMemo(() => {
-    if (!selectedModule) return [];
-    if (selectedModule === 'HAM') return hamData;
-    if (selectedModule === 'SAM') return samData;
-    if (selectedModule === 'ITSM') return itsmData;
-    return [];
-  }, [selectedModule]);
+  const [status, setStatus] = useState('loading')
+  const [syncError, setSyncError] = useState(false)
+  const [allQuestions, setAllQuestions] = useState([])
 
-  // --- Cloud Sync Logic ---
-  const saveProgressToCloud = useCallback(async (module, idx, currentScore, errors) => {
-    if (!user || !module) return;
-    try {
-      const userRef = doc(db, "users", user.uid);
-      await setDoc(userRef, {
-        progress: {
-          [module]: {
-            currentIndex: idx,
-            score: currentScore,
-            sessionErrors: errors.map(q => ({ id: q.id || q.question_id, question: q.question }))
-          }
-        }
-      }, { merge: true });
-    } catch (error) {
-      console.error("Error saving progress to Firestore:", error);
-      setSyncError(true);
-    }
-  }, [user]);
+  // --- État de la session en cours ---
+  const [orderSeed, setOrderSeed] = useState(null)
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [score, setScore] = useState(0)
+  const [errorIds, setErrorIds] = useState([])
+  const [timings, setTimings] = useState({})
+  const [isFinished, setIsFinished] = useState(false)
 
-  const loadProgressFromCloud = useCallback(async (module) => {
-    if (!user || !module) return null;
-    try {
-      const userRef = doc(db, "users", user.uid);
-      const docSnap = await getDoc(userRef);
-      if (docSnap.exists() && docSnap.data().progress && docSnap.data().progress[module]) {
-        return docSnap.data().progress[module];
+  // `null` = parcours complet du module ; un tableau = session de révision.
+  const [revisionQuestions, setRevisionQuestions] = useState(null)
+  const isRevisionMode = revisionQuestions !== null
+
+  const [answer, setAnswer] = useState([])
+  const [isValidated, setIsValidated] = useState(false)
+  const [elapsed, setElapsed] = useState(0)
+  const questionStartedAt = useRef(Date.now())
+
+  // L'ordre des questions dérive du seed : il est donc identique après un
+  // rechargement de page, mais différent à chaque nouvelle session.
+  const orderedQuestions = useMemo(
+    () => (orderSeed == null ? [] : seededShuffle(allQuestions, orderSeed)),
+    [allQuestions, orderSeed],
+  )
+
+  const questions = revisionQuestions ?? orderedQuestions
+  const currentQuestion = questions[currentIndex]
+  const totalQuestions = questions.length
+
+  /** Positionne la session sur une question et réarme le chrono. */
+  const startQuestion = useCallback((index, list) => {
+    setCurrentIndex(index)
+    setAnswer(emptyAnswer(list[index]))
+    setIsValidated(false)
+    questionStartedAt.current = Date.now()
+    setElapsed(0)
+  }, [])
+
+  // --- Chargement des questions + de la progression ---
+  useEffect(() => {
+    if (!module) return undefined
+    let cancelled = false
+
+    setStatus('loading')
+    setRevisionQuestions(null)
+    setIsFinished(false)
+    setIsValidated(false)
+
+    const hydrate = async () => {
+      // Les questions et la progression sont indépendantes : on les charge en
+      // parallèle. Un échec Firestore ne doit pas empêcher de jouer hors ligne.
+      const [questionsResult, progressResult] = await Promise.allSettled([
+        module.load(),
+        loadProgress(user.uid, moduleId),
+      ])
+      if (cancelled) return
+
+      if (questionsResult.status === 'rejected') {
+        console.error('Chargement des questions impossible :', questionsResult.reason)
+        setStatus('error')
+        return
       }
-    } catch (error) {
-      console.error("Error loading progress from Firestore:", error);
-      setSyncError(true);
-    }
-    return null;
-  }, [user]);
 
-  // --- Load Data when Module is selected ---
-  useEffect(() => {
-    const loadData = async () => {
-      if (selectedModule) {
-        setIsSyncing(true);
-        const cloudData = await loadProgressFromCloud(selectedModule);
-        
-        if (cloudData) {
-          setCurrentIndex(cloudData.currentIndex || 0);
-          setScore(cloudData.score || 0);
-          
-          const errorIds = (cloudData.sessionErrors || []).map(e => e.id);
-          const reconstructedErrors = allModuleQuestions.filter(q => errorIds.includes(q.id || q.question_id));
-          setSessionErrors(reconstructedErrors);
-          setCurrentQuestions(allModuleQuestions);
-        } else {
-          setCurrentQuestions(allModuleQuestions);
-          setCurrentIndex(0);
-          setScore(0);
-          setSessionErrors([]);
-        }
-        setIsSyncing(false);
+      if (progressResult.status === 'rejected') {
+        console.error('Lecture de la progression impossible :', progressResult.reason)
+        setSyncError(true)
+      } else {
+        setSyncError(false)
       }
-    };
 
-    loadData();
-  }, [selectedModule, allModuleQuestions, loadProgressFromCloud]);
+      const loaded = questionsResult.value
+      const progress = (progressResult.status === 'fulfilled' && progressResult.value) || EMPTY_PROGRESS
+      const seed = progress.orderSeed ?? createSeed()
+      const list = seededShuffle(loaded, seed)
+      // Le nombre de questions d'un module peut changer : on borne l'index.
+      const index = Math.min(Math.max(progress.currentIndex, 0), Math.max(list.length - 1, 0))
 
-  // --- Persistent Storage (Local & Cloud) ---
+      setAllQuestions(loaded)
+      setOrderSeed(seed)
+      setScore(progress.score)
+      setErrorIds(progress.errorIds)
+      setTimings(progress.timings ?? {})
+      setIsFinished(Boolean(progress.finished) && list.length > 0)
+      startQuestion(index, list)
+      setStatus('ready')
+    }
+
+    hydrate()
+    return () => {
+      cancelled = true
+    }
+  }, [user.uid, moduleId, module, startQuestion])
+
+  // --- Sauvegarde différée (jamais en mode révision : la progression réelle du
+  //     module doit rester intacte pendant qu'on rejoue ses erreurs) ---
   useEffect(() => {
-    if (selectedModule && currentQuestions.length > 0 && !isSyncing) {
-      saveProgressToCloud(selectedModule, currentIndex, score, sessionErrors);
-    }
-  }, [currentIndex, score, sessionErrors, selectedModule, currentQuestions, saveProgressToCloud, isSyncing]);
+    if (status !== 'ready' || isRevisionMode) return undefined
 
-  const currentQuestion = currentQuestions[currentIndex];
-
-  // --- MCQ: Shuffled Options ---
-  const shuffledOptions = useMemo(() => {
-    if (!currentQuestion || currentQuestion.type === 'matching') return [];
-    return Object.entries(currentQuestion.options).sort(() => Math.random() - 0.5);
-  }, [currentQuestion?.id || currentQuestion?.question_id]);
-
-  // --- Matching: Shuffled Right Column Values ---
-  const shuffledMatchingValues = useMemo(() => {
-    if (!currentQuestion || currentQuestion.type !== 'matching') return [];
-    return Object.values(currentQuestion.pairs).sort(() => Math.random() - 0.5);
-  }, [currentQuestion?.id || currentQuestion?.question_id]);
-
-  // --- Timer Logic ---
-  useEffect(() => {
-    if (timeLeft === 0 || isValidated || isFinished || !selectedModule) return;
-
-    const timer = setInterval(() => {
-      setTimeLeft(prev => prev - 1);
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [timeLeft, isValidated, isFinished, selectedModule]);
-
-  useEffect(() => {
-    if (selectedModule) {
-      setTimeLeft(30);
-    }
-  }, [currentIndex, currentQuestion?.id || currentQuestion?.question_id, selectedModule]);
-
-  const getTimerColorClass = () => {
-    if (timeLeft > 10) return "text-gray-500";
-    if (timeLeft > 5) return "text-orange-500";
-    if (timeLeft > 0) return "text-red-500";
-    return "text-gray-500";
-  };
-
-  // --- MCQ: Answer Toggle ---
-  const handleOptionToggle = (optionKey) => {
-    if (isValidated) return;
-
-    setSelectedAnswers(prev => {
-        const isCurrentlyArray = Array.isArray(prev);
-        const currentSelection = isCurrentlyArray ? prev : [];
-        
-        return currentSelection.includes(optionKey) 
-          ? currentSelection.filter(key => key !== optionKey) 
-          : [...currentSelection, optionKey];
-    });
-  };
-
-  // --- Matching: Value Association ---
-  const handleMatchingChange = (key, value) => {
-    if (isValidated) return;
-    
-    setSelectedAnswers(prev => {
-        const currentSelection = (typeof prev === 'object' && !Array.isArray(prev)) ? prev : {};
-        const newSelection = { ...currentSelection };
-        if (value === "") {
-            delete newSelection[key];
-        } else {
-            newSelection[key] = value;
-        }
-        return newSelection;
-    });
-  };
-
-  const handleValidate = () => {
-    let isCorrect = false;
-
-    if (currentQuestion.type === 'matching') {
-        const userPairs = selectedAnswers || {};
-        const correctPairs = currentQuestion.pairs;
-        const keys = Object.keys(correctPairs);
-        
-        isCorrect = keys.length > 0 && 
-                   keys.every(k => userPairs[k] === correctPairs[k]) &&
-                   Object.keys(userPairs).length === keys.length;
-    } else {
-        // MCQ logic
-        const userSelection = Array.isArray(selectedAnswers) ? selectedAnswers : [];
-        if (userSelection.length === 0) return;
-        
-        const correctAnswers = currentQuestion.correct_answers;
-        isCorrect = 
-          userSelection.length === correctAnswers.length && 
-          userSelection.every(val => correctAnswers.includes(val));
-    }
-
-    if (isCorrect) {
-      setScore(prev => prev + 1);
-    } else {
-      setSessionErrors(prev => {
-        const qId = currentQuestion.id || currentQuestion.question_id;
-        if (prev.find(q => (q.id || q.question_id) === qId)) return prev;
-        return [...prev, currentQuestion];
-      });
-    }
-
-    setIsValidated(true);
-  };
-
-  const handleNext = () => {
-    if (currentIndex < currentQuestions.length - 1) {
-      const nextIndex = currentIndex + 1;
-      const nextQuestion = currentQuestions[nextIndex];
-      setCurrentIndex(nextIndex);
-      setSelectedAnswers(nextQuestion.type === 'matching' ? {} : []);
-      setIsValidated(false);
-      setShowExplanation(false);
-      setShowGemma(false);
-      setGemmaExplanation("");
-    } else {
-      setIsFinished(true);
-    }
-  };
-
-  const fetchGemmaExplanation = async () => {
-    if (isGemmaLoading) return;
-    
-    setIsGemmaLoading(true);
-    setShowGemma(true);
-    setGemmaExplanation("");
-
-    try {
-      const prompt = `Tu es un expert pédagogique en ${selectedModule}. Explique la question suivante de manière claire et détaillée pour un étudiant.
-Question : ${currentQuestion.question}
-Options : ${currentQuestion.type === 'matching' ? JSON.stringify(currentQuestion.pairs) : JSON.stringify(currentQuestion.options)}
-Réponses correctes : ${currentQuestion.type === 'matching' ? 'Toutes les paires listées' : JSON.stringify(currentQuestion.correct_answers)}
-
-Consignes :
-1. Sois encourageant.
-2. Explique pourquoi les réponses correctes sont justes.
-3. Donne un exemple concret si possible.
-4. Réponds exclusivement en Français.
-5. Utilise un format structuré avec des points clés.`;
-
-      const response = await fetch('/ollama/api/generate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          model: 'gemma4',
-          prompt: prompt,
-          stream: false
+    const timeout = setTimeout(() => {
+      saveProgress(user.uid, moduleId, { currentIndex, score, errorIds, timings, orderSeed, finished: isFinished })
+        .then(() => setSyncError(false))
+        .catch((error) => {
+          console.error('Écriture de la progression impossible :', error)
+          setSyncError(true)
         })
-      });
+    }, SAVE_DEBOUNCE_MS)
 
-      if (!response.ok) throw new Error("Erreur de communication avec Gemma");
-      const data = await response.json();
-      setGemmaExplanation(data.response);
-    } catch (error) {
-      console.error("Gemma Error:", error);
-      setGemmaExplanation("Désolé, je n'ai pas pu générer d'explication pour le moment. Vérifiez que Ollama est bien lancé avec le modèle gemma4.");
-    } finally {
-      setIsGemmaLoading(false);
-    }
-  };
+    return () => clearTimeout(timeout)
+  }, [status, isRevisionMode, user.uid, moduleId, currentIndex, score, errorIds, timings, orderSeed, isFinished])
 
-  const handleRestart = async () => {
-    if (window.confirm("Êtes-vous sûr de vouloir tout recommencer ? Votre progression pour ce module sera perdue.")) {
-      setCurrentIndex(0);
-      setScore(0);
-      setCurrentQuestions(allModuleQuestions);
-      setSessionErrors([]);
-      const startQuestion = allModuleQuestions[0];
-      setSelectedAnswers(startQuestion?.type === 'matching' ? {} : []);
-      setIsValidated(false);
-      setIsFinished(false);
-      setShowExplanation(false);
-      setShowGemma(false);
-      setGemmaExplanation("");
-      
-      // Reset Cloud
-      if (user && selectedModule) {
-        try {
-          const userRef = doc(db, "users", user.uid);
-          await setDoc(userRef, {
-            progress: {
-              [selectedModule]: {
-                currentIndex: 0,
-                score: 0,
-                sessionErrors: []
-              }
-            }
-          }, { merge: true });
-        } catch (error) {
-          console.error("Error resetting cloud progress:", error);
-          setSyncError(true);
-        }
-      }
-    }
-  };
+  // --- Chronomètre : temps passé sur la question courante ---
+  useEffect(() => {
+    if (status !== 'ready' || isValidated || isFinished || !currentQuestion) return undefined
 
-  const handleReplayErrors = () => {
-    setCurrentIndex(0);
-    setScore(0);
-    const questionsToReplay = sessionErrors;
-    setCurrentQuestions(questionsToReplay);
-    setSessionErrors([]);
-    const startQuestion = questionsToReplay[0];
-    setSelectedAnswers(startQuestion?.type === 'matching' ? {} : []);
-    setIsValidated(false);
-    setIsFinished(false);
-    setShowExplanation(false);
-    setShowGemma(false);
-    setGemmaExplanation("");
-  };
+    const interval = setInterval(() => {
+      setElapsed(Math.round((Date.now() - questionStartedAt.current) / 1000))
+    }, 1000)
 
-  // --- RENDER: Results ---
-  if (isFinished) {
-    const totalQuestions = currentQuestions.length;
-    const percentage = Math.round((score / totalQuestions) * 100);
-    const hasPerfectScore = sessionErrors.length === 0;
-    
-    let colorClass = "text-red-500";
-    let message = "Continuez vos efforts ! La pratique est la clé.";
-    
-    if (hasPerfectScore) {
-      colorClass = "text-green-500 text-3xl font-black";
-      message = "Félicitations, vous maîtrisez toutes les questions !";
-    } else if (percentage >= 80) {
-      colorClass = "text-green-500";
-      message = "Excellent ! Vous maîtrisez parfaitement le sujet.";
-    } else if (percentage >= 50) {
-      colorClass = "text-orange-500";
-      message = "Pas mal ! Encore un peu de révision pour atteindre l'excellence.";
-    }
+    return () => clearInterval(interval)
+  }, [status, isValidated, isFinished, currentQuestion])
 
-    return (
-      <div className="flex flex-col items-center justify-center min-h-[80vh] animate-fade-in px-4 py-8">
-        <div className="glass-card p-10 rounded-3xl text-center max-w-lg w-full">
-          <div className="bg-primary-100 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm">
-            <Award className="text-primary-600 w-12 h-12" />
-          </div>
-          
-          <h2 className="text-4xl font-black text-gray-800 mb-2">Résultats</h2>
-          <p className="text-gray-500 font-medium mb-8">
-            {currentQuestions.length < allModuleQuestions.length ? "Mode Révision" : `Sujet : Module ${selectedModule}`}
-          </p>
-          
-          {!hasPerfectScore && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-              <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-white/50 shadow-sm">
-                <div className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-1">Score</div>
-                <div className="text-3xl font-black text-gray-800">
-                  {score} <span className="text-lg text-gray-400 font-normal">/ {totalQuestions}</span>
-                </div>
-              </div>
-              
-              <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-6 border border-white/50 shadow-sm">
-                <div className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-1">Réussite</div>
-                <div className={`text-3xl font-black ${colorClass}`}>
-                  {percentage}%
-                </div>
-              </div>
-            </div>
-          )}
-          
-          <div className={`mb-10 font-bold ${hasPerfectScore ? colorClass : 'text-lg font-medium text-gray-700 italic'}`}>
-            {hasPerfectScore ? (
-              <div className="flex flex-col items-center gap-4">
-                <CheckCircle2 size={64} className="text-green-500 animate-bounce" />
-                <span>{message}</span>
-              </div>
-            ) : (
-              `"${message}"`
-            )}
-          </div>
+  // --- Ordre des propositions, stable pour une même question et un même seed ---
+  const optionOrder = useMemo(() => {
+    if (!currentQuestion || isMatching(currentQuestion)) return []
+    return seededShuffle(Object.entries(currentQuestion.options), deriveSeed(orderSeed ?? 0, currentQuestion.id))
+  }, [currentQuestion, orderSeed])
 
-          {!hasPerfectScore && sessionErrors.length > 0 && (
-            <div className="mb-10 text-left">
-              <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4 flex items-center gap-2">
-                <XCircle size={14} className="text-red-400" />
-                Vos points d'amélioration ({sessionErrors.length})
-              </h3>
-              <div className="space-y-3 max-h-60 overflow-y-auto pr-2 custom-scrollbar">
-                {sessionErrors.map((q, idx) => (
-                  <div key={(q.id || q.question_id) || idx} className="p-4 bg-red-50/50 border border-red-100 rounded-xl text-left">
-                    <p className="text-xs font-bold text-red-400 mb-1">Question {q.id || q.question_id || idx + 1}</p>
-                    <p className="text-sm text-gray-700 font-medium leading-snug">{q.question}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-          
-          <div className="flex flex-col gap-3">
-            {!hasPerfectScore && sessionErrors.length > 0 && (
-              <button 
-                onClick={handleReplayErrors}
-                className="btn bg-orange-500 hover:bg-orange-600 text-white w-full flex items-center justify-center gap-2 py-5 text-xl shadow-lg shadow-orange-500/20"
-              >
-                <Award size={24} />
-                Rejouer uniquement mes erreurs
-              </button>
-            )}
-            
-            <button 
-              onClick={handleRestart}
-              className="btn btn-primary w-full flex items-center justify-center gap-2 py-5 text-xl shadow-lg shadow-primary-500/20"
-            >
-              <RotateCcw size={24} />
-              Recommencer tout le QCM
-            </button>
-          </div>
-        </div>
-      </div>
-    );
+  const matchingValues = useMemo(() => {
+    if (!currentQuestion || !isMatching(currentQuestion)) return []
+    return seededShuffle(Object.values(currentQuestion.pairs), deriveSeed(orderSeed ?? 0, currentQuestion.id))
+  }, [currentQuestion, orderSeed])
+
+  const errorQuestions = useMemo(() => {
+    const ids = new Set(errorIds)
+    return allQuestions.filter((question) => ids.has(question.id))
+  }, [allQuestions, errorIds])
+
+  const isCurrentCorrect = isAnswerCorrect(currentQuestion, answer)
+
+  // --- Interactions ---
+  const handleOptionToggle = (optionKey) => {
+    if (isValidated) return
+    setAnswer((previous) => {
+      const selection = Array.isArray(previous) ? previous : []
+      return selection.includes(optionKey)
+        ? selection.filter((key) => key !== optionKey)
+        : [...selection, optionKey]
+    })
   }
 
-  // --- RENDER: Main Quiz ---
-  if (!currentQuestion) return (
-    <div className="flex items-center justify-center min-h-[50vh]">
-        <div className="animate-pulse text-gray-400 font-medium">Chargement du module...</div>
-    </div>
-  );
+  const handleMatchingChange = (key, value) => {
+    if (isValidated) return
+    setAnswer((previous) => {
+      const next = { ...(previous && !Array.isArray(previous) ? previous : {}) }
+      if (value === '') delete next[key]
+      else next[key] = value
+      return next
+    })
+  }
 
-  const totalQuestions = currentQuestions.length;
+  const handleValidate = () => {
+    if (isValidated || !hasAnswer(currentQuestion, answer)) return
+
+    const spent = Math.round((Date.now() - questionStartedAt.current) / 1000)
+    setElapsed(spent)
+    setTimings((previous) => ({ ...previous, [currentQuestion.id]: spent }))
+
+    if (isAnswerCorrect(currentQuestion, answer)) {
+      setScore((previous) => previous + 1)
+    } else {
+      setErrorIds((previous) =>
+        previous.includes(currentQuestion.id) ? previous : [...previous, currentQuestion.id],
+      )
+    }
+
+    setIsValidated(true)
+  }
+
+  const handleNext = () => {
+    if (currentIndex < totalQuestions - 1) startQuestion(currentIndex + 1, questions)
+    else setIsFinished(true)
+  }
+
+  const handleReplayErrors = () => {
+    if (errorQuestions.length === 0) return
+    const list = seededShuffle(errorQuestions, createSeed())
+    setRevisionQuestions(list)
+    setScore(0)
+    setErrorIds([])
+    setTimings({})
+    setIsFinished(false)
+    startQuestion(0, list)
+  }
+
+  const handleRestart = async () => {
+    const confirmed = window.confirm(
+      'Êtes-vous sûr de vouloir tout recommencer ? Votre progression pour ce module sera perdue.',
+    )
+    if (!confirmed) return
+
+    const seed = createSeed()
+    setRevisionQuestions(null)
+    setOrderSeed(seed)
+    setScore(0)
+    setErrorIds([])
+    setTimings({})
+    setIsFinished(false)
+    startQuestion(0, seededShuffle(allQuestions, seed))
+
+    try {
+      await resetProgress(user.uid, moduleId, seed)
+      setSyncError(false)
+    } catch (error) {
+      console.error('Réinitialisation de la progression impossible :', error)
+      setSyncError(true)
+    }
+  }
+
+  // --- Rendu ---
+  const syncBanner = syncError && (
+    <div
+      role="alert"
+      className="fixed bottom-4 right-4 z-50 flex items-center gap-3 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl shadow-lg animate-fade-in"
+    >
+      <XCircle size={16} aria-hidden="true" />
+      <span className="text-sm font-bold">Erreur de synchronisation. Progression locale uniquement.</span>
+      <button
+        type="button"
+        onClick={() => setSyncError(false)}
+        aria-label="Masquer l'alerte de synchronisation"
+        className="ml-1 text-red-400 hover:text-red-600 font-black"
+      >
+        ✕
+      </button>
+    </div>
+  )
+
+  if (!module) {
+    return (
+      <div className="flex flex-col items-center justify-center gap-4 min-h-[50vh] px-4 text-center">
+        <p className="text-gray-500 font-bold">Module « {moduleId} » introuvable.</p>
+        <button type="button" onClick={onGoHome} className="btn btn-primary">
+          Choisir un module
+        </button>
+      </div>
+    )
+  }
+
+  if (status === 'error') {
+    return (
+      <div className="flex flex-col items-center justify-center gap-4 min-h-[50vh] px-4 text-center">
+        <p className="text-gray-600 font-bold">Impossible de charger les questions du module {module.title}.</p>
+        <button type="button" onClick={() => window.location.reload()} className="btn btn-primary">
+          Réessayer
+        </button>
+      </div>
+    )
+  }
+
+  if (status === 'loading' || !currentQuestion) {
+    return (
+      <div className="flex items-center justify-center min-h-[50vh]">
+        <p className="animate-pulse text-gray-400 font-medium">Chargement du module…</p>
+      </div>
+    )
+  }
+
+  if (isFinished) {
+    return (
+      <>
+        {syncBanner}
+        <QuizResults
+          moduleId={moduleId}
+          isRevisionMode={isRevisionMode}
+          score={score}
+          questions={questions}
+          errors={errorQuestions}
+          timings={timings}
+          onReplayErrors={handleReplayErrors}
+          onRestart={handleRestart}
+        />
+      </>
+    )
+  }
 
   return (
     <div className="max-w-3xl mx-auto w-full py-8 px-4 animate-fade-in">
-      {syncError && (
-        <div className="fixed bottom-4 right-4 z-50 flex items-center gap-3 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl shadow-lg animate-fade-in">
-          <XCircle size={16} />
-          <span className="text-sm font-bold">Erreur de synchronisation. Progression locale uniquement.</span>
-          <button onClick={() => setSyncError(false)} className="ml-1 text-red-400 hover:text-red-600 font-black">✕</button>
-        </div>
-      )}
-      {/* progress header */}
+      {syncBanner}
+
       <div className="flex flex-col gap-4 mb-8">
-        <div className="flex justify-between items-center text-sm font-semibold text-gray-500">
-          <div className="flex items-center gap-2 text-gray-400 bg-white/50 px-3 py-1.5 rounded-full border border-gray-100 shadow-sm">
-            <Settings size={18} className="text-primary-500" />
-            <span className="font-bold">Module {selectedModule}</span>
-          </div>
-          
+        <div className="flex flex-wrap justify-between items-center gap-3 text-sm font-semibold text-gray-500">
+          <span className="flex items-center gap-2 text-gray-400 bg-white/50 px-3 py-1.5 rounded-full border border-gray-100 shadow-sm">
+            <module.icon size={18} className="text-primary-500" aria-hidden="true" />
+            <span className="font-bold">Module {module.title}</span>
+          </span>
+
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-2 text-gray-500">
-              <BookOpen size={16} className="text-primary-500" />
-               <span className="text-gray-800 font-black">{currentIndex + 1}</span> / {totalQuestions}
+              <BookOpen size={16} className="text-primary-500" aria-hidden="true" />
+              <span className="text-gray-800 font-black tabular-nums">{currentIndex + 1}</span> / {totalQuestions}
             </span>
+
             <div className="flex items-center gap-1.5">
-              <span className="bg-primary-50 text-primary-700 px-3 py-1.5 rounded-full border border-primary-100 flex items-center gap-2 font-bold">
-                {currentQuestions.length < allModuleQuestions.length && <Award size={14} className="text-orange-500" />}
+              <span className="bg-primary-50 text-primary-700 px-3 py-1.5 rounded-full border border-primary-100 font-bold tabular-nums">
                 {score} pts
               </span>
               <button
+                type="button"
                 onClick={onGoHome}
                 className="p-2 text-gray-400 hover:text-primary-500 hover:bg-primary-50 rounded-full transition-colors"
                 title="Changer de module"
+                aria-label="Changer de module"
               >
-                <Home size={18} />
+                <Home size={18} aria-hidden="true" />
               </button>
-              <button 
+              <button
+                type="button"
                 onClick={handleRestart}
                 className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-full transition-colors"
                 title="Recommencer"
+                aria-label="Recommencer le module"
               >
-                <RotateCcw size={18} />
+                <RotateCcw size={18} aria-hidden="true" />
               </button>
             </div>
           </div>
         </div>
-        <div className="h-2 w-full bg-gray-200 rounded-full overflow-hidden shadow-inner">
-          <div 
-            className="h-full bg-primary-500 transition-all duration-500 shadow-[0_0_10px_rgba(var(--primary-500),0.5)]" 
+
+        <div
+          className="h-2 w-full bg-gray-200 rounded-full overflow-hidden shadow-inner"
+          role="progressbar"
+          aria-valuemin={0}
+          aria-valuemax={totalQuestions}
+          aria-valuenow={currentIndex + 1}
+          aria-label="Avancement du quiz"
+        >
+          <div
+            className="h-full bg-primary-500 transition-all duration-500"
             style={{ width: `${((currentIndex + 1) / totalQuestions) * 100}%` }}
           />
         </div>
@@ -480,261 +363,78 @@ Consignes :
 
       <div className="glass-card rounded-3xl overflow-hidden animate-slide-up shadow-2xl border border-white/40">
         <div className="p-8">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
-                <span className={`px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-widest ${selectedModule === 'HAM' ? 'bg-orange-100 text-orange-600' : selectedModule === 'ITSM' ? 'bg-purple-100 text-purple-600' : 'bg-blue-100 text-blue-600'}`}>
-                    Module {selectedModule}
-                </span>
-                {currentQuestion.type === 'matching' && (
-                    <span className="bg-green-100 text-green-600 px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-widest">
-                        Association
-                    </span>
-                )}
-                {currentQuestions.length < allModuleQuestions.length && (
-                    <span className="bg-purple-100 text-purple-600 px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-widest">
-                        Révision
-                    </span>
-                )}
-            </div>
-
-            <div className={`flex items-center gap-2 font-bold transition-all duration-300 ${getTimerColorClass()}`}>
-              <Clock size={18} className={timeLeft <= 5 && timeLeft > 0 ? "animate-pulse" : ""} />
-              <span className="text-sm tracking-tighter">
-                {timeLeft > 0 ? `${timeLeft}s` : "Time's up"}
+          <div className="flex items-center justify-between gap-3 mb-4">
+            <div className="flex flex-wrap items-center gap-2">
+              <span
+                className={`px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-widest ${module.theme.badge}`}
+              >
+                Module {module.title}
               </span>
-            </div>
-          </div>
-          
-          <h1 className="text-2xl md:text-3xl font-black text-gray-800 leading-tight mb-8">
-            {currentQuestion.question.split(/(\([^)]+\))/g).map((part, index) => 
-              part.startsWith('(') && part.endsWith(')') ? (
-                <span key={index} className="text-red-600 font-bold">
-                  {part}
+              {isMatching(currentQuestion) && (
+                <span className="bg-green-100 text-green-600 px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-widest">
+                  Association
                 </span>
-              ) : (
-                part
-              )
-            )}
-          </h1>
-
-          {/* --- UI COMPONENT: Matching Questions --- */}
-          {currentQuestion.type === 'matching' ? (
-            <div className="space-y-4">
-                {Object.keys(currentQuestion.pairs).map((key) => {
-                    const userSelection = selectedAnswers[key] || "";
-                    const isCorrect = userSelection === currentQuestion.pairs[key];
-                    
-                    let selectClasses = "bg-gray-50 border-gray-200 focus:bg-white focus:border-primary-500 focus:ring-4 focus:ring-primary-100";
-                    
-                    if (isValidated) {
-                        selectClasses = isCorrect 
-                            ? "bg-green-50 border-green-500 text-green-700 shadow-[0_0_10px_rgba(34,197,94,0.1)] pr-10" 
-                            : "bg-red-50 border-red-500 text-red-700 shadow-[0_0_10px_rgba(239,68,68,0.1)] pr-10";
-                    }
-
-                    return (
-                        <div key={key} className="flex flex-col sm:flex-row sm:items-center gap-4 p-5 bg-white border border-gray-100 rounded-2xl group hover:shadow-md transition-all duration-300">
-                            <div className="flex-1 font-bold text-gray-700 min-w-0 break-words">
-                                {key}
-                            </div>
-                            <div className="relative flex-1">
-                                <select 
-                                    value={userSelection}
-                                    onChange={(e) => handleMatchingChange(key, e.target.value)}
-                                    disabled={isValidated}
-                                    className={`w-full p-3.5 rounded-xl border-2 font-bold text-sm appearance-none cursor-pointer transition-all duration-300 outline-none ${selectClasses}`}
-                                >
-                                    <option value="">Sélectionnez une correspondance...</option>
-                                    {shuffledMatchingValues.map((val) => (
-                                        <option key={val} value={val}>{val}</option>
-                                    ))}
-                                </select>
-                                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400 group-hover:text-primary-500 transition-colors">
-                                    {isValidated ? (
-                                        isCorrect ? <CheckCircle2 size={18} className="text-green-500" /> : <XCircle size={18} className="text-red-500" />
-                                    ) : (
-                                        <ChevronRight size={18} className="rotate-90" />
-                                    )}
-                                </div>
-                            </div>
-                        </div>
-                    );
-                })}
+              )}
+              {isRevisionMode && (
+                <span className="bg-orange-100 text-orange-600 px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-widest">
+                  Révision
+                </span>
+              )}
             </div>
-          ) : (
-            /* --- UI COMPONENT: MCQ Questions --- */
-            <div className="space-y-3">
-                {shuffledOptions.map(([originalKey, value], index) => {
-                const displayLetter = String.fromCharCode(65 + index);
-                const userSelection = Array.isArray(selectedAnswers) ? selectedAnswers : [];
-                const isSelected = userSelection.includes(originalKey);
-                const isCorrect = currentQuestion.correct_answers.includes(originalKey);
-                
-                let statusClasses = "border-gray-100 hover:border-primary-200 hover:bg-primary-50 hover:translate-x-1";
-                
-                if (isSelected) {
-                    statusClasses = "border-primary-500 bg-primary-50 ring-2 ring-primary-500/20 translate-x-1";
-                }
 
-                if (isValidated) {
-                    if (isCorrect) {
-                        statusClasses = "border-green-500 bg-green-50 ring-0 translate-x-0";
-                    } else if (isSelected && !isCorrect) {
-                        statusClasses = "border-red-500 bg-red-50 ring-0 translate-x-0";
-                    } else {
-                        statusClasses = "border-gray-100 opacity-60 translate-x-0";
-                    }
-                }
+            <span
+              className="flex items-center gap-2 font-bold text-gray-400 tabular-nums"
+              title="Temps passé sur cette question"
+            >
+              <Timer size={18} aria-hidden="true" />
+              <span className="text-sm">{formatDuration(elapsed)}</span>
+            </span>
+          </div>
 
-                return (
-                    <div 
-                    key={`${currentQuestion.id || currentQuestion.question_id}-${originalKey}`}
-                    onClick={() => handleOptionToggle(originalKey)}
-                    className={`
-                        flex items-center gap-4 p-5 border-2 rounded-2xl cursor-pointer transition-all duration-300
-                        ${statusClasses}
-                        ${isValidated ? 'pointer-events-none' : ''}
-                    `}
-                    >
-                    <div className={`
-                        w-11 h-11 flex items-center justify-center rounded-xl font-black text-lg shrink-0 transition-all duration-300
-                        ${isSelected ? 'bg-primary-600 text-white shadow-lg shadow-primary-500/30 rotate-3' : 'bg-gray-100 text-gray-500'}
-                        ${isValidated && isCorrect ? 'bg-green-600 !text-white !rotate-0' : ''}
-                        ${isValidated && isSelected && !isCorrect ? 'bg-red-600 !text-white !rotate-0' : ''}
-                    `}>
-                        {displayLetter}
-                    </div>
-                    <div className="flex-1 text-gray-700 font-bold leading-snug">
-                        {value}
-                    </div>
-                    <div className="shrink-0">
-                        {isValidated ? (
-                        isCorrect ? (
-                            <CheckCircle2 className="text-green-600" size={26} />
-                        ) : isSelected ? (
-                            <XCircle className="text-red-600" size={26} />
-                        ) : null
-                        ) : (
-                        <div className={`
-                            w-6 h-6 border-2 rounded-lg transition-all duration-300
-                            ${isSelected ? 'bg-primary-600 border-primary-600 scale-110' : 'border-gray-200'}
-                        `} />
-                        )}
-                    </div>
-                    </div>
-                );
-                })}
-            </div>
-          )}
+          <QuestionCard
+            question={currentQuestion}
+            answer={answer}
+            isValidated={isValidated}
+            optionOrder={optionOrder}
+            matchingValues={matchingValues}
+            onToggleOption={handleOptionToggle}
+            onMatchingChange={handleMatchingChange}
+          />
         </div>
 
-        {isValidated && (
+        {isValidated ? (
           <div className="bg-gray-50/80 backdrop-blur-md px-8 py-7 border-t border-gray-100 flex flex-col gap-5 animate-fade-in">
-             <div className="flex items-start gap-4">
-              <div className={`mt-1.5 h-3 w-3 rounded-full shrink-0 ${
-                (currentQuestion.type === 'matching' 
-                  ? Object.keys(currentQuestion.pairs).every(k => selectedAnswers[k] === currentQuestion.pairs[k])
-                  : (Array.isArray(selectedAnswers) && selectedAnswers.length === currentQuestion.correct_answers.length && 
-                     selectedAnswers.every(val => currentQuestion.correct_answers.includes(val))))
-                  ? 'bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]' : 'bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.5)]'
-              }`} />
-              <div>
-                <p className="font-black text-gray-900 text-lg">
-                  {(currentQuestion.type === 'matching' 
-                  ? Object.keys(currentQuestion.pairs).every(k => selectedAnswers[k] === currentQuestion.pairs[k])
-                  : (Array.isArray(selectedAnswers) && selectedAnswers.length === currentQuestion.correct_answers.length && 
-                     selectedAnswers.every(val => currentQuestion.correct_answers.includes(val))))
-                    ? "Félicitations ! Toutes les réponses sont correctes." 
-                    : "Certaines réponses sont incorrectes. Regardez les détails ci-dessus."}
-                </p>
-                
-                {currentQuestion.explanation && (
-                  <div className="mt-4 flex flex-col gap-3">
-                    <button 
-                      onClick={() => setShowExplanation(!showExplanation)}
-                      className="flex items-center gap-2 text-primary-600 font-bold text-sm bg-primary-50 px-4 py-2 rounded-xl border border-primary-100 hover:bg-primary-100 transition-colors self-start"
-                    >
-                      <Lightbulb size={16} />
-                      {showExplanation ? "Masquer l'explication" : "Voir l'explication"}
-                    </button>
-                    
-                    {showExplanation && (
-                      <div className="text-slate-700 font-medium text-sm leading-relaxed bg-slate-50 p-4 rounded-xl border border-slate-200 animate-fade-in">
-                        <span className="font-black text-[10px] uppercase tracking-widest text-slate-400 block mb-2">Explication pédagogique</span>
-                        {currentQuestion.explanation}
-                      </div>
-                    )}
-                  </div>
-                )}
+            <AnswerFeedback
+              key={currentQuestion.id}
+              question={currentQuestion}
+              moduleId={moduleId}
+              isCorrect={isCurrentCorrect}
+            />
 
-                {/* --- Gemma AI Section --- */}
-                <div className="mt-4 flex flex-col gap-3">
-                  <div className="flex items-center gap-4">
-                    <button 
-                      onClick={fetchGemmaExplanation}
-                      disabled={isGemmaLoading}
-                      className="flex items-center gap-2 text-purple-600 font-bold text-sm bg-purple-50 px-4 py-2 rounded-xl border border-purple-100 hover:bg-purple-100 transition-all active:scale-95 disabled:opacity-50"
-                    >
-                      {isGemmaLoading ? <Loader2 size={16} className="animate-spin" /> : <Sparkles size={16} />}
-                      Explication Gemma
-                    </button>
-                    
-                    <div className="flex items-center gap-2 px-3 py-1.5 bg-gray-50 border border-gray-100 rounded-lg">
-                      <span className="text-[10px] font-bold text-gray-400 italic">
-                        Généré avec Gemma4 - AI local
-                      </span>
-                    </div>
-                  </div>
-                  
-                  {showGemma && (
-                    <div className="text-slate-700 font-medium text-sm leading-relaxed bg-gradient-to-br from-purple-50 to-white p-5 rounded-2xl border border-purple-100 shadow-sm animate-slide-up relative overflow-hidden group">
-                      <div className="absolute top-0 right-0 p-3 opacity-5 group-hover:opacity-10 transition-opacity">
-                        <Sparkles size={40} className="text-purple-600" />
-                      </div>
-                      <span className="font-black text-[10px] uppercase tracking-widest text-purple-400 block mb-3 flex items-center gap-2">
-                         <Sparkles size={12} /> Intelligence Artificielle local
-                      </span>
-                      
-                      {isGemmaLoading ? (
-                        <div className="flex flex-col gap-2">
-                          <div className="h-4 bg-purple-100/50 rounded animate-pulse w-3/4" />
-                          <div className="h-4 bg-purple-100/50 rounded animate-pulse w-full" />
-                          <div className="h-4 bg-purple-100/50 rounded animate-pulse w-5/6" />
-                        </div>
-                      ) : (
-                        <div className="whitespace-pre-wrap">
-                          {gemmaExplanation}
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-            <button 
+            <button
+              type="button"
               onClick={handleNext}
               className="btn btn-primary w-full flex items-center justify-center gap-3 py-5 text-xl group shadow-xl shadow-primary-500/20 rounded-2xl"
             >
               {currentIndex < totalQuestions - 1 ? 'Question suivante' : 'Voir le score final'}
-              <ChevronRight size={24} className="group-hover:translate-x-2 transition-transform" />
+              <ChevronRight size={24} className="group-hover:translate-x-2 transition-transform" aria-hidden="true" />
             </button>
           </div>
-        )}
-
-        {!isValidated && (
+        ) : (
           <div className="px-8 py-7 border-t border-gray-100 bg-white">
-            <button 
+            <button
+              type="button"
               onClick={handleValidate}
-              disabled={Object.keys(selectedAnswers).length === 0}
+              disabled={!hasAnswer(currentQuestion, answer)}
               className="btn btn-primary w-full py-5 text-xl font-black rounded-2xl shadow-xl shadow-primary-500/10 disabled:opacity-50 disabled:shadow-none"
             >
-              Vérifier mes associations
+              {isMatching(currentQuestion) ? 'Vérifier mes associations' : 'Vérifier ma réponse'}
             </button>
           </div>
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default QuizApp;
+export default QuizApp

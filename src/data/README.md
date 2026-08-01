@@ -1,64 +1,59 @@
-# 🎓 Quiz Center (ServiceNow HAM / SAM)
+# Banques de questions
 
-**Quiz Center** est une plateforme web interactive d'apprentissage et d'entraînement aux certifications ServiceNow (Hardware Asset Management & Software Asset Management). 
+Un fichier JSON par module. Chaque fichier contient un **tableau** de questions,
+encodé en **UTF-8 avec BOM** (les scripts Node retirent le BOM à la lecture et
+le remettent à l'écriture).
 
-Conçue avec une approche "Mobile-first" et "Serverless", l'application offre une expérience fluide, instantanée et persistante, sans nécessiter de création de compte.
+| Fichier | Module | Types de questions |
+| --- | --- | --- |
+| `ham_questions.json` | HAM — Hardware Asset Management | QCM |
+| `sam_questions.json` | SAM — Software Asset Management | QCM + association |
+| `itsm_questions.json` | ITSM — Certification CIS-ITSM | QCM |
 
----
+## Format QCM
 
-## 🚀 1. Vue d'ensemble et Concept
-L'application a été construite comme une **Single Page Application (SPA)**. Contrairement aux sites web classiques, l'interface se charge une seule fois dans le navigateur de l'utilisateur. Le passage d'une question à l'autre se fait instantanément, sans aucun temps de rechargement, offrant une fluidité similaire à celle d'une application mobile native.
+Multi-sélection : une réponse n'est comptée juste que si l'ensemble sélectionné
+correspond exactement à `correct_answers`.
 
----
+```json
+{
+  "id": 42,
+  "question": "Which of the following are asset states? (Choose two.)",
+  "options": { "A": "In stock", "B": "Retired", "C": "Draft" },
+  "correct_answers": ["A", "B"],
+  "explanation": "Texte affiché après validation."
+}
+```
 
-## 🧠 2. Fonctionnalités Pédagogiques Avancées
-Le moteur du Quiz Center a été pensé pour maximiser la rétention d'information (e-learning) :
+Le texte entre parenthèses dans `question` (ex. `(Choose two.)`) est mis en
+rouge automatiquement par l'interface.
 
-* **Anti-mémoire visuelle (Shuffling) :** À chaque tentative, les options des QCM sont mélangées aléatoirement en arrière-plan. L'utilisateur est forcé de lire le contenu de la réponse plutôt que de mémoriser sa position (A, B, C ou D).
-* **Boucle de Flashcards (Revanche) :** Les erreurs de l'utilisateur sont traquées. À la fin du QCM, un mode "Refaire mes erreurs" génère un sous-paquet avec uniquement les questions ratées, créant une boucle de révision infinie jusqu'au sans-faute.
-* **Explications contextuelles :** Après validation d'une réponse, un bouton permet de révéler une explication pédagogique détaillée tirée de la documentation officielle de ServiceNow.
-* **Questions interactives (Matching) :** Support des questions d'association via des listes déroulantes intelligentes, reflétant les véritables conditions d'examen.
+## Format association (`matching`)
 
----
+```json
+{
+  "id": 77,
+  "question": "Associez chaque état à sa définition.",
+  "type": "matching",
+  "pairs": { "In stock": "Asset disponible", "Consumed": "Asset attribué" },
+  "explanation": "Texte affiché après validation."
+}
+```
 
-## 🏗️ 3. Architecture Technologique (Les 3 Piliers)
+Les valeurs de droite sont mélangées et proposées dans des listes déroulantes.
+**Elles doivent être toutes différentes** : deux valeurs identiques rendraient la
+correction ambiguë.
 
-L'architecture suit le principe du **"Data-Driven"** : le moteur (le code) est séparé du carburant (les questions).
+## Ajouter un module
 
-### A. L'Interface (Front-end)
-* **React.js (via Vite) :** Assure la réactivité de l'interface et des performances de rendu extrêmes.
-* **Tailwind CSS :** Framework utilitaire garantissant un design moderne (glassmorphism), épuré et 100% responsive (adapté aux smartphones, tablettes et PC).
-* **Lucide-React :** Bibliothèque d'icônes vectorielles légères.
+1. Déposer le JSON ici.
+2. Ajouter une entrée dans [`src/modules.js`](../modules.js) (`id`, `title`,
+   `icon`, `questionCount`, `load`, `theme`).
+3. Lancer `npm run check:data`.
 
-### B. Le Moteur de Données (JSON)
-Pas de base de données lourde (SQL). La donnée est stockée dans des fichiers statiques :
-* `ham_questions.json`
-* `sam_questions.json`
-* **Avantage :** L'ajout d'un nouveau module (ex: ITSM) consiste simplement à déposer un nouveau fichier JSON dans le répertoire. Le chargement est instantané.
+## Outils
 
-### C. La Persistance (State & LocalStorage)
-La progression (score, question en cours, historique des erreurs) est sauvegardée directement dans la mémoire locale du navigateur de l'utilisateur (`localStorage`). 
-* **Avantage :** Un utilisateur peut fermer son onglet, revenir 3 jours plus tard et reprendre son examen exactement là où il s'était arrêté.
-* **Isolation :** Les sauvegardes sont cloisonnées par module (la sauvegarde HAM n'interfère pas avec la sauvegarde SAM).
-
----
-
-## ☁️ 4. Infrastructure Cloud et CI/CD
-
-L'application est hébergée sur le Cloud et bénéficie d'une chaîne de déploiement totalement automatisée.
-
-* **Dépôt du code :** GitHub (`stephanecheber-stack/QandR_Quizz`).
-* **Hébergement :** Vercel (Plateforme Edge Network / CDN mondial).
-* **CI/CD (Déploiement Continu) :** Le projet bénéficie d'un workflow "Push-to-Deploy". Chaque modification de code ou ajout de question poussé sur GitHub déclenche instantanément une reconstruction du site par Vercel, et une mise en ligne en quelques secondes, sans aucune action manuelle.
-
----
-
-## 🛠️ 5. Guide du Développeur (Local)
-
-Pour faire tourner le projet sur un ordinateur local pour le développement :
-
-1. Cloner le dépôt GitHub.
-2. Ouvrir le terminal dans le dossier du projet.
-3. Installer les dépendances :
-   ```bash
-   npm install
+```bash
+npm run check:data                  # valide les 3 fichiers (ids, options, réponses, compteurs)
+npm run gen:explanations -- itsm    # génère les explications manquantes via Ollama
+```

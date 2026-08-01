@@ -11,7 +11,7 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, info) {
-    console.error("ErrorBoundary caught:", error, info);
+    console.error("Erreur non rattrapée :", error, info);
   }
 
   render() {
@@ -23,14 +23,20 @@ class ErrorBoundary extends React.Component {
               <span className="text-red-500 text-3xl font-black">!</span>
             </div>
             <h2 className="text-2xl font-black text-gray-800 mb-3">Une erreur est survenue</h2>
-            <p className="text-gray-500 font-medium mb-8">
-              L'application a rencontré un problème inattendu. Rechargez la page pour continuer.
+            <p className="text-gray-500 font-medium mb-6">
+              L’application a rencontré un problème inattendu. Rechargez la page pour continuer.
             </p>
+            {import.meta.env.DEV && this.state.error && (
+              <pre className="text-left text-xs bg-gray-50 border border-gray-200 rounded-xl p-4 mb-6 overflow-x-auto text-red-600">
+                {String(this.state.error?.stack || this.state.error)}
+              </pre>
+            )}
             <button
+              type="button"
               onClick={() => window.location.reload()}
               className="btn btn-primary w-full py-4 text-lg"
             >
-              Recharger l'application
+              Recharger l’application
             </button>
           </div>
         </div>

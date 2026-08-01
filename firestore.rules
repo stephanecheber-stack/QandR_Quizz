@@ -1,0 +1,42 @@
+rules_version = '2';
+
+// Règles de sécurité Firestore de Quiz Center.
+//
+// Ce fichier est la COPIE DE RÉFÉRENCE des règles ; il n'est pas déployé
+// automatiquement. Pour l'appliquer :
+//   console.firebase.google.com > projet quiz-center-905af >
+//   Créer > Firestore Database > onglet « Règles » > coller > Publier.
+// Si tu modifies les règles dans la console, reporte le changement ici pour
+// que les deux ne divergent pas.
+//
+// Pourquoi c'est important : la clé Firebase de src/firebase.js est publique
+// par conception. Ce sont ces règles — et elles seules — qui protègent les
+// données.
+//
+// Modèle retenu : application mono-utilisateur. Seuls les UID listés
+// ci-dessous ont accès, et chacun uniquement à son propre document.
+//
+// ATTENTION : Auth.jsx propose la connexion par email/mot de passe ET par
+// Google. Ces deux méthodes produisent des UID DIFFÉRENTS (sauf comptes liés).
+// Si tu te connectes avec une méthode dont l'UID n'est pas listé ici, la
+// synchronisation échouera (bandeau « Erreur de synchronisation »).
+// Les UID se retrouvent dans la console : Authentication > Users >
+// colonne « Identifiant utilisateur ».
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /users/{userId} {
+      allow read, write: if request.auth != null
+        && request.auth.uid == userId
+        && request.auth.uid in [
+             "ZjpKgNOZ4GTKkUDEfHHustaAqrZ2"
+           ];
+    }
+
+    // Tout le reste de la base est refusé.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
