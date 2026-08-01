@@ -1,7 +1,17 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { auth } from '../firebase';
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { LogIn, Mail, Lock, AlertCircle, Loader2 } from 'lucide-react';
+
+/** Messages lisibles pour les codes d'erreur Firebase Auth rencontrés ici. */
+const AUTH_ERRORS = {
+    'auth/wrong-password': "Email ou mot de passe incorrect.",
+    'auth/invalid-credential': "Email ou mot de passe incorrect.",
+    'auth/user-not-found': "Aucun compte trouvé pour cet email.",
+    'auth/invalid-email': "Format d'email invalide.",
+    'auth/too-many-requests': "Trop de tentatives. Réessayez plus tard.",
+    'auth/network-request-failed': "Connexion au serveur impossible. Vérifiez votre réseau.",
+};
 
 const Auth = () => {
     const [email, setEmail] = useState('');
@@ -11,33 +21,32 @@ const Auth = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (loading) return;
         setError('');
         setLoading(true);
         try {
             await signInWithEmailAndPassword(auth, email, password);
+            // Pas de setLoading(false) en cas de succès : le composant est
+            // démonté par le changement d'état d'authentification.
         } catch (err) {
-            console.error(err);
-            let message = "Une erreur est survenue.";
-            if (err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') message = "Email ou mot de passe incorrect.";
-            if (err.code === 'auth/user-not-found') message = "Aucun compte trouvé pour cet email.";
-            if (err.code === 'auth/invalid-email') message = "Format d'email invalide.";
-            if (err.code === 'auth/too-many-requests') message = "Trop de tentatives. Réessayez plus tard.";
-            setError(message);
-        } finally {
+            console.error("Connexion impossible :", err);
+            setError(AUTH_ERRORS[err.code] ?? "Une erreur est survenue.");
             setLoading(false);
         }
     };
 
     const handleGoogleSignIn = async () => {
+        if (loading) return;
         setError('');
+        setLoading(true);
         try {
-            const provider = new GoogleAuthProvider();
-            await signInWithPopup(auth, provider);
+            await signInWithPopup(auth, new GoogleAuthProvider());
         } catch (err) {
-            console.error(err);
-            if (err.code !== 'auth/popup-closed-by-user') {
+            if (err.code !== 'auth/popup-closed-by-user' && err.code !== 'auth/cancelled-popup-request') {
+                console.error("Connexion Google impossible :", err);
                 setError("La connexion avec Google a échoué.");
             }
+            setLoading(false);
         }
     };
 
@@ -51,7 +60,7 @@ const Auth = () => {
                     <div className="p-8 sm:p-10">
                         <div className="flex justify-center mb-8">
                             <div className="w-16 h-16 bg-primary-600 rounded-2xl flex items-center justify-center text-white shadow-xl shadow-primary-500/20 rotate-3">
-                                <LogIn size={32} />
+                                <LogIn size={32} aria-hidden="true" />
                             </div>
                         </div>
 
@@ -61,8 +70,8 @@ const Auth = () => {
                         </div>
 
                         {error && (
-                            <div className="mb-6 p-4 bg-red-50/50 border border-red-100 rounded-2xl flex items-center gap-3 text-red-600 animate-slide-up">
-                                <AlertCircle size={20} className="shrink-0" />
+                            <div role="alert" className="mb-6 p-4 bg-red-50/50 border border-red-100 rounded-2xl flex items-center gap-3 text-red-600 animate-slide-up">
+                                <AlertCircle size={20} className="shrink-0" aria-hidden="true" />
                                 <p className="text-sm font-bold">{error}</p>
                             </div>
                         )}
@@ -70,11 +79,13 @@ const Auth = () => {
                         <form onSubmit={handleSubmit} className="space-y-4">
                             <div className="relative group">
                                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400 group-focus-within:text-primary-500 transition-colors">
-                                    <Mail size={18} />
+                                    <Mail size={18} aria-hidden="true" />
                                 </div>
                                 <input
                                     type="email"
                                     placeholder="Email"
+                                    aria-label="Adresse email"
+                                    autoComplete="email"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     className="w-full pl-11 pr-4 py-4 bg-white/50 border-2 border-transparent focus:border-primary-500 focus:bg-white rounded-2xl outline-none transition-all duration-300 font-bold text-gray-700 placeholder:text-gray-400 shadow-sm"
@@ -84,11 +95,13 @@ const Auth = () => {
 
                             <div className="relative group">
                                 <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400 group-focus-within:text-primary-500 transition-colors">
-                                    <Lock size={18} />
+                                    <Lock size={18} aria-hidden="true" />
                                 </div>
                                 <input
                                     type="password"
                                     placeholder="Mot de passe"
+                                    aria-label="Mot de passe"
+                                    autoComplete="current-password"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                     className="w-full pl-11 pr-4 py-4 bg-white/50 border-2 border-transparent focus:border-primary-500 focus:bg-white rounded-2xl outline-none transition-all duration-300 font-bold text-gray-700 placeholder:text-gray-400 shadow-sm"
@@ -101,7 +114,7 @@ const Auth = () => {
                                 disabled={loading}
                                 className="w-full py-4 mt-4 bg-primary-600 hover:bg-primary-700 text-white font-black text-lg rounded-2xl shadow-xl shadow-primary-500/20 transition-all active:scale-[0.98] flex items-center justify-center gap-3 disabled:opacity-70"
                             >
-                                {loading ? <Loader2 className="animate-spin" size={24} /> : 'Se connecter'}
+                                {loading ? <Loader2 className="animate-spin" size={24} aria-label="Connexion en cours" /> : 'Se connecter'}
                             </button>
                         </form>
 
@@ -115,10 +128,12 @@ const Auth = () => {
                         </div>
 
                         <button
+                            type="button"
                             onClick={handleGoogleSignIn}
-                            className="w-full py-4 bg-white/80 border border-gray-100 hover:border-primary-200 hover:bg-white text-gray-700 font-black rounded-2xl shadow-sm transition-all duration-300 active:scale-[0.98] flex items-center justify-center gap-3 group"
+                            disabled={loading}
+                            className="w-full py-4 bg-white/80 border border-gray-100 hover:border-primary-200 hover:bg-white text-gray-700 font-black rounded-2xl shadow-sm transition-all duration-300 active:scale-[0.98] flex items-center justify-center gap-3 group disabled:opacity-70"
                         >
-                            <svg className="w-5 h-5 group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
+                            <svg className="w-5 h-5 group-hover:scale-110 transition-transform" viewBox="0 0 24 24" aria-hidden="true">
                                 <path fill="#EA4335" d="M12 5.04c1.9 0 3.61.66 4.95 1.94l3.71-3.71C18.41 1.17 15.42 0 12 0 7.31 0 3.26 2.69 1.25 6.64l4.31 3.34c1.01-3.05 3.86-5.28 6.44-5.28z"/>
                                 <path fill="#4285F4" d="M23.49 12.27c0-.86-.08-1.7-.22-2.52H12v4.77h6.44c-.28 1.47-1.11 2.71-2.36 3.55l3.71 3.71c2.17-2 3.42-4.93 3.42-8.21z"/>
                                 <path fill="#FBBC05" d="M5.56 14.71c-.26-.77-.4-1.6-.4-2.46s.14-1.69.4-2.46L1.25 6.44C.45 8.12 0 10.01 0 12s.45 3.88 1.25 5.56l4.31-3.34-.01.49z"/>

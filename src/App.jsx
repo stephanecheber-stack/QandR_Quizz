@@ -1,188 +1,127 @@
-import React, { useState, useEffect } from 'react';
-import QuizApp from './components/QuizApp';
-import Auth from './components/Auth';
-import { auth, db } from './firebase';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { doc, onSnapshot, setDoc, getDoc } from 'firebase/firestore';
-import { LogOut, Loader2, BookOpen, ChevronRight, Settings, Info, ShieldCheck } from 'lucide-react';
+import { useCallback, useEffect, useState } from 'react'
+import { onAuthStateChanged, signOut } from 'firebase/auth'
+import { doc, onSnapshot, setDoc } from 'firebase/firestore'
+import { Loader2, LogOut } from 'lucide-react'
+import Auth from './components/Auth'
+import ModuleSelection from './components/ModuleSelection'
+import QuizApp from './components/QuizApp'
+import { auth, db } from './firebase'
+import { getModule } from './modules'
 
 function App() {
-  const [user, setUser] = useState(null);
-  const [userData, setUserData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [viewingSelection, setViewingSelection] = useState(false);
-  const [moduleError, setModuleError] = useState(null);
+  const [user, setUser] = useState(null)
+  const [userData, setUserData] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [viewingSelection, setViewingSelection] = useState(false)
+  const [moduleError, setModuleError] = useState(null)
 
   useEffect(() => {
-    let unsubscribeDoc = () => {};
+    // Deux abonnements imbriqués : l'auth, puis le document utilisateur.
+    // `unsubscribeDoc` doit être appelé avant chaque réabonnement, sinon un
+    // cycle déconnexion/reconnexion laisse des listeners Firestore actifs.
+    let unsubscribeDoc = null
 
-    const unsubscribeAuth = onAuthStateChanged(auth, async (currentUser) => {
-      setUser(currentUser);
-      
-      if (currentUser) {
-        // Real-time listener for user data (flags, progress, lock)
-        const userRef = doc(db, "users", currentUser.uid);
-        unsubscribeDoc = onSnapshot(userRef, (docSnap) => {
-          if (docSnap.exists()) {
-            setUserData(docSnap.data());
-          } else {
-            // Initialize user doc if it doesn't exist
-            setUserData({
-              lockedModule: null,
-              hasPaid: false,
-              isVIP: false,
-              accessExpiration: null,
-              progress: {}
-            });
-          }
-          setLoading(false);
-        });
-      } else {
-        setUserData(null);
-        setLoading(false);
+    const stopDocListener = () => {
+      unsubscribeDoc?.()
+      unsubscribeDoc = null
+    }
+
+    const unsubscribeAuth = onAuthStateChanged(auth, (currentUser) => {
+      stopDocListener()
+      setUser(currentUser)
+
+      if (!currentUser) {
+        setUserData(null)
+        setViewingSelection(false)
+        setLoading(false)
+        return
       }
-    });
+
+      setLoading(true)
+      unsubscribeDoc = onSnapshot(
+        doc(db, 'users', currentUser.uid),
+        (snapshot) => {
+          setUserData(snapshot.exists() ? snapshot.data() : { lockedModule: null, progress: {} })
+          setLoading(false)
+        },
+        (error) => {
+          console.error('Lecture du profil impossible :', error)
+          setUserData({ lockedModule: null, progress: {} })
+          setLoading(false)
+        },
+      )
+    })
 
     return () => {
-      unsubscribeAuth();
-      unsubscribeDoc();
-    };
-  }, []);
-
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);
-    } catch (error) {
-      console.error("Logout error:", error);
+      unsubscribeAuth()
+      stopDocListener()
     }
-  };
+  }, [])
 
-  const handleSelectModule = async (module) => {
-    if (!user) return;
+  const handleLogout = useCallback(async () => {
     try {
-      const userRef = doc(db, "users", user.uid);
-      await setDoc(userRef, { lockedModule: module }, { merge: true });
-      if (userData?.isVIP) {
-        setViewingSelection(false);
+      await signOut(auth)
+    } catch (error) {
+      console.error('Déconnexion impossible :', error)
+    }
+  }, [])
+
+  const handleSelectModule = useCallback(
+    async (moduleId) => {
+      if (!user) return
+      setModuleError(null)
+      // On ferme l'écran de sélection tout de suite : l'ancien code attendait
+      // un flag `isVIP` qui n'existe plus, ce qui bloquait le retour au quiz.
+      setViewingSelection(false)
+
+      try {
+        await setDoc(doc(db, 'users', user.uid), { lockedModule: moduleId }, { merge: true })
+      } catch (error) {
+        console.error('Enregistrement du module impossible :', error)
+        setViewingSelection(true)
+        setModuleError('Erreur réseau lors de la sélection. Vérifiez votre connexion et réessayez.')
       }
-    } catch (error) {
-      console.error("Error locking module:", error);
-      setModuleError("Erreur réseau lors de la sélection. Vérifiez votre connexion et réessayez.");
-    }
-  };
+    },
+    [user],
+  )
 
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="flex flex-col items-center gap-4">
-          <Loader2 className="w-12 h-12 text-primary-600 animate-spin text-primary-500" />
-          <p className="text-gray-500 font-bold animate-pulse">Chargement de votre session...</p>
+          <Loader2 className="w-12 h-12 text-primary-600 animate-spin" aria-hidden="true" />
+          <p className="text-gray-500 font-bold animate-pulse">Chargement de votre session…</p>
         </div>
       </div>
-    );
+    )
   }
 
-  // --- UI: Module Selection Screen (Unauthentified or Not Locked) ---
-  const renderSelectionScreen = () => (
-    <div className="flex flex-col items-center justify-center min-h-[70vh] px-4 animate-fade-in">
-      <div className="text-center mb-12">
-        <h1 className="text-5xl font-black text-gray-900 mb-4 tracking-tight">Quiz Training</h1>
-        <p className="text-xl text-gray-500 font-medium">Choisissez votre parcours de certification ou de formation</p>
-        {moduleError && (
-          <div className="mt-4 flex items-center justify-center gap-2 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl">
-            <span className="text-sm font-bold">{moduleError}</span>
-            <button onClick={() => setModuleError(null)} className="text-red-400 hover:text-red-600 font-black ml-2">✕</button>
-          </div>
-        )}
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl">
-        {/* HAM Card */}
-        <div 
-          onClick={() => handleSelectModule('HAM')}
-          className="group relative bg-white rounded-[2rem] p-8 border-2 border-transparent hover:border-primary-500 hover:shadow-2xl hover:shadow-primary-500/10 transition-all duration-500 cursor-pointer overflow-hidden shadow-xl"
-        >
-          <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
-            <Settings size={120} />
-          </div>
-          <div className="relative z-10">
-            <div className="w-16 h-16 rounded-2xl bg-orange-100 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
-              <BookOpen className="text-orange-600" size={32} />
-            </div>
-            <h2 className="text-3xl font-black text-gray-800 mb-2">HAM</h2>
-            <p className="text-gray-500 font-medium leading-relaxed">Hardware Asset Management</p>
-            <div className="mt-8 flex items-center text-primary-600 font-bold gap-2">
-              Verrouiller ce module <ChevronRight size={20} className="group-hover:translate-x-2 transition-transform" />
-            </div>
-          </div>
-        </div>
-
-        {/* SAM Card */}
-        <div 
-          onClick={() => handleSelectModule('SAM')}
-          className="group relative bg-white rounded-[2rem] p-8 border-2 border-transparent hover:border-primary-500 hover:shadow-2xl hover:shadow-primary-500/10 transition-all duration-500 cursor-pointer overflow-hidden shadow-xl"
-        >
-          <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
-            <Info size={120} />
-          </div>
-          <div className="relative z-10">
-            <div className="w-16 h-16 rounded-2xl bg-blue-100 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
-              <BookOpen className="text-blue-600" size={32} />
-            </div>
-            <h2 className="text-3xl font-black text-gray-800 mb-2">SAM</h2>
-            <p className="text-gray-500 font-medium leading-relaxed">Software Asset Management</p>
-            <div className="mt-8 flex items-center text-primary-600 font-bold gap-2">
-              Verrouiller ce module <ChevronRight size={20} className="group-hover:translate-x-2 transition-transform" />
-            </div>
-          </div>
-        </div>
-
-        {/* ITSM Card */}
-        <div 
-          onClick={() => handleSelectModule('ITSM')}
-          className="group relative bg-white rounded-[2rem] p-8 border-2 border-transparent hover:border-primary-500 hover:shadow-2xl hover:shadow-primary-500/10 transition-all duration-500 cursor-pointer overflow-hidden shadow-xl"
-        >
-          <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
-            <ShieldCheck size={120} />
-          </div>
-          <div className="relative z-10">
-            <div className="w-16 h-16 rounded-2xl bg-purple-100 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
-              <ShieldCheck className="text-purple-600" size={32} />
-            </div>
-            <h2 className="text-3xl font-black text-gray-800 mb-2">ITSM</h2>
-            <p className="text-gray-500 font-medium leading-relaxed">Certification CIS-ITSM</p>
-            <p className="text-sm text-gray-400 font-medium mt-3">Questions dédiées à l’IT Service Management et aux bonnes pratiques ServiceNow.</p>
-            <div className="mt-8 flex items-center text-primary-600 font-bold gap-2">
-              Verrouiller ce module <ChevronRight size={20} className="group-hover:translate-x-2 transition-transform" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+  const lockedModule = userData?.lockedModule
+  // Un module supprimé du registre ne doit pas bloquer l'application.
+  const activeModuleId = getModule(lockedModule) ? lockedModule : null
+  const showSelection = !activeModuleId || viewingSelection
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex flex-col">
-      <header className="w-full py-6 px-4 flex justify-between items-center max-w-6xl mx-auto w-full">
+      <header className="w-full py-6 px-4 flex justify-between items-center max-w-6xl mx-auto">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-primary-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary-200">
-            <span className="font-black text-xl">Q</span>
-          </div>
+          <span className="w-10 h-10 bg-primary-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary-200 font-black text-xl">
+            Q
+          </span>
           <h1 className="text-2xl font-black text-gray-800 tracking-tight">Quiz Center</h1>
         </div>
 
         {user && (
           <div className="flex items-center gap-4">
-            <div className="hidden sm:flex flex-col items-end">
-              <span className="text-sm font-black text-gray-800 tracking-tight">{user.email}</span>
-              <span className="text-[10px] uppercase font-bold text-green-500 tracking-widest">Accès complet</span>
-            </div>
-            <button 
+            <span className="hidden sm:block text-sm font-black text-gray-800 tracking-tight">{user.email}</span>
+            <button
+              type="button"
               onClick={handleLogout}
-              className="p-3 bg-white border border-gray-100 rounded-xl text-gray-400 hover:text-red-500 hover:border-red-100 hover:shadow-lg hover:shadow-red-500/5 transition-all duration-300 group"
+              className="p-3 bg-white border border-gray-100 rounded-xl text-gray-400 hover:text-red-500 hover:border-red-100 hover:shadow-lg transition-all duration-300 group"
               title="Déconnexion"
+              aria-label="Se déconnecter"
             >
-              <LogOut size={20} className="group-hover:rotate-12 transition-transform" />
+              <LogOut size={20} className="group-hover:rotate-12 transition-transform" aria-hidden="true" />
             </button>
           </div>
         )}
@@ -191,22 +130,23 @@ function App() {
       <main className="flex-1 flex flex-col">
         {!user ? (
           <Auth />
-        ) : (!userData?.lockedModule || viewingSelection) ? (
-          renderSelectionScreen()
-        ) : (
-          <QuizApp 
-            user={user} 
-            userData={userData} 
-            onGoHome={() => setViewingSelection(true)} 
+        ) : showSelection ? (
+          <ModuleSelection
+            activeModuleId={activeModuleId}
+            onSelect={handleSelectModule}
+            error={moduleError}
+            onDismissError={() => setModuleError(null)}
           />
+        ) : (
+          <QuizApp user={user} moduleId={activeModuleId} onGoHome={() => setViewingSelection(true)} />
         )}
       </main>
 
       <footer className="w-full py-6 text-center text-gray-400 text-sm">
-        &copy; {new Date().getFullYear()} Quiz Center Training. Tous droits réservés.
+        © {new Date().getFullYear()} Quiz Center Training
       </footer>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
