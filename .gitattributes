@@ -1,0 +1,17 @@
+# Fins de ligne : on stocke et on extrait tout en LF (format Unix), quel que
+# soit l'OS. Sans ce fichier, un éditeur Windows peut convertir un fichier en
+# CRLF et Git le voit alors comme entièrement modifié alors que le contenu est
+# identique.
+* text=auto eol=lf
+
+# Scripts Windows : ils doivent garder CRLF.
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Fichiers binaires : jamais de conversion.
+*.png binary
+*.jpg binary
+*.ico binary
+*.doc binary
+*.docx binary
