@@ -83,10 +83,14 @@ npm run dev        # serveur de développement sur http://localhost:5175
 | `npm run build` | build de production dans `dist/` |
 | `npm run preview` | prévisualise le build de production |
 | `npm run lint` | ESLint |
+| `npm test` | tests unitaires (Vitest) |
+| `npm run test:watch` | tests relancés à chaque modification |
 | `npm run check:data` | valide les banques de questions (ids, options, réponses, compteurs) |
 | `npm run gen:explanations -- itsm` | génère les explications manquantes via Ollama |
 
-> Il n'y a pas de tests automatisés dans ce projet.
+> Les tests unitaires (Vitest) couvrent la logique pure de `src/lib/` : règles
+> de correction, mélange seedé, formatage des durées. Ils sont placés à côté du
+> code testé (`quiz.test.js`, etc.).
 
 ### IA locale (facultatif)
 

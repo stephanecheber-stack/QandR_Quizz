@@ -43,11 +43,13 @@ export function isAnswerCorrect(question, answer) {
     )
   }
 
-  const expected = question.correct_answers ?? []
-  const given = Array.isArray(answer) ? answer : []
+  // On compare des ensembles (Set) : une lettre présente deux fois dans la
+  // réponse ne doit pas pouvoir « remplacer » une bonne réponse manquante.
+  const expected = new Set(question.correct_answers ?? [])
+  const given = new Set(Array.isArray(answer) ? answer : [])
   return (
-    expected.length > 0 &&
-    given.length === expected.length &&
-    given.every((value) => expected.includes(value))
+    expected.size > 0 &&
+    given.size === expected.size &&
+    [...given].every((value) => expected.has(value))
   )
 }

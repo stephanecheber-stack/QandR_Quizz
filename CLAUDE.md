@@ -17,10 +17,12 @@ npm run build                     # production build to dist/
 npm run preview                   # preview the production build
 npm run lint                      # ESLint (flat config in eslint.config.js)
 npm run check:data                # validate the question banks
+npm test                          # run the Vitest unit tests once
+npm run test:watch                # Vitest in watch mode
 npm run gen:explanations -- itsm  # fill missing explanations via local Ollama
 ```
 
-There is no test runner configured in this project. `npm run check:data` is the closest thing to a regression check. A Claude Code `PostToolUse` hook in `.claude/settings.json` runs it automatically after every Edit/Write under `src/data/` and reports failures back; it does **not** watch `src/modules.js`, so run `check:data` by hand after changing a `questionCount` there.
+Unit tests use **Vitest** and live next to the code they cover (`src/lib/*.test.js`): grading rules (`quiz.js`), seeded shuffle (`shuffle.js`) and formatting (`format.js`). Pure logic in `src/lib/` should get a test with any change; run `npm test` before committing. `npm run check:data` validates the question banks. A Claude Code `PostToolUse` hook in `.claude/settings.json` runs it automatically after every Edit/Write under `src/data/` and reports failures back; it does **not** watch `src/modules.js`, so run `check:data` by hand after changing a `questionCount` there.
 
 `.claude/settings.json` (shared hooks) is committed; `.claude/settings.local.json` (personal permissions) is gitignored.
 
