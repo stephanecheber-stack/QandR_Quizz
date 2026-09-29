@@ -20,7 +20,9 @@ npm run check:data                # validate the question banks
 npm run gen:explanations -- itsm  # fill missing explanations via local Ollama
 ```
 
-There is no test runner configured in this project. `npm run check:data` is the closest thing to a regression check — run it after touching any file in `src/data/`.
+There is no test runner configured in this project. `npm run check:data` is the closest thing to a regression check. A Claude Code `PostToolUse` hook in `.claude/settings.json` runs it automatically after every Edit/Write under `src/data/` and reports failures back; it does **not** watch `src/modules.js`, so run `check:data` by hand after changing a `questionCount` there.
+
+`.claude/settings.json` (shared hooks) is committed; `.claude/settings.local.json` (personal permissions) is gitignored.
 
 ## Architecture
 
