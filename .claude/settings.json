@@ -1,0 +1,27 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "if": "Edit(src/data/**)",
+            "shell": "bash",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && npm run --silent check:data >&2 || exit 2",
+            "timeout": 60,
+            "statusMessage": "Vérification des banques de questions..."
+          },
+          {
+            "type": "command",
+            "if": "Write(src/data/**)",
+            "shell": "bash",
+            "command": "cd \"$CLAUDE_PROJECT_DIR\" && npm run --silent check:data >&2 || exit 2",
+            "timeout": 60,
+            "statusMessage": "Vérification des banques de questions..."
+          }
+        ]
+      }
+    ]
+  }
+}

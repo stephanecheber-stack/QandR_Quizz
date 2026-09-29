@@ -6,6 +6,9 @@ dist/
 .DS_Store
 .vercel
 
+# Réglages Claude Code personnels (le settings.json partagé, lui, est versionné)
+.claude/settings.local.json
+
 # Sources documentaires de travail (non versionnées)
 *.doc
 *.docx
