@@ -2999,7 +2999,7 @@
     "correct_answers": [
       "A"
     ],
-    "explanation": ""
+    "explanation": "Dans Service Portfolio Management, le Portfolio Manager pilote la performance de la hiérarchie du portefeuille : Service Portfolio → Service → Service Offering. C'est à ces trois niveaux qu'il suit la valeur, les coûts et les engagements des services. Les autres propositions mélangent des rôles (Portfolio Owner, Service Owner, Catalog Manager) ou des enregistrements opérationnels du catalogue (Catalog item, Requested item, Catalog Task, Task SLA), qui relèvent de l'exécution des demandes et non de la gestion du portefeuille."
   },
   {
     "id": 208,
@@ -3013,7 +3013,7 @@
     "correct_answers": [
       "B"
     ],
-    "explanation": ""
+    "explanation": "Les change flows sont construits dans Flow Designer / Workflow Studio. Les briques réutilisables qu'on y ajoute s'appellent des actions (Flow actions). Le plugin ITSM Spoke (com.snc.itsm.spoke) fournit notamment une bibliothèque d'actions de changement prêtes à l'emploi (approbations, mise à jour d'état, création de tâches…), que l'on peut insérer dans n'importe quel flow. « Flow activities » est un terme de l'ancien Workflow Editor ; « Attributes » et « Properties » ne désignent pas des composants de flow."
   },
   {
     "id": 209,
@@ -3027,7 +3027,7 @@
     "correct_answers": [
       "D"
     ],
-    "explanation": ""
+    "explanation": "Chaque change model peut limiter qui le voit et qui le modifie. Premier niveau : les champs Read Roles et Write Roles (contrôle par rôle). Pour un contrôle plus fin, on passe Advanced Security à true : de nouvelles listes liées apparaissent (Available For, Not Available For, Can Write), basées sur des user criteria. Les ACL sur la table chg_model continuent de s'appliquer, mais elles agissent sur toute la table et ne permettent pas de régler l'accès modèle par modèle ; la page « Create New » et les propriétés du changement ne servent pas à cela."
   },
   {
     "id": 210,
@@ -3042,7 +3042,7 @@
     "correct_answers": [
       "E"
     ],
-    "explanation": ""
+    "explanation": "Les catalog items possèdent les listes liées Available For et Not Available For, qui s'appuient sur des user criteria pour décider qui peut voir et commander l'article : c'est la réponse attendue. Attention : dans la plateforme, les user criteria s'appliquent aussi aux catalogues et aux catégories, ce qui rend l'énoncé discutable. Les participants s'accordent toutefois sur E, l'article étant l'usage le plus direct. Les variables ne se sécurisent pas par user criteria (on utilise des rôles de lecture/écriture), et la taxonomie ou les topics relèvent de la navigation (Employee Center)."
   },
   {
     "id": 211,
@@ -3056,7 +3056,7 @@
     "correct_answers": [
       "B"
     ],
-    "explanation": ""
+    "explanation": "Dans la taxonomie du Service Portfolio (Portfolio → Service → Offering), les engagements de service (Service Commitments, par exemple des SLA ou des heures de disponibilité) sont rattachés au niveau de l'offre. Un enregistrement Service Offering possède une liste liée « Service Commitments », ce que plusieurs participants ont vérifié sur une PDI. C'est logique : c'est l'offre qui décrit concrètement ce qui est fourni, à qui, et avec quel niveau de service ; le service et le portefeuille sont des niveaux de regroupement."
   },
   {
     "id": 212,
@@ -3070,7 +3070,7 @@
     "correct_answers": [
       "A"
     ],
-    "explanation": ""
+    "explanation": "Quand on crée une Service Offering dans Service Portfolio Management en renseignant son service parent, la relation parent-enfant (service:offering) est créée automatiquement dans la CMDB ; on peut la voir dans la vue de dépendances du CMDB Workspace. En revanche, les autres relations et dépendances (applications, infrastructure, services techniques) ne sont pas générées : elles doivent être créées manuellement, via Service Mapping ou la découverte. Les réponses B et C surestiment l'automatisation, et D ignore la relation parent-enfant créée automatiquement."
   },
   {
     "id": 213,
@@ -3084,7 +3084,7 @@
     "correct_answers": [
       "A"
     ],
-    "explanation": ""
+    "explanation": "La documentation ServiceNow l'indique explicitement : chaque service doit avoir au moins une offre définie (« at least one defined offering ») pour passer à la phase Catalog. C'est cohérent avec le rôle de l'offre : un service n'est proposé au catalogue que lorsqu'on sait concrètement ce qui est fourni aux consommateurs. Aucun minimum supérieur à un n'est exigé."
   },
   {
     "id": 214,
@@ -3098,7 +3098,7 @@
     "correct_answers": [
       "D"
     ],
-    "explanation": ""
+    "explanation": "Dans l'instance de base, l'indicateur VIP s'affiche sur le formulaire d'incident grâce à un Field Style défini sur le champ Caller : lorsque l'appelant a l'attribut VIP à vrai, un style (icône et couleur) met le champ en évidence. Un Reference decorator, lui, ajoute une icône à côté d'un champ référence pour ouvrir une information liée (par exemple les incidents liés ou le workflow) ; ce n'est pas le mécanisme VIP. Un attribut de dictionnaire ou un action script ne servent pas à cela. Cette question est une variante de la question 123."
   },
   {
     "id": 215,
@@ -3112,7 +3112,7 @@
     "correct_answers": [
       "B"
     ],
-    "explanation": ""
+    "explanation": "Les approbations à appliquer à une demande de changement sont définies par les Change Approval Policies. Une politique d'approbation s'appuie sur une table de décision : selon les caractéristiques du changement (risque, type, CI, etc.), elle détermine quels groupes ou personnes doivent approuver. Les change flows appellent ensuite ces politiques. Les UI actions, script includes et business rules sont des outils de développement génériques ; ce ne sont pas eux qui portent la définition des approbations dans la configuration standard."
   },
   {
     "id": 216,
@@ -3127,7 +3127,7 @@
     "correct_answers": [
       "A"
     ],
-    "explanation": ""
+    "explanation": "Dans le Service Catalog, les user criteria déterminent qui a accès à un élément : on les rattache aux articles, catégories et catalogues via les listes liées Available For et Not Available For. Un user criteria peut combiner utilisateurs, groupes, rôles, sociétés, départements, localisations ou un script. Les autres termes (Access criteria, User access rules, Availability rules, Security rules) ne correspondent à aucune fonctionnalité du catalogue."
   },
   {
     "id": 217,
@@ -3142,7 +3142,7 @@
     "correct_answers": [
       "D"
     ],
-    "explanation": ""
+    "explanation": "Une fois un catalog item commandé, c'est le flow associé à l'article (Flow Designer, défini dans la section Process Engine de l'article) qui orchestre le traitement : approbations, création des catalog tasks, notifications, mises à jour. Les actions ne sont que les briques qui composent un flow ; les decision tables peuvent être appelées par un flow mais ne déclenchent rien seules ; Run Books et Playbooks ne sont pas le mécanisme de traitement des demandes. Cette question est une variante de la question 101."
   },
   {
     "id": 218,
@@ -3156,7 +3156,7 @@
     "correct_answers": [
       "D"
     ],
-    "explanation": ""
+    "explanation": "La gestion des incidents vise à rétablir le service le plus vite possible, en limitant l'impact pour l'utilisateur, au besoin grâce à un contournement. La gestion des problèmes vise à identifier la cause racine (root cause analysis) d'un ou plusieurs incidents pour éviter qu'ils ne se reproduisent. Un problème n'est pas défini par le nombre de personnes touchées (A) ni par sa priorité (B) : un incident isolé peut justifier un problème, et un problème peut avoir n'importe quelle priorité."
   },
   {
     "id": 219,
@@ -3170,7 +3170,7 @@
     "correct_answers": [
       "B"
     ],
-    "explanation": ""
+    "explanation": "Dans les change models, chaque transition d'état (par exemple New → Assess) possède des Model State Transition Conditions. Le change manager y définit les conditions à remplir, notamment les champs obligatoires, avant que le changement puisse passer à l'état suivant. Les Dictionary Overrides modifient le comportement d'un champ pour une table fille, et les listes de choix d'état ne font qu'énumérer les états possibles, sans contrôler les transitions. Cette question est une variante de la question 83."
   },
   {
     "id": 220,
@@ -3185,7 +3185,7 @@
       "B",
       "C"
     ],
-    "explanation": ""
+    "explanation": "Quand on crée de nombreux catalog items, deux éléments se prêtent particulièrement à la mutualisation : les variable sets (ensembles de variables réutilisés dans plusieurs formulaires, par exemple les informations sur le demandeur) et les flows / subflows (un même processus de traitement partagé par plusieurs articles). Les réutiliser réduit la maintenance et garantit une expérience cohérente. Les approbations sont une étape à l'intérieur des flows, et « Workflow Triggers » n'est pas un composant de catalogue réutilisable. Cette question est une variante de la question 110."
   },
   {
     "id": 221,
@@ -3200,7 +3200,7 @@
     "correct_answers": [
       "B"
     ],
-    "explanation": ""
+    "explanation": "Pour des utilisateurs externes (clients actuels ou prospects) qui doivent parcourir des produits et commander, l'interface adaptée est un portail (Service Portal ou portail client), accessible depuis un navigateur et personnalisable selon la marque. Les autres propositions ne conviennent pas : l'application mobile et « Now Catalog App » visent les utilisateurs internes de l'instance, « Google leads spoke » est une intégration sans rapport, et « Customer Service Catalog » n'est pas une interface en tant que telle."
   },
   {
     "id": 222,
