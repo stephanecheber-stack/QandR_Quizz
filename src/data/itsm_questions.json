@@ -2487,9 +2487,9 @@
       "E": "Document Five Whys"
     },
     "correct_answers": [
-      "A"
+      "B"
     ],
-    "explanation": "Dans ServiceNow ITSM, il est crucial de distinguer l'investigation complète et la communication immédiate. Lorsqu'une solution temporaire rapide est identifiée avant que la cause racine ne soit entièrement corrigée, le processus consiste à diffuser cette information d'atténuation au plus grand nombre. Publier un contournement (Workaround) permet donc aux agents du support ou même aux utilisateurs finaux de connaître immédiatement les étapes pour résoudre le problème en attendant le correctif définitif. Ce mécanisme assure une continuité opérationnelle rapide. Les autres options décrivent des phases d'investigation (Completing RCA, Five Whys) ou un enregistrement plus formel (Known Error), qui nécessite généralement l'identification complète de la cause et du contournement avant sa publication finale."
+    "explanation": "Dans la gestion des problèmes (ITIL et ServiceNow Problem Management), une erreur connue (Known Error) est un problème dont la cause racine et le contournement (Workaround) sont identifiés. Documenter cette erreur connue, typiquement via un article de connaissance « Known Error » créé depuis l’enregistrement Problem, permet au Service Desk de retrouver immédiatement la solution la plus rapide pour les incidents récurrents, en attendant le correctif définitif. Publier ou communiquer le contournement (Publish Workaround) sert à diffuser l’information aux incidents liés, mais ce n’est pas l’action qui documente formellement la résolution connue. Five Whys est une technique d’analyse de cause racine, et Complete Investigation / Complete RCA correspondent à des étapes d’investigation antérieures."
   },
   {
     "id": 172,
