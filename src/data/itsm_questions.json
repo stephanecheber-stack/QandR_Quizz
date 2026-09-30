@@ -2986,5 +2986,234 @@
       "C"
     ],
     "explanation": "Le Service Portfolio Management dans ServiceNow gère le cycle de vie des services, depuis la conception jusqu'à l'offre aux utilisateurs finaux. Lorsqu'un service est en état opérationnel et prêt à être consommé par les équipes métier, il doit nécessairement figurer dans le Catalogue de Services (Service Catalog). Ce catalogue sert de référentiel officiel et représente l'ensemble des capacités IT disponibles pour la demande d'achat ou de support. Les autres phases sont écartées car un service en Pipeline est encore en développement, tandis qu'un service Retired n'est plus offert au public. Le statut \"Catalog\" indique donc que le service a atteint sa maturité et est activement disponible via les processus ITSM standards."
+  },
+  {
+    "id": 207,
+    "question": "A Portfolio Manager is primarily concerned with the performance of what hierarchy?",
+    "options": {
+      "A": "Service Portfolio, Service, Service Offering",
+      "B": "Portfolio Owner, Service Owner, Catalog Manager",
+      "C": "Service Catalog, Catalog item, Requested item",
+      "D": "Requested Item, Catalog Task, Task SLA"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 208,
+    "question": "When modifying a Change Flow, a library is available of re-usable components for your flow. What are these components called?",
+    "options": {
+      "A": "Flow activities",
+      "B": "Flow actions",
+      "C": "Attributes",
+      "D": "Properties"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 209,
+    "question": "How is granular read and write access for a specific change model defined?",
+    "options": {
+      "A": "Configuring ACL's on the chge_model table",
+      "B": "Configuring ACL's on the Create New landing page",
+      "C": "Change properties",
+      "D": "Setting Advanced Security to true and applying user criteria"
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 210,
+    "question": "Which of the following can leverage user criteria for controlling access?",
+    "options": {
+      "A": "catalog taxonomy",
+      "B": "catalog topics",
+      "C": "catalog categories",
+      "D": "catalog variables",
+      "E": "catalog items"
+    },
+    "correct_answers": [
+      "E"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 211,
+    "question": "Which level are service commitments associated in the service portfolio taxonomy?",
+    "options": {
+      "A": "Node",
+      "B": "Offering",
+      "C": "Portfolio",
+      "D": "Service"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 212,
+    "question": "How are the relationships between services and offerings that are built in Service Portfolio Management transferred to the Configuration Management Database (CMDB)?",
+    "options": {
+      "A": "Only parent:child (service:offering) relationships are automatically created in the CMDB",
+      "B": "If the service is defined as a business service, the relationships and dependencies will be automatically in the CMDB",
+      "C": "All CMDB relationships and dependencies are automatically created upon publishing the service and offerings",
+      "D": "Any required CMDB relationships and dependencies must be created manually"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 213,
+    "question": "What is the minimum number of offering(s) a service must have to move to the Catalog phase?",
+    "options": {
+      "A": "1",
+      "B": "2",
+      "C": "3",
+      "D": "4"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 214,
+    "question": "Your client indicates they would like a way to designate VIP callers on an incident form. How would you accomplish this?",
+    "options": {
+      "A": "Dictionary entry attribute",
+      "B": "Reference decorator",
+      "C": "Action script",
+      "D": "Field style"
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 215,
+    "question": "Which of the following defines the approvals that should be applied to a change request?",
+    "options": {
+      "A": "Change approval UI actions",
+      "B": "Change approval policy",
+      "C": "Change approval script includes",
+      "D": "Change approval business rules"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 216,
+    "question": "What do you use to identify who will have access to particular items in a service catalog?",
+    "options": {
+      "A": "User criteria",
+      "B": "Access criteria",
+      "C": "User access rules",
+      "D": "Availability rules",
+      "E": "Security rules"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 217,
+    "question": "Once a Catalog Item has been requested, what mechanism determines the approvals, and tasks that are triggered in the application?",
+    "options": {
+      "A": "Decision Tables",
+      "B": "Actions",
+      "C": "Run Books",
+      "D": "Flows",
+      "E": "Playbooks"
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 218,
+    "question": "What is a core difference between an Incident and a Problem?",
+    "options": {
+      "A": "Incidents are focused on one individual having an issue; Problems are when you have many people having the same issue",
+      "B": "Incidents can be any priority; Problems are high or critical",
+      "C": "Incidents are the same as a Problem",
+      "D": "Incidents are focused on the quickest resolution; Problems are focused on root cause analysis"
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 219,
+    "question": "Where can a change manager define the fields that must be populated before a change request can move from the state of New to Assess?",
+    "options": {
+      "A": "Choice conditions",
+      "B": "Model State Transition Conditions",
+      "C": "Dictionary Overrides",
+      "D": "State choice lists"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 220,
+    "question": "When building multiple catalog items, which components should be evaluated for consolidation and re-use? (Choose two.)",
+    "options": {
+      "A": "Approvals",
+      "B": "Flows and Subflows",
+      "C": "Sets of variables",
+      "D": "Workflow Triggers"
+    },
+    "correct_answers": [
+      "B",
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 221,
+    "question": "Your company sells bicycles. They want to build a service catalog for current and prospective customers, so they can browse for bicycles and accessories, and make purchases. What interface is suitable for these external users?",
+    "options": {
+      "A": "Service Catalog Mobile App",
+      "B": "Portal",
+      "C": "Now Catalog App",
+      "D": "Google leads spoke",
+      "E": "Customer Service Catalog"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 222,
+    "question": "By default, an Assignment group is automatically set on a change request record because of a business rule. How is the group identified?",
+    "options": {
+      "A": "Change group on CI record, or if empty, the Change group on the Service offering",
+      "B": "Support group on CI record, or if empty, the Support group on the Service",
+      "C": "Support group on CI record, or the default assignment group for the user",
+      "D": "Support group on CI record, or if empty, the Support group on the Service offering"
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": "Par défaut, la règle métier « Populate Assignment Group based on CI/SO » renseigne automatiquement le groupe d’affectation à partir du Support group de l’élément de configuration (CI) ; si ce champ est vide, elle utilise le Support group de la Service offering. C’est le même mécanisme que pour les incidents et les problèmes (voir aussi la question 92). La réponse A (Change group) est un piège fréquent : le champ Change group existe bien sur les CI et les offres de service, mais ce n’est pas lui que la règle standard utilise. Remarque : cette question est débattue par les candidats ; le script de la règle dans une instance (champ support_group ou change_control) permet de le vérifier."
   }
 ]
