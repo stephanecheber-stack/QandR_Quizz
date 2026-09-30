@@ -39,9 +39,29 @@ const END_OF_OPTIONS = [
   /^Suggested Answer:/i,
 ]
 // Lignes d'en-tête à ignorer avant l'énoncé
-const HEADER_LINE = [/^Topic #:/i, /^\[\[All .* Questions\]\]/i, /^Actual exam question/i]
+// (la page donne « [[All … Questions]] » ou « [All … Questions] » selon la façon de copier)
+const HEADER_LINE = [/^Topic #:/i, /^\[+All .* Questions\]+/i, /^Actual exam question/i]
 // Indices qu'une question dépend d'une image absente du texte copié
 const EXHIBIT_HINT = /\b(shown below|exhibit|screenshot|image|refer to the|following diagram|see below)\b/i
+
+const HTML_ENTITIES = { '&quot;': '"', '&#39;': "'", '&apos;': "'", '&lt;': '<', '&gt;': '>', '&nbsp;': ' ', '&amp;': '&' }
+
+/** Remplace les codes HTML (&quot;, &amp;…) par les vrais caractères. */
+export function decodeEntities(text) {
+  return text.replace(/&(quot|#39|apos|lt|gt|nbsp|amp);/g, (entity) => HTML_ENTITIES[entity])
+}
+
+/**
+ * Auteur du commentaire qui contient la ligne « Selected Answer » n° `index`.
+ * La ligne précédente est soit « auteur [Most Recent] 1 year, … ago », soit
+ * seulement « 1 year, … ago » avec l'auteur sur la ligne d'avant.
+ */
+function voteAuthor(lines, index) {
+  const previous = lines[index - 1] ?? ''
+  if (!/\bago$/.test(previous)) return null
+  const beforeDate = previous.replace(/\s*(Most Recent\s*)?(\d+ (year|month|day|hour|minute)s?,?\s*)+ago$/, '').trim()
+  return beforeDate || lines[index - 2]?.trim() || null
+}
 
 /** Découpe le texte collé en blocs, un par « Question #: N ». */
 export function splitBlocks(text) {
@@ -66,16 +86,25 @@ export function expectedAnswerCount(question) {
 
 /**
  * Compte les votes « Selected Answer » et désigne la réponse la plus donnée.
+ * Les commentaires sont listés du plus récent au plus ancien : si un
+ * participant a voté plusieurs fois, seul son premier vote rencontré (le plus
+ * récent) compte.
  * Renvoie { tally, total, winner, share, tie }.
  */
 export function tallyVotes(lines) {
   const tally = {}
-  for (const line of lines) {
+  const voters = new Set()
+  lines.forEach((line, index) => {
     const match = line.match(/^Selected Answer:\s*([A-Za-z]+)\s*$/)
-    if (!match) continue
+    if (!match) return
+    const author = voteAuthor(lines, index)
+    if (author) {
+      if (voters.has(author)) return
+      voters.add(author)
+    }
     const answer = normalizeAnswer(match[1])
     if (answer) tally[answer] = (tally[answer] ?? 0) + 1
-  }
+  })
   const total = Object.values(tally).reduce((sum, n) => sum + n, 0)
   const ranked = Object.entries(tally).sort((a, b) => b[1] - a[1])
   if (ranked.length === 0) return { tally, total, winner: null, share: 0, tie: false }
@@ -86,7 +115,7 @@ export function tallyVotes(lines) {
 
 /** Analyse un bloc. Renvoie la question structurée + ses alertes / erreurs. */
 export function parseBlock(block) {
-  const lines = block.split('\n').map((line) => line.trim())
+  const lines = decodeEntities(block).split('\n').map((line) => line.trim())
   const number = Number(lines[0].match(/^Question #:\s*(\d+)/)[1])
   const errors = []
   const warnings = []

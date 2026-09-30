@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import {
   SIMILAR_THRESHOLD,
   closestMatch,
+  decodeEntities,
   expectedAnswerCount,
   jaccard,
   normalizeAnswer,
@@ -186,5 +187,81 @@ describe('outils', () => {
     const match = closestMatch(candidate, existing)
     expect(match.id).toBe(7)
     expect(match.score).toBeGreaterThanOrEqual(SIMILAR_THRESHOLD)
+  })
+})
+
+// Format réel d'un second collage : en-tête à crochets simples, liste des
+// lettres sous « Chosen Answer », codes HTML et participant qui change d'avis.
+const Q214 = `Question #: 214
+Topic #: 1
+[All CIS-ITSM Questions]
+Your client wants to designate VIP callers &amp; flag them. How would you accomplish this?
+
+A. Dictionary entry attribute
+
+B. Reference decorator
+
+C. Action script
+
+D. Field style
+
+by  aa43ebf at May 03, 2025 04:58 am
+Comments
+Chosen Answer: 
+A
+
+B
+
+C
+
+D
+
+This is a voting comment (?). It is better to Upvote an existing comment if you don't have anything to add.
+Please explain your answer
+
+ aaadddiii Most Recent  1 year, 2 months, 20 days ago
+Selected Answer: D
+configuration incident lifecycle 5.3 &lt;&lt; VIP- Field Style.
+Ignore my earlier response
+   upvoted 1 time
+ aaadddiii 1 year, 2 months, 20 days ago
+Selected Answer: B
+Tricky statement
+   upvoted 1 time
+ aa43ebf 1 year, 4 months, 27 days ago
+Selected Answer: D
+VIP - Field Style.
+   upvoted 1 time
+`
+
+describe('parseBlock — second format de collage (question 214)', () => {
+  const parsed = parseBlock(splitBlocks(Q214)[0])
+
+  it('ignore l’en-tête à crochets simples', () => {
+    expect(parsed.question).toBe('Your client wants to designate VIP callers & flag them. How would you accomplish this?')
+  })
+
+  it('ne prend pas les lettres de « Chosen Answer » pour des choix', () => {
+    expect(parsed.options).toEqual({
+      A: 'Dictionary entry attribute',
+      B: 'Reference decorator',
+      C: 'Action script',
+      D: 'Field style',
+    })
+  })
+
+  it('ne compte que le vote le plus récent d’un participant', () => {
+    expect(parsed.votes.tally).toEqual({ D: 2 })
+    expect(parsed.correct_answers).toEqual(['D'])
+  })
+})
+
+describe('decodeEntities', () => {
+  it('remplace les codes HTML courants', () => {
+    expect(decodeEntities('&quot;a&quot; &amp; &lt;b&gt; l&#39;c')).toBe('"a" & <b> l\'c')
+  })
+
+  it('ne décode pas deux fois (&amp;quot; reste &quot;)', () => {
+    expect(decodeEntities('&amp;quot;')).toBe('&quot;')
   })
 })

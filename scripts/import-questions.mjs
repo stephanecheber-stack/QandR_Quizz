@@ -59,7 +59,12 @@ const existing = JSON.parse(body)
 
 // --- Analyse du fichier collé ---
 const absoluteInput = resolve(process.cwd(), inputPath)
-const blocks = splitBlocks(readFileSync(absoluteInput, 'utf8'))
+const pasted = readFileSync(absoluteInput, 'utf8')
+if (pasted.trim() === '') {
+  console.error(`Le fichier ${inputPath} est vide sur le disque. Dans VS Code, enregistre-le (Ctrl+S) : l'onglet ne doit plus afficher de rond blanc.`)
+  process.exit(1)
+}
+const blocks = splitBlocks(pasted)
 if (blocks.length === 0) {
   console.error('Aucune question trouvée : chaque question doit commencer par une ligne « Question #: N ».')
   process.exit(1)
