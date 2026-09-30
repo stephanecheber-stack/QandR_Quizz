@@ -52,7 +52,7 @@ export const MODULES = [
     subtitle: 'Certification CIS-ITSM',
     description: 'IT Service Management et bonnes pratiques ServiceNow.',
     icon: LifeBuoy,
-    questionCount: 205,
+    questionCount: 204,
     load: () => import('./data/itsm_questions.json').then((module) => module.default),
     theme: {
       iconWrapper: 'bg-purple-100',

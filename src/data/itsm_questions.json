@@ -2170,25 +2170,6 @@
     "explanation": "Le partage d'informations de type « Comment faire » est géré dans ServiceNow par le module de Gestion des Connaissances (Knowledge Management). Ce concept permet de centraliser et de structurer les solutions aux problèmes courants pour l'autonomie des utilisateurs. Lorsqu'un agent de Service Desk fournit une procédure détaillée, il utilise nécessairement un article de connaissance, car c'est ce format qui garantit la traçabilité, le cycle de vie et la validation du contenu par l'équipe IT. L'article de connaissance est donc le type d'enregistrement standardisé conçu spécifiquement pour être partagé comme guide pratique avec les clients. Les autres options sont écartées car un objet de contenu ou un document générique ne bénéficie pas des fonctionnalités de publication, de versioning et de recherche avancée propres aux articles de connaissances ServiceNow."
   },
   {
-    "id": 149,
-    "question": "What are the different ways a user can provide feedback on a knowledge article? (Choose four.)",
-    "options": {
-      "A": "Helpful?",
-      "B": "Flag Article",
-      "C": "5 Star scale",
-      "D": "10 Star scale",
-      "E": "Comment on Article",
-      "F": "Pin Article"
-    },
-    "correct_answers": [
-      "A",
-      "B",
-      "C",
-      "E"
-    ],
-    "explanation": "Ce type de fonctionnalité est essentiel pour l’amélioration continue du contenu dans la base de connaissances ServiceNow. Les mécanismes de feedback permettent aux administrateurs d'évaluer rapidement la pertinence et la qualité des articles. Le système propose plusieurs canaux : le bouton « Helpful? » (Utile ?) fournit une métrique binaire immédiate, tandis que les commentaires textuels offrent un contexte précieux pour l’amélioration. L'utilisation d'une échelle de notation (comme 5 étoiles) permet également une évaluation quantitative et rapide par l'utilisateur. Enfin, la fonction « Flag Article » est vitale car elle signale au contenu le besoin urgent de révision ou qu'il contient des informations erronées. Les autres options sont écartées car ServiceNow utilise généralement un système d’évaluation à 5 étoiles maximum, et \"Pin Article\" relève plutôt d'une action administrative que d'un mécanisme de feedback utilisateur."
-  },
-  {
     "id": 150,
     "question": "Where should an admin go to view all of the search queries entered by users in the knowledge search?",
     "options": {
