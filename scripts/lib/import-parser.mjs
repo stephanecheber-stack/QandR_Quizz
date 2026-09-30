@@ -31,6 +31,8 @@ const OPTION_LINE = /^([A-H])\.\s+(.*)$/
 // Lignes qui marquent la fin des choix de réponse
 const END_OF_OPTIONS = [
   /^by\s+\S+.*\bat\b/i,
+  // Date seule, sans « by … at » (ex. « January 05, 2026 03:17 am »)
+  /^[A-Z][a-z]+ \d{1,2}, \d{4} \d{1,2}:\d{2} [ap]m$/i,
   /^Comments\s*$/i,
   /^Chosen Answer:/i,
   /^Show Suggested Answer/i,
@@ -113,8 +115,23 @@ export function tallyVotes(lines) {
   return { tally, total, winner: tie ? null : winner, share: best / total, tie }
 }
 
+/**
+ * Lit les options --answer 233=B --answer 241=AD en { 233: 'B', 241: 'AD' }.
+ * Sert à fixer à la main la réponse d'une question sans vote ou à égalité.
+ */
+export function parseAnswerOverrides(args) {
+  const overrides = {}
+  args.forEach((arg, index) => {
+    if (arg !== '--answer') return
+    const match = String(args[index + 1] ?? '').match(/^(\d+)=([A-Za-z]+)$/)
+    if (!match) throw new Error(`--answer attend la forme N=LETTRES (ex. 233=B), reçu : ${args[index + 1]}`)
+    overrides[Number(match[1])] = normalizeAnswer(match[2])
+  })
+  return overrides
+}
+
 /** Analyse un bloc. Renvoie la question structurée + ses alertes / erreurs. */
-export function parseBlock(block) {
+export function parseBlock(block, override = null) {
   const lines = decodeEntities(block).split('\n').map((line) => line.trim())
   const number = Number(lines[0].match(/^Question #:\s*(\d+)/)[1])
   const errors = []
@@ -150,19 +167,21 @@ export function parseBlock(block) {
 
   if (!question) errors.push('énoncé introuvable')
   if (Object.keys(options).length < 2) errors.push('moins de deux choix de réponse trouvés')
-  if (votes.total === 0) errors.push('aucun vote « Selected Answer »')
+  if (override) warnings.push(`réponse fixée à la main (${override})${votes.total ? `, votes : ${formatTally(votes.tally)}` : ', aucun vote'}`)
+  else if (votes.total === 0) errors.push('aucun vote « Selected Answer »')
   else if (votes.tie) errors.push(`égalité de votes : ${formatTally(votes.tally)}`)
 
-  const correct = votes.winner ? votes.winner.split('') : []
+  const chosen = override ?? votes.winner
+  const correct = chosen ? chosen.split('') : []
   const unknown = correct.filter((letter) => !(letter in options))
   if (unknown.length > 0) errors.push(`réponse votée ${unknown.join('')} absente des choix`)
 
-  if (votes.winner) {
+  if (votes.winner && !override) {
     if (votes.total < 2) warnings.push('un seul vote')
     if (votes.share < LOW_CONSENSUS) warnings.push(`consensus faible (${Math.round(votes.share * 100)} %) : ${formatTally(votes.tally)}`)
-    const expected = expectedAnswerCount(question)
-    if (expected && expected !== correct.length) warnings.push(`l'énoncé demande ${expected} réponse(s), le vote en donne ${correct.length}`)
   }
+  const expected = expectedAnswerCount(question)
+  if (chosen && expected && expected !== correct.length) warnings.push(`l'énoncé demande ${expected} réponse(s), la réponse retenue en donne ${correct.length}`)
   if (EXHIBIT_HINT.test(question)) warnings.push("l'énoncé semble faire référence à une image absente du texte")
 
   return { number, question, options, correct_answers: correct, votes, errors, warnings }

@@ -4,6 +4,8 @@
  *
  *   npm run import:questions -- itsm imports/itsm_lot1.txt            # simulation (rien n'est écrit)
  *   npm run import:questions -- itsm imports/itsm_lot1.txt --write    # ajoute réellement les questions
+ *   … --answer 233=B --answer 241=AD   fixe à la main la réponse d'une question
+ *                                      (sans vote, égalité ou vote jugé faux)
  *
  * Pour chaque question du fichier texte :
  *  - extrait l'énoncé et les choix A, B, C… ;
@@ -24,6 +26,7 @@ import {
   SIMILAR_THRESHOLD,
   closestMatch,
   formatTally,
+  parseAnswerOverrides,
   parseBlock,
   splitBlocks,
 } from './lib/import-parser.mjs'
@@ -38,12 +41,14 @@ const MODULE_FILES = {
 
 // --- Arguments ---
 const args = process.argv.slice(2)
-const positional = args.filter((arg) => !arg.startsWith('--'))
+// Les valeurs de --answer (ex. 233=B) ne sont pas des arguments positionnels
+const positional = args.filter((arg, index) => !arg.startsWith('--') && args[index - 1] !== '--answer')
 const [moduleKey, inputPath] = [positional[0]?.toLowerCase(), positional[1]]
 const write = args.includes('--write')
+const overrides = parseAnswerOverrides(args)
 
 if (!MODULE_FILES[moduleKey] || !inputPath) {
-  console.error(`Usage : npm run import:questions -- <${Object.keys(MODULE_FILES).join('|')}> <fichier.txt> [--write]`)
+  console.error(`Usage : npm run import:questions -- <${Object.keys(MODULE_FILES).join('|')}> <fichier.txt> [--write] [--answer N=LETTRES]…`)
   process.exit(1)
 }
 
@@ -76,7 +81,8 @@ const report = { added: [], duplicates: [], rejected: [] }
 const accepted = []
 
 for (const block of blocks) {
-  const parsed = parseBlock(block)
+  const number = Number(block.match(/^Question #:\s*(\d+)/)[1])
+  const parsed = parseBlock(block, overrides[number] ?? null)
   const label = `ExamTopics n° ${parsed.number}`
 
   if (parsed.errors.length > 0) {
@@ -107,7 +113,7 @@ for (const block of blocks) {
     parsed.warnings.push(`proche de la question #${match.id} (${percent} %) : variante ou doublon ?`)
   }
   const notes = parsed.warnings.length > 0 ? `  ⚠ ${parsed.warnings.join(' ; ')}` : ''
-  report.added.push(`${label} → #${id} — réponse ${parsed.correct_answers.join('')} (votes : ${formatTally(parsed.votes.tally)})${notes}`)
+  report.added.push(`${label} → #${id} — réponse ${parsed.correct_answers.join('')}${parsed.votes.total ? ` (votes : ${formatTally(parsed.votes.tally)})` : ''}${notes}`)
 }
 
 // --- Rapport ---

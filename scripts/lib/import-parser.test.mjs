@@ -3,6 +3,7 @@ import {
   SIMILAR_THRESHOLD,
   closestMatch,
   decodeEntities,
+  parseAnswerOverrides,
   expectedAnswerCount,
   jaccard,
   normalizeAnswer,
@@ -263,5 +264,54 @@ describe('decodeEntities', () => {
 
   it('ne décode pas deux fois (&amp;quot; reste &quot;)', () => {
     expect(decodeEntities('&amp;quot;')).toBe('&quot;')
+  })
+})
+
+describe('parseBlock — ligne de date seule et réponse fixée à la main', () => {
+  const text = `Question #: 233
+Topic #: 1
+[All CIS-ITSM Questions]
+Which approach is recommended?
+
+A. un
+
+B. deux
+
+C. trois
+
+January 05, 2026 03:17 am
+Comments
+Chosen Answer: 
+A
+
+B
+
+C
+`
+
+  it('n’accroche pas la date au dernier choix', () => {
+    expect(parseBlock(text).options.C).toBe('trois')
+  })
+
+  it('rejette sans vote, mais accepte une réponse fixée à la main', () => {
+    expect(parseBlock(text).errors[0]).toMatch(/aucun vote/)
+    const forced = parseBlock(text, 'B')
+    expect(forced.errors).toEqual([])
+    expect(forced.correct_answers).toEqual(['B'])
+    expect(forced.warnings[0]).toMatch(/fixée à la main/)
+  })
+
+  it('une réponse fixée inexistante reste rejetée', () => {
+    expect(parseBlock(text, 'E').errors[0]).toMatch(/absente des choix/)
+  })
+})
+
+describe('parseAnswerOverrides', () => {
+  it('lit plusieurs --answer', () => {
+    expect(parseAnswerOverrides(['itsm', 'f.txt', '--answer', '233=b', '--answer', '241=DA'])).toEqual({ 233: 'B', 241: 'AD' })
+  })
+
+  it('refuse une forme invalide', () => {
+    expect(() => parseAnswerOverrides(['--answer', 'B'])).toThrow(/N=LETTRES/)
   })
 })
