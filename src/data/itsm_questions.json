@@ -3228,7 +3228,7 @@
     "correct_answers": [
       "C"
     ],
-    "explanation": ""
+    "explanation": "Dans Service Builder (Service Portfolio Management), extraire (check out) un service existant pour le modifier crée une copie de ce service à l'état Draft. Toutes les modifications se font sur cette copie ; l'original reste publié et consommable jusqu'à ce que la copie soit validée et republiée. Le service n'est donc ni rendu indisponible (B), ni retiré (D), et le portefeuille ne change pas d'état (A)."
   },
   {
     "id": 224,
@@ -3243,7 +3243,7 @@
       "C",
       "D"
     ],
-    "explanation": ""
+    "explanation": "Communiquer un contournement ou un correctif (Communicate Workaround / Communicate Fix) depuis un enregistrement Problem est réservé aux rôles qui pilotent le processus de gestion des problèmes : ici problem_manager et problem_admin. Le rôle problem_task_analyst ne sert qu'à traiter les tâches de problème qui lui sont confiées, et itil_admin n'est pas un rôle du processus Problem. Variante de la question 26, où problem_coordinator figure parmi les choix."
   },
   {
     "id": 225,
@@ -3259,7 +3259,7 @@
       "A",
       "B"
     ],
-    "explanation": ""
+    "explanation": "Pour résoudre un incident, l'assigné dispose d'outils directement liés à la résolution : les contournements (Workarounds, issus notamment des erreurs connues) et les résolutions d'incidents similaires, proposées dans le formulaire ou l'Agent Workspace. CI Class Manager, l'Enterprise CMDB Dashboard et l'Incident Overview Dashboard sont des outils d'administration ou de pilotage, pas d'aide à la résolution. Variante des questions 15, 65 et 118."
   },
   {
     "id": 226,
@@ -3273,7 +3273,7 @@
     "correct_answers": [
       "C"
     ],
-    "explanation": ""
+    "explanation": "Quand un e-mail entrant contient le watermark d'un incident (référence unique ajoutée aux notifications sortantes), ServiceNow le reconnaît comme une réponse liée à cet enregistrement et exécute l'Inbound Email Action de type « Reply » correspondante. L'incident est alors mis à jour selon le script de l'action (par exemple ajout du corps du message dans les commentaires). Par défaut, cela ne met pas l'incident en attente, ne met pas en pause le SLA et n'envoie pas de réponse automatique. Variante de la question 62."
   },
   {
     "id": 227,
@@ -3289,7 +3289,7 @@
       "C",
       "E"
     ],
-    "explanation": ""
+    "explanation": "Les user criteria contrôlent l'accès au Service Catalog via les listes liées Available For et Not Available For. Elles s'appliquent notamment aux catégories et aux catalog items, ce qui donne les deux bonnes réponses. Les variables se sécurisent par des rôles de lecture et d'écriture, pas par user criteria, et la taxonomie ou les topics relèvent de la navigation. Variante de la question 210, qui n'attendait qu'une seule réponse."
   },
   {
     "id": 228,
@@ -3303,7 +3303,7 @@
     "correct_answers": [
       "D"
     ],
-    "explanation": ""
+    "explanation": "Dans la gestion des problèmes, la vue de formulaire « Assess Dialog » définit les champs à renseigner pour qu'un problème puisse passer de New à Assess : typiquement le groupe et la personne assignés. Une fois ces champs remplis, le passage à Assess se fait automatiquement. Cette vue ne gère ni les notifications ni leurs destinataires, et elle ne sert pas à définir un texte d'information. Réponse retenue sur un seul vote : à confirmer en instance si besoin."
   },
   {
     "id": 229,
@@ -3317,7 +3317,7 @@
     "correct_answers": [
       "D"
     ],
-    "explanation": ""
+    "explanation": "Dans Major Incident Management, un incident proposé comme candidat majeur doit être accepté ou rejeté par un utilisateur ayant le rôle major_incident_manager. Ce rôle déclenche ensuite la gestion de l'incident majeur (communication, incidents enfants, suivi). incident_manager, incident_admin et itil_admin ne donnent pas, à eux seuls, le droit d'accepter un incident majeur."
   },
   {
     "id": 230,
@@ -3331,7 +3331,7 @@
     "correct_answers": [
       "B"
     ],
-    "explanation": ""
+    "explanation": "Dans le CSDM, un service technique (Technical Service) est géré par l'IT et publié à destination des responsables de services (service owners) et des équipes techniques : il est consommé en interne, par exemple l'hébergement, le réseau ou une base de données. Un service métier (Business Service) est, à l'inverse, publié aux utilisateurs métier ou aux clients. Les services applicatifs représentent l'instance opérationnelle d'une application, et « Mobile service » n'est pas un type de service CSDM."
   },
   {
     "id": 231,
@@ -3345,7 +3345,7 @@
     "correct_answers": [
       "B"
     ],
-    "explanation": ""
+    "explanation": "Pour contrôler finement qui peut lire ou modifier un change model précis, on passe Advanced Security à true sur le modèle. Les listes liées Available For, Not Available For et Can Write apparaissent alors ; elles s'appuient sur des user criteria. Les ACL sur la table chg_model s'appliquent à tous les modèles à la fois, la page « Create New » ne sert qu'à choisir un modèle, et les propriétés de Change Management sont des paramètres globaux. Variante de la question 209."
   },
   {
     "id": 232,
@@ -3360,7 +3360,7 @@
     "correct_answers": [
       "A"
     ],
-    "explanation": ""
+    "explanation": "Le cycle de vie d'une demande (Request Management) se déroule en quatre étapes : Submittal (soumission), Approval, Fulfillment, Closure. C'est à l'étape de soumission que l'utilisateur choisit l'article dans le catalogue, remplit le formulaire (variables) et soumet sa demande. Les autres termes ne sont pas des étapes de ce cycle. Remarque : les participants étaient partagés sur cette question, dont une proposition pour « Specification »."
   },
   {
     "id": 233,
@@ -3373,7 +3373,7 @@
     "correct_answers": [
       "B"
     ],
-    "explanation": ""
+    "explanation": "Pour ajouter une exigence avant le passage de New à Assess dans le modèle Normal, la bonne pratique est d'ajouter une condition de transition (State Transition Condition) sur l'enregistrement de transition « New to Assess » du change model. C'est une configuration sans code, sûre lors des mises à jour. Modifier le script include ChangeRequestStateModelSNC_normal est une personnalisation de code déconseillée, et créer un flow pour une nouvelle phase ne répond pas au besoin. Cohérent avec les questions 83 et 219."
   },
   {
     "id": 234,
@@ -3387,7 +3387,7 @@
     "correct_answers": [
       "B"
     ],
-    "explanation": ""
+    "explanation": "Dans le CSDM, les CI d'infrastructure (serveurs, bases de données, équipements réseau…) sont alimentés par les sources de données : outils de découverte (Discovery, Service Graph Connectors) et intégrations. Ce sont ces sources, via l'Identification and Reconciliation Engine, qui déterminent la classe et la table CMDB dans lesquelles chaque CI est créé. La version du CSDM, les rôles des utilisateurs ou le domaine choisi ne déterminent pas la classe d'un CI."
   },
   {
     "id": 235,
@@ -3401,7 +3401,7 @@
     "correct_answers": [
       "A"
     ],
-    "explanation": ""
+    "explanation": "Un problème de type General passe automatiquement de New à Assess dès que les champs requis sont renseignés, en pratique le groupe d'affectation et la personne assignée. Les autres transitions (Assess → Root Cause Analysis, Root Cause Analysis → Fix in Progress, Fix in Progress → Resolved) demandent une action de l'utilisateur via les boutons du formulaire. Voir aussi la question 228 sur la vue « Assess Dialog »."
   },
   {
     "id": 236,
@@ -3415,7 +3415,7 @@
     "correct_answers": [
       "D"
     ],
-    "explanation": ""
+    "explanation": "La priorité d'un incident est calculée à partir de l'impact et de l'urgence grâce aux Priority Lookup Rules, une table de correspondance (data lookup) qui associe chaque combinaison impact × urgence à une priorité. Pour qu'une combinaison donne Priority 4 - Low, on modifie la règle correspondante dans cette table. La liste de choix de Priority ne contient que les valeurs possibles, et « priority_matrix.do » comme « Priority Choice Matrix » n'existent pas dans la configuration standard."
   },
   {
     "id": 237,
@@ -3429,7 +3429,7 @@
     "correct_answers": [
       "C"
     ],
-    "explanation": ""
+    "explanation": "Pour permettre au demandeur de choisir un enregistrement existant d'une table, ici un site de la table Location (cmn_location), on utilise une variable de type Reference. Elle propose une recherche et garantit que la valeur saisie correspond à un vrai enregistrement. Un texte libre (Single Line Text) ne garantit rien, et Select Box ou Multiple Choice reposent sur une liste de choix définie à la main, pas sur une table."
   },
   {
     "id": 239,
@@ -3443,7 +3443,7 @@
     "correct_answers": [
       "D"
     ],
-    "explanation": ""
+    "explanation": "Les conditions de déclenchement d'une notification se définissent dans l'onglet « When to send » de l'enregistrement Notification : événement ou insertion/mise à jour d'un enregistrement, avec des conditions sur les champs. Les destinataires se règlent dans l'onglet « Who will receive », et les mail scripts ou l'option « Send to event creator » concernent le contenu et les destinataires, pas le déclenchement."
   },
   {
     "id": 240,
@@ -3457,7 +3457,7 @@
     "correct_answers": [
       "B"
     ],
-    "explanation": ""
+    "explanation": "Les notifications et escalades liées au pourcentage écoulé d'un SLA (par exemple à 50 %, 75 % et 100 %) sont gérées par le flow SLA de notification et d'escalade dans Flow Designer. Pour ajouter une notification à 85 %, on copie ou modifie ce flow en y ajoutant une attente sur le pourcentage voulu puis une action de notification. Créer une business rule est une personnalisation inutile, et ni une « SLA Timer Configuration » ni un nouveau workflow dans la définition du SLA ne sont la bonne approche."
   },
   {
     "id": 242,
@@ -3471,6 +3471,6 @@
     "correct_answers": [
       "B"
     ],
-    "explanation": ""
+    "explanation": "Quand une classe CMDB est marquée comme Principal Class et que le filtre Principal Class est actif, le champ Configuration Item des incidents, problèmes et changements ne propose plus que les CI appartenant aux classes principales. Cela évite de sélectionner des CI trop techniques ou peu pertinents (disques, interfaces réseau…) et améliore la qualité des données. Le champ n'est ni masqué ni verrouillé."
   }
 ]
