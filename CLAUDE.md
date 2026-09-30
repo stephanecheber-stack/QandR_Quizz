@@ -20,6 +20,7 @@ npm run check:data                # validate the question banks
 npm test                          # run the Vitest unit tests once
 npm run test:watch                # Vitest in watch mode
 npm run gen:explanations -- itsm  # fill missing explanations via local Ollama
+npm run import:questions -- itsm imports/lot.txt [--write]  # import questions pasted from ExamTopics (dry run by default)
 ```
 
 Unit tests use **Vitest** and live next to the code they cover (`src/lib/*.test.js`): grading rules (`quiz.js`), seeded shuffle (`shuffle.js`) and formatting (`format.js`). Pure logic in `src/lib/` should get a test with any change; run `npm test` before committing. `npm run check:data` validates the question banks. A Claude Code `PostToolUse` hook in `.claude/settings.json` runs it automatically after every Edit/Write under `src/data/` and reports failures back; it does **not** watch `src/modules.js`, so run `check:data` by hand after changing a `questionCount` there.
@@ -34,6 +35,8 @@ Unit tests use **Vitest** and live next to the code they cover (`src/lib/*.test.
 3. **Persistence** — Firestore `users/{uid}`, with `lockedModule` and `progress[moduleId]` = `{ currentIndex, score, errorIds, timings, orderSeed, finished, updatedAt }`. All Firestore access for progress goes through `src/lib/progress.js`, which also migrates the legacy `sessionErrors` field to `errorIds`.
 
 **Pure logic lives in `src/lib/`** (no React, no Firebase): `quiz.js` (correction rules), `shuffle.js` (seeded Fisher-Yates), `format.js`, plus `ollama.js` and `progress.js` for I/O.
+
+**Importing pasted questions**: `scripts/import-questions.mjs` (CLI, I/O) + `scripts/lib/import-parser.mjs` (pure parsing, tested in `import-parser.test.mjs`). The user copies ExamTopics discussion pages by hand into `imports/*.txt` (gitignored); Claude must not browse or scrape ExamTopics itself. Answer = most-voted `Selected Answer`; ties/no votes are rejected; ≥95 % similarity = duplicate skipped; ≥60 % = added but flagged (ExamTopics has legit one-option variants, e.g. #52/#159). Explanations are left empty for `gen:explanations`.
 
 **Adding a module** = drop the JSON in `src/data/` + add one entry to `MODULES` in `src/modules.js` (including `questionCount`, which `check:data` verifies) + run `npm run check:data`. Nothing else to touch.
 

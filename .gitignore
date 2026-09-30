@@ -13,3 +13,6 @@ dist/
 *.doc
 *.docx
 ~$*
+
+# Textes collés pour import de questions (non versionnés)
+imports/

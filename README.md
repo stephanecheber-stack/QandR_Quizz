@@ -87,6 +87,7 @@ npm run dev        # serveur de développement sur http://localhost:5175
 | `npm run test:watch` | tests relancés à chaque modification |
 | `npm run check:data` | valide les banques de questions (ids, options, réponses, compteurs) |
 | `npm run gen:explanations -- itsm` | génère les explications manquantes via Ollama |
+| `npm run import:questions -- itsm imports/lot.txt` | simule l'import de questions collées (ajouter `--write` pour enregistrer) |
 
 > Les tests unitaires (Vitest) couvrent la logique pure de `src/lib/` : règles
 > de correction, mélange seedé, formatage des durées. Ils sont placés à côté du

@@ -12,7 +12,8 @@
     "check:data": "node scripts/check-data.mjs",
     "gen:explanations": "node scripts/generate-explanations.mjs",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "import:questions": "node scripts/import-questions.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",
