@@ -3215,5 +3215,262 @@
       "D"
     ],
     "explanation": "Par défaut, la règle métier « Populate Assignment Group based on CI/SO » renseigne automatiquement le groupe d’affectation à partir du Support group de l’élément de configuration (CI) ; si ce champ est vide, elle utilise le Support group de la Service offering. C’est le même mécanisme que pour les incidents et les problèmes (voir aussi la question 92). La réponse A (Change group) est un piège fréquent : le champ Change group existe bien sur les CI et les offres de service, mais ce n’est pas lui que la règle standard utilise. Remarque : cette question est débattue par les candidats ; le script de la règle dans une instance (champ support_group ou change_control) permet de le vérifier."
+  },
+  {
+    "id": 223,
+    "question": "What happens when an existing service record is checked out in service Builder for editing?",
+    "options": {
+      "A": "The service portfolio record is placed in a Work in progress state",
+      "B": "The service and offerings are temporarily unavailable for consumption",
+      "C": "A copy of the service is created and placed in a Draft state",
+      "D": "The original service record is placed in a Retired state"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 224,
+    "question": "Users with which role can Communicate a workaround or fix? (Choose two.)",
+    "options": {
+      "A": "itil_admin",
+      "B": "problem_task_analyst",
+      "C": "problem_manager",
+      "D": "problem_admin"
+    },
+    "correct_answers": [
+      "C",
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 225,
+    "question": "What tools are available to the assignee to help resolve an incident? (Choose two.)",
+    "options": {
+      "A": "Workarounds",
+      "B": "Resolutions from similar incidents",
+      "C": "CI Class Manager",
+      "D": "Enterprise CMDB Dashboard",
+      "E": "Incident Overview Dashboard"
+    },
+    "correct_answers": [
+      "A",
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 226,
+    "question": "By default, when using Inbound actions, what happens if an email is received and has an Incident watermark?",
+    "options": {
+      "A": "Incident record is set to state = on hold",
+      "B": "Incident SLA clock is paused",
+      "C": "Incident record is updated, per the action's script",
+      "D": "Auto-reply sent to sender, recommending they use Portal chat"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 227,
+    "question": "Which of the following can leverage user criteria for controlling access? (Choose two.)",
+    "options": {
+      "A": "catalog taxonomy",
+      "B": "catalog topics",
+      "C": "catalog categories",
+      "D": "catalog variables",
+      "E": "catalog items"
+    },
+    "correct_answers": [
+      "C",
+      "E"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 228,
+    "question": "Which of the following is defined in the Assess Dialog Form View for problem records?",
+    "options": {
+      "A": "The notifications that are sent to Problem Analysts when a problem record is moved from the New to Assess state.",
+      "B": "The text displayed in the dialog box when a problem record moves from the New to Assess state.",
+      "C": "The users that receive notifications when a problem record is moved from the New to Assess state.",
+      "D": "The fields which are required to be populated for the record to automatically move from the New to Assess state."
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 229,
+    "question": "What role is required to accept a Major Incident?",
+    "options": {
+      "A": "incident_admin",
+      "B": "itil_admin",
+      "C": "incident_manager",
+      "D": "major_incident_manager"
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 230,
+    "question": "Which service type is published to service owners and typically only consumed internally?",
+    "options": {
+      "A": "Business service",
+      "B": "Technical service",
+      "C": "Mobile service",
+      "D": "Application service"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 231,
+    "question": "How is granular read and write access for a specific change model defined?",
+    "options": {
+      "A": "Configuring ACL's on the Create New landing page",
+      "B": "Setting Advanced Security to true and applying user criteria",
+      "C": "Configuring ACL’s on the chge_model table",
+      "D": "Navigating to Administration > Change properties"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 232,
+    "question": "In what part of the Request management lifecycle, does the user fill out the form for the item they are requesting?",
+    "options": {
+      "A": "Submittal",
+      "B": "Inquiry",
+      "C": "Specification",
+      "D": "Check out",
+      "E": "Input"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 233,
+    "question": "A customer wishes to add a requirement to the Normal Change Model. Prior to transitioning the change status from New to Assess, they would like to ensure that the associated Configuration Item (CI) has a Proposed Change specified on the CI record. What is the recommended approach to implement this requirement?",
+    "options": {
+      "A": "Adjust script include \"ChangeRequestStateModelSNC_normal\"",
+      "B": "Add a state transition condition to the state transition record \"New to Assess\"",
+      "C": "Create a flow in Flow Designer for the new phase for the normal change model"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 234,
+    "question": "What determines the class and table structure that infrastructure configuration items map to in the CSDM model?",
+    "options": {
+      "A": "The version number and type of CSDM implementation",
+      "B": "The data sources, discovery tools, and system integrations",
+      "C": "The selected CMDB domain and base system configuration",
+      "D": "The user permissions and assigned administrative roles"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 235,
+    "question": "Which state will a General Problem record automatically move through if the required fields are completed?",
+    "options": {
+      "A": "New to Assess",
+      "B": "Fix in Progress to Resolved",
+      "C": "Assess to Root Cause Analysis",
+      "D": "Root Cause Analysis to Fix in Progress"
+    },
+    "correct_answers": [
+      "A"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 236,
+    "question": "How can a customer change the default priority from 3 + Urgency 3 to Priority 4 Low?",
+    "options": {
+      "A": "Update the priority_matrix.do script",
+      "B": "Update the Priority choice list",
+      "C": "Update the Priority Choice Matrix",
+      "D": "Update the Priority Lookup Rules"
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 237,
+    "question": "In a conference room reservation request form, the requester needs to identify the company location from the location table. What variable type is used to achieve this?",
+    "options": {
+      "A": "Single Line Text",
+      "B": "Select Box",
+      "C": "Reference",
+      "D": "Multiple Choice"
+    },
+    "correct_answers": [
+      "C"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 239,
+    "question": "What creates the trigger conditions of a Notification record?",
+    "options": {
+      "A": "Define specific groups and users as recipients",
+      "B": "Use the incident_comments mail script",
+      "C": "Enable the Send to Event Creator",
+      "D": "Modify the conditions on the when to send tab"
+    },
+    "correct_answers": [
+      "D"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 240,
+    "question": "How does a customer setup additional notifications when the SLA Percentage Timer reaches 85%?",
+    "options": {
+      "A": "Use a newly created business rule to create an event",
+      "B": "Use Flow Designer to add new action to the SLA notification and escalation flow",
+      "C": "Use the SLA Timer Configuration to add new notification",
+      "D": "Use the SLA Definitions to add a new SLA workflow"
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
+  },
+  {
+    "id": 242,
+    "question": "When a class is set as a Principal Class, what effect does this have on the Configuration Item (CI) field in change, incident, and problem records?",
+    "options": {
+      "A": "It hides the CI field completely.",
+      "B": "It allows selection of only CIs within the Principal Class.",
+      "C": "It allows the selection of all CIs, regardless of class.",
+      "D": "It locks the CI field to prevent edits."
+    },
+    "correct_answers": [
+      "B"
+    ],
+    "explanation": ""
   }
 ]
